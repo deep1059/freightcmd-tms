@@ -1,2 +1,2 @@
 [start]
-cmd = "npx serve . --listen $PORT --no-clipboard"
+cmd = "python3 -m http.server $PORT"
