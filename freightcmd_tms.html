@@ -1496,99 +1496,68 @@ function generateInvoice() {
 }
 
 function showInvoice(inv) {
-  var apexNote = inv.apex ? '<div style="background:#fff3cd;border:1px solid #ffc107;padding:8px 12px;margin-bottom:12px;font-size:11px;color:#856404"><b>FACTORING:</b> This invoice is submitted to Apex Ultima for factoring at 1.5%. You will receive $' + inv.net.toLocaleString('en-US',{minimumFractionDigits:2}) + ' after the $' + inv.apexFee.toFixed(2) + ' factoring fee.</div>' : '';
+  var apexNote = inv.apex ? '<div style="background:#fff3cd;border:1px solid #ffc107;padding:8px 12px;margin-bottom:12px;font-size:11px;color:#856404"><b>FACTORING:</b> Invoice submitted to Apex Ultima at 1.5%. You receive $' + inv.net.toLocaleString('en-US',{minimumFractionDigits:2}) + ' after $' + inv.apexFee.toFixed(2) + ' fee.</div>' : '';
 
-  var html = apexNote + \`
-  <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px;padding-bottom:16px;border-bottom:3px solid #d4820a">
-    <div>
-      <div style="font-size:26px;font-weight:900;letter-spacing:3px;color:#111">DEEP <span style="color:#d4820a">TRUCKING LLC</span></div>
-      <div style="font-size:11px;color:#555;margin-top:4px;line-height:1.8">
-        1059 Bramble Dr, Breinigsville PA 18031<br>
-        Phone: 610-922-1113 &bull; Email: deeptrucking007@gmail.com<br>
-        DOT: 2088835 &bull; MC: 744717 &bull; EIN: 27-4259995
-      </div>
-    </div>
-    <div style="text-align:right">
-      <div style="font-size:28px;font-weight:900;color:#d4820a;letter-spacing:2px">INVOICE</div>
-      <div style="font-family:monospace;font-size:11px;color:#555;margin-top:4px;line-height:1.8">
-        Invoice #: <b style="color:#111">\${inv.num}</b><br>
-        Date: <b style="color:#111">\${inv.date}</b><br>
-        Due Date: <b style="color:#111">\${inv.due||'Upon Receipt'}</b>
-      </div>
-    </div>
-  </div>
+  var apexPayLine = inv.apex ? '<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #eee;font-size:12px"><span style="color:#cc0000">Apex Ultima Factoring Fee (1.5%)</span><span style="color:#cc0000;font-weight:600">-$' + inv.apexFee.toFixed(2) + '</span></div>' : '';
+  var apexReceive = inv.apex ? '<div style="font-size:10px;color:#888;margin-top:4px">After factoring fee you receive: <b style="color:#118844">$' + inv.net.toLocaleString('en-US',{minimumFractionDigits:2}) + '</b></div>' : '';
+  var payInstructions = inv.apex 
+    ? '<div style="font-size:11px;color:#333;line-height:1.8">Please remit payment to:<br><b>Apex Ultima Capital</b> (Factor)<br>Reference Invoice #: ' + inv.num + ' - Deep Trucking LLC - MC-744717</div>'
+    : '<div style="font-size:11px;color:#333;line-height:1.8">Please remit payment to:<br><b>Deep Trucking LLC</b><br>1059 Bramble Dr, Breinigsville PA 18031<br>Reference Invoice #: ' + inv.num + '</div>';
 
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:16px">
-    <div>
-      <div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#888;margin-bottom:6px;border-bottom:1px solid #ddd;padding-bottom:4px">BILL TO</div>
-      <div style="font-size:14px;font-weight:700;color:#111">\${inv.broker}</div>
-      <div style="font-size:11px;color:#555;margin-top:3px;line-height:1.8">\${inv.baddr||''}<br>\${inv.bphone||''}<br>\${inv.bemail||''}</div>
-    </div>
-    <div>
-      <div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#888;margin-bottom:6px;border-bottom:1px solid #ddd;padding-bottom:4px">REFERENCE NUMBERS</div>
-      <div style="font-size:11px;color:#333;line-height:2">
-        Load #: <b>\${inv.load||'-'}</b><br>
-        Rate Confirmation #: <b>\${inv.rc||'-'}</b><br>
-        BOL #: <b>\${inv.bol||'-'}</b><br>
-        Pickup #: <b>\${inv.punum||'-'}</b><br>
-        PO #: <b>\${inv.po||'-'}</b>
-      </div>
-    </div>
-  </div>
-
-  <table style="width:100%;border-collapse:collapse;margin-bottom:16px;font-size:12px">
-    <thead>
-      <tr style="background:#f5a623;color:#fff">
-        <th style="padding:8px 10px;text-align:left;font-size:10px;letter-spacing:1px">DESCRIPTION</th>
-        <th style="padding:8px 10px;text-align:center;font-size:10px;letter-spacing:1px">PICKUP</th>
-        <th style="padding:8px 10px;text-align:center;font-size:10px;letter-spacing:1px">DELIVERY</th>
-        <th style="padding:8px 10px;text-align:center;font-size:10px;letter-spacing:1px">MILES</th>
-        <th style="padding:8px 10px;text-align:right;font-size:10px;letter-spacing:1px">AMOUNT</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr style="border-bottom:1px solid #eee">
-        <td style="padding:10px;color:#111">
-          <b>Freight Transportation Services</b><br>
-          <span style="font-size:11px;color:#666">Commodity: \${inv.commodity||'General Freight'} &bull; Weight: \${inv.weight||'-'} lbs<br>
-          Driver: \${inv.driver||'-'}</span>
-        </td>
-        <td style="padding:10px;text-align:center;font-size:11px;color:#333">\${inv.paddr||'-'}<br><b>\${inv.pdate||''}</b></td>
-        <td style="padding:10px;text-align:center;font-size:11px;color:#333">\${inv.daddr||'-'}<br><b>\${inv.ddate||''}</b></td>
-        <td style="padding:10px;text-align:center;font-size:11px;color:#333">\${inv.miles||'-'}</td>
-        <td style="padding:10px;text-align:right;font-size:14px;font-weight:700;color:#111">$\${inv.amount.toLocaleString('en-US',{minimumFractionDigits:2})}</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <div style="display:flex;justify-content:flex-end;margin-bottom:16px">
-    <div style="width:280px">
-      <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #eee;font-size:12px">
-        <span style="color:#555">Subtotal</span>
-        <span style="font-weight:600">$\${inv.amount.toLocaleString('en-US',{minimumFractionDigits:2})}</span>
-      </div>
-      \${inv.apex ? \`<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #eee;font-size:12px"><span style="color:#cc0000">Apex Ultima Factoring Fee (1.5%)</span><span style="color:#cc0000;font-weight:600">-$\${inv.apexFee.toFixed(2)}</span></div>\` : ''}
-      <div style="display:flex;justify-content:space-between;padding:10px 0;border-top:3px solid #d4820a;margin-top:4px;font-size:16px;font-weight:900">
-        <span>TOTAL DUE</span>
-        <span style="color:#d4820a">$\${inv.amount.toLocaleString('en-US',{minimumFractionDigits:2})}</span>
-      </div>
-      \${inv.apex ? \`<div style="font-size:10px;color:#888;margin-top:4px">After factoring fee you receive: <b style="color:#118844">$\${inv.net.toLocaleString('en-US',{minimumFractionDigits:2})}</b></div>\` : ''}
-    </div>
-  </div>
-
-  <div style="background:#f9f9f9;border:1px solid #ddd;padding:12px;margin-bottom:12px">
-    <div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#888;margin-bottom:6px">PAYMENT INSTRUCTIONS</div>
-    \${inv.apex ?
-      \`<div style="font-size:11px;color:#333;line-height:1.8">Please remit payment to:<br><b>Apex Ultima Capital</b> (Factor)<br>Reference Invoice #: \${inv.num} &bull; Deep Trucking LLC &bull; MC-744717</div>\` :
-      \`<div style="font-size:11px;color:#333;line-height:1.8">Please remit payment to:<br><b>Deep Trucking LLC</b><br>1059 Bramble Dr, Breinigsville PA 18031<br>Reference Invoice #: \${inv.num}</div>\`
-    }
-  </div>
-
-  <div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px;padding-top:12px;border-top:1px solid #ddd">
-    <div style="font-size:10px;color:#aaa">Deep Trucking LLC &bull; DOT-2088835 &bull; MC-744717 &bull; EIN-27-4259995</div>
-    <div style="font-size:10px;color:#aaa">Thank you for your business!</div>
-  </div>
-  \`;
+  var html = apexNote +
+  '<div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px;padding-bottom:16px;border-bottom:3px solid #d4820a">' +
+    '<div>' +
+      '<div style="font-size:26px;font-weight:900;letter-spacing:3px;color:#111">DEEP <span style="color:#d4820a">TRUCKING LLC</span></div>' +
+      '<div style="font-size:11px;color:#555;margin-top:4px;line-height:1.8">1059 Bramble Dr, Breinigsville PA 18031<br>Phone: 610-922-1113 &bull; Email: deeptrucking007@gmail.com<br>DOT: 2088835 &bull; MC: 744717 &bull; EIN: 27-4259995</div>' +
+    '</div>' +
+    '<div style="text-align:right">' +
+      '<div style="font-size:28px;font-weight:900;color:#d4820a;letter-spacing:2px">INVOICE</div>' +
+      '<div style="font-size:11px;color:#555;margin-top:4px;line-height:1.8">Invoice #: <b style="color:#111">' + inv.num + '</b><br>Date: <b style="color:#111">' + inv.date + '</b><br>Due: <b style="color:#111">' + (inv.due||'Upon Receipt') + '</b></div>' +
+    '</div>' +
+  '</div>' +
+  '<div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:16px">' +
+    '<div>' +
+      '<div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#888;margin-bottom:6px;border-bottom:1px solid #ddd;padding-bottom:4px">BILL TO</div>' +
+      '<div style="font-size:14px;font-weight:700;color:#111">' + inv.broker + '</div>' +
+      '<div style="font-size:11px;color:#555;margin-top:3px;line-height:1.8">' + (inv.baddr||'') + '<br>' + (inv.bphone||'') + '<br>' + (inv.bemail||'') + '</div>' +
+    '</div>' +
+    '<div>' +
+      '<div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#888;margin-bottom:6px;border-bottom:1px solid #ddd;padding-bottom:4px">REFERENCE NUMBERS</div>' +
+      '<div style="font-size:11px;color:#333;line-height:2">Load #: <b>' + (inv.load||'-') + '</b><br>Rate Confirmation #: <b>' + (inv.rc||'-') + '</b><br>BOL #: <b>' + (inv.bol||'-') + '</b><br>Pickup #: <b>' + (inv.punum||'-') + '</b><br>PO #: <b>' + (inv.po||'-') + '</b></div>' +
+    '</div>' +
+  '</div>' +
+  '<table style="width:100%;border-collapse:collapse;margin-bottom:16px;font-size:12px">' +
+    '<thead><tr style="background:#f5a623;color:#fff">' +
+      '<th style="padding:8px 10px;text-align:left;font-size:10px;letter-spacing:1px">DESCRIPTION</th>' +
+      '<th style="padding:8px 10px;text-align:center;font-size:10px;letter-spacing:1px">PICKUP</th>' +
+      '<th style="padding:8px 10px;text-align:center;font-size:10px;letter-spacing:1px">DELIVERY</th>' +
+      '<th style="padding:8px 10px;text-align:center;font-size:10px;letter-spacing:1px">MILES</th>' +
+      '<th style="padding:8px 10px;text-align:right;font-size:10px;letter-spacing:1px">AMOUNT</th>' +
+    '</tr></thead>' +
+    '<tbody><tr style="border-bottom:1px solid #eee">' +
+      '<td style="padding:10px;color:#111"><b>Freight Transportation Services</b><br><span style="font-size:11px;color:#666">Commodity: ' + (inv.commodity||'General Freight') + ' &bull; Weight: ' + (inv.weight||'-') + ' lbs<br>Driver: ' + (inv.driver||'-') + '</span></td>' +
+      '<td style="padding:10px;text-align:center;font-size:11px;color:#333">' + (inv.paddr||'-') + '<br><b>' + (inv.pdate||'') + '</b></td>' +
+      '<td style="padding:10px;text-align:center;font-size:11px;color:#333">' + (inv.daddr||'-') + '<br><b>' + (inv.ddate||'') + '</b></td>' +
+      '<td style="padding:10px;text-align:center;font-size:11px;color:#333">' + (inv.miles||'-') + '</td>' +
+      '<td style="padding:10px;text-align:right;font-size:14px;font-weight:700;color:#111">$' + inv.amount.toLocaleString('en-US',{minimumFractionDigits:2}) + '</td>' +
+    '</tr></tbody>' +
+  '</table>' +
+  '<div style="display:flex;justify-content:flex-end;margin-bottom:16px">' +
+    '<div style="width:300px">' +
+      '<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #eee;font-size:12px"><span style="color:#555">Subtotal</span><span style="font-weight:600">$' + inv.amount.toLocaleString('en-US',{minimumFractionDigits:2}) + '</span></div>' +
+      apexPayLine +
+      '<div style="display:flex;justify-content:space-between;padding:10px 0;border-top:3px solid #d4820a;margin-top:4px;font-size:16px;font-weight:900"><span>TOTAL DUE</span><span style="color:#d4820a">$' + inv.amount.toLocaleString('en-US',{minimumFractionDigits:2}) + '</span></div>' +
+      apexReceive +
+    '</div>' +
+  '</div>' +
+  '<div style="background:#f9f9f9;border:1px solid #ddd;padding:12px;margin-bottom:12px">' +
+    '<div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#888;margin-bottom:6px">PAYMENT INSTRUCTIONS</div>' +
+    payInstructions +
+  '</div>' +
+  '<div style="display:flex;justify-content:space-between;margin-top:8px;padding-top:12px;border-top:1px solid #ddd">' +
+    '<div style="font-size:10px;color:#aaa">Deep Trucking LLC &bull; DOT-2088835 &bull; MC-744717 &bull; EIN-27-4259995</div>' +
+    '<div style="font-size:10px;color:#aaa">Thank you for your business!</div>' +
+  '</div>';
 
   document.getElementById('invoice-print-area').innerHTML = html;
   openM('viewInvoice');
@@ -1604,19 +1573,40 @@ function printInvoice() {
 
 function renderInvoices() {
   var t = document.getElementById('inv-table');
-  if (!invoices.length) { t.innerHTML = '<tr><td colspan="9" class="empty-msg">No invoices yet - click CREATE INVOICE to get started</td></tr>'; return; }
-  var smap = {pending:'<span class="b by">Pending</span>', paid:'<span class="b bg">Paid</span>', overdue:'<span class="b br2">Overdue</span>'};
-  t.innerHTML = invoices.map(function(inv) {
-    return '<tr><td><b style="color:var(--ac)">' + inv.num + '</b></td><td>' + inv.broker + '</td><td>' + (inv.load||'-') + '</td><td style="color:var(--gn)">$' + inv.amount.toLocaleString('en-US',{minimumFractionDigits:2}) + '</td><td style="color:var(--rd)">' + (inv.apex ? '-$'+inv.apexFee.toFixed(2) : 'No factoring') + '</td><td style="color:var(--gn);font-weight:700">$' + inv.net.toLocaleString('en-US',{minimumFractionDigits:2}) + '</td><td>' + inv.date + '</td><td>' + smap[inv.status] + '</td><td><div class="brow"><button class="btn btn-b" style="font-size:11px;padding:4px 9px" onclick='showInvoice(invoices.find(function(x){return x.num==="' + inv.num + '"}))'>VIEW</button><button class="btn btn-g" style="font-size:11px;padding:4px 9px" onclick='markPaid("' + inv.num + '")'>MARK PAID</button></div></td></tr>';
-  }).join('');
+  if (!invoices.length) {
+    t.innerHTML = '<tr><td colspan="9" class="empty-msg">No invoices yet - click CREATE INVOICE to get started</td></tr>';
+    return;
+  }
+  var rows = '';
+  for (var i = 0; i < invoices.length; i++) {
+    var inv = invoices[i];
+    var statusBadge = inv.status === 'paid' ? '<span class="b bg">Paid</span>' : inv.status === 'overdue' ? '<span class="b br2">Overdue</span>' : '<span class="b by">Pending</span>';
+    var apexTxt = inv.apex ? '-$' + inv.apexFee.toFixed(2) : 'No factoring';
+    rows += '<tr>';
+    rows += '<td><b style="color:var(--ac)">' + inv.num + '</b></td>';
+    rows += '<td>' + inv.broker + '</td>';
+    rows += '<td>' + (inv.load||'-') + '</td>';
+    rows += '<td style="color:var(--gn)">$' + inv.amount.toLocaleString('en-US',{minimumFractionDigits:2}) + '</td>';
+    rows += '<td style="color:var(--rd)">' + apexTxt + '</td>';
+    rows += '<td style="color:var(--gn);font-weight:700">$' + inv.net.toLocaleString('en-US',{minimumFractionDigits:2}) + '</td>';
+    rows += '<td>' + inv.date + '</td>';
+    rows += '<td>' + statusBadge + '</td>';
+    rows += '<td><div class="brow">';
+    rows += '<button class="btn btn-b" style="font-size:11px;padding:4px 9px" onclick="viewInvIdx(' + i + ')">VIEW</button> ';
+    rows += '<button class="btn btn-g" style="font-size:11px;padding:4px 9px" onclick="markPaid(' + i + ')">PAID</button>';
+    rows += '</div></td></tr>';
+  }
+  t.innerHTML = rows;
 }
 
-function markPaid(num) {
-  var inv = invoices.find(function(x){return x.num===num;});
-  if (inv) { inv.status = 'paid'; renderInvoices(); toast('Invoice ' + num + ' marked as paid!'); }
+function viewInvIdx(i) {
+  if (invoices[i]) showInvoice(invoices[i]);
 }
 
-init();
-</script>
-</body>
-</html>
+function markPaid(i) {
+  if (invoices[i]) {
+    invoices[i].status = 'paid';
+    renderInvoices();
+    toast('Invoice ' + invoices[i].num + ' marked as paid!');
+  }
+}
