@@ -6,7 +6,7 @@
 <title>Deep Trucking LLC TMS</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Share+Tech+Mono&family=Exo+2:wght@300;400;600;800&display=swap');
-:root{--bg:#06080b;--sf:#0b0e14;--pn:#0f1318;--bd:#182030;--ac:#f5a623;--a2:#00d4ff;--gn:#00e87a;--rd:#ff2d55;--yw:#ffd60a;--pu:#bf5af2;--tx:#a0b4c8;--mt:#304050;--wh:#e8f4ff}
+:root{--bg:#0f1923;--sf:#162030;--pn:#1a2535;--bd:#2a3a50;--ac:#f5a623;--a2:#00d4ff;--gn:#00e87a;--rd:#ff2d55;--yw:#ffd60a;--pu:#bf5af2;--tx:#c8d8e8;--mt:#6080a0;--wh:#ffffff}
 *{box-sizing:border-box;margin:0;padding:0}html,body{height:100%;overflow:hidden}
 body{background:var(--bg);color:var(--tx);font-family:'Exo 2',sans-serif;display:flex;flex-direction:column}
 .hdr{background:var(--sf);border-bottom:2px solid var(--ac);padding:0 12px;display:flex;align-items:center;height:54px;flex-shrink:0;z-index:300}
@@ -27,16 +27,16 @@ body{background:var(--bg);color:var(--tx);font-family:'Exo 2',sans-serif;display
 .s6{grid-template-columns:repeat(6,1fr)}.s4{grid-template-columns:repeat(4,1fr)}.s3{grid-template-columns:repeat(3,1fr)}
 .sc{background:var(--sf);border:1px solid var(--bd);border-top:2px solid var(--ac);padding:11px}
 .sc.g{border-top-color:var(--gn)}.sc.r{border-top-color:var(--rd)}.sc.b{border-top-color:var(--a2)}.sc.y{border-top-color:var(--yw)}.sc.p{border-top-color:var(--pu)}
-.sc-lbl{font-family:'Share Tech Mono',monospace;font-size:7px;letter-spacing:2px;text-transform:uppercase;color:var(--mt);margin-bottom:4px}
+.sc-lbl{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--mt);margin-bottom:4px}
 .sc-val{font-family:'Rajdhani',sans-serif;font-size:22px;font-weight:700;color:var(--wh);line-height:1}
 .sc-sub{font-family:'Share Tech Mono',monospace;font-size:7px;color:var(--mt);margin-top:2px}
 .tp{background:var(--sf);border:1px solid var(--bd);padding:13px;margin-bottom:13px}
 .stitle{font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--ac);margin-bottom:10px;display:flex;align-items:center;gap:7px}
 .stitle::before{content:'';width:3px;height:13px;background:var(--ac)}
 .stitle.g::before{background:var(--gn)}.stitle.r::before{background:var(--rd)}.stitle.b::before{background:var(--a2)}.stitle.y::before{background:var(--yw)}
-.tt{width:100%;border-collapse:collapse;font-size:11px}
+.tt{width:100%;border-collapse:collapse;font-size:13px}
 .tt th{background:var(--pn);font-family:'Share Tech Mono',monospace;font-size:7px;letter-spacing:2px;text-transform:uppercase;color:var(--mt);padding:6px 8px;text-align:left;border-bottom:1px solid var(--bd);white-space:nowrap}
-.tt td{padding:7px 8px;border-bottom:1px solid rgba(24,32,48,.5);vertical-align:middle}
+.tt td{padding:10px 10px;border-bottom:1px solid rgba(42,58,80,.8);vertical-align:middle}
 .b{display:inline-block;padding:2px 5px;font-family:'Share Tech Mono',monospace;font-size:7px;letter-spacing:1px;text-transform:uppercase;border-radius:2px}
 .bg{background:rgba(0,232,122,.1);color:var(--gn);border:1px solid rgba(0,232,122,.25)}
 .by{background:rgba(255,214,10,.1);color:var(--yw);border:1px solid rgba(255,214,10,.25)}
@@ -53,7 +53,7 @@ body{background:var(--bg);color:var(--tx);font-family:'Exo 2',sans-serif;display
 .abts{display:flex;gap:5px;margin-top:5px}
 .ad{font-family:'Rajdhani',sans-serif;font-size:19px;font-weight:700;flex-shrink:0}
 .ad.r{color:var(--rd)}.ad.y{color:var(--yw)}
-.btn{padding:6px 13px;font-family:'Rajdhani',sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;border:none;transition:all .15s}
+.btn{padding:6px 13px;font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;border:none;transition:all .15s}
 .btn-p{background:var(--ac);color:var(--bg)}.btn-p:hover{background:#f7b843}
 .btn-s{background:transparent;border:1px solid var(--bd);color:var(--mt)}.btn-s:hover{border-color:var(--ac);color:var(--ac)}
 .btn-g{background:var(--gn);color:var(--bg)}.btn-r{background:var(--rd);color:#fff}
@@ -63,10 +63,10 @@ body{background:var(--bg);color:var(--tx);font-family:'Exo 2',sans-serif;display
 .fg{display:grid;grid-template-columns:1fr 1fr;gap:11px}.fg3{grid-template-columns:1fr 1fr 1fr}
 .ff label{display:block;font-family:'Share Tech Mono',monospace;font-size:7px;letter-spacing:2px;text-transform:uppercase;color:var(--mt);margin-bottom:3px}
 .ff{margin-bottom:9px}
-.ff input,.ff select,.ff textarea{width:100%;background:var(--pn);border:1px solid var(--bd);color:var(--wh);padding:7px 9px;font-family:'Exo 2',sans-serif;font-size:11px;outline:none;transition:border-color .2s}
+.ff input,.ff select,.ff textarea{width:100%;background:var(--pn);border:1px solid var(--bd);color:var(--wh);padding:7px 9px;font-family:'Exo 2',sans-serif;font-size:13px;outline:none;transition:border-color .2s}
 .ff input:focus,.ff select:focus,.ff textarea:focus{border-color:var(--ac)}
 .ff select option{background:var(--pn)}
-.tog-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid rgba(24,32,48,.5)}
+.tog-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid rgba(42,58,80,.8)}
 .tog-row .tl{font-size:12px;color:var(--tx)}.tog-row .td{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--mt)}
 .tog{position:relative;width:36px;height:20px;flex-shrink:0}
 .tog input{opacity:0;width:0;height:0}
@@ -84,7 +84,7 @@ body{background:var(--bg);color:var(--tx);font-family:'Exo 2',sans-serif;display
 .rc-drop{border:2px dashed var(--bd);padding:24px;text-align:center;cursor:pointer;transition:all .2s;border-radius:4px;margin-bottom:13px}
 .rc-drop:hover{border-color:var(--ac);background:rgba(245,166,35,.04)}
 .rc-drop input{display:none}
-.rc-field{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid rgba(24,32,48,.4);font-size:11px}
+.rc-field{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid rgba(24,32,48,.4);font-size:13px}
 .rc-field .rk{color:var(--mt);font-family:'Share Tech Mono',monospace;font-size:9px}.rc-field .rv{color:var(--wh);font-weight:600;text-align:right;max-width:60%}
 .istop{background:var(--pn);border:1px solid var(--bd);padding:12px;margin-bottom:8px;border-left:3px solid var(--ac)}
 .istop.empty{border-left-color:var(--mt)}
@@ -101,8 +101,8 @@ body{background:var(--bg);color:var(--tx);font-family:'Exo 2',sans-serif;display
 .dscroll{flex:1;overflow-y:auto;padding:8px}.dscroll::-webkit-scrollbar{width:0}
 .dscreen{display:none}.dscreen.active{display:block}
 .dcard{background:var(--sf);border:1px solid var(--bd);border-radius:7px;padding:10px;margin-bottom:8px}
-.dct{font-family:'Rajdhani',sans-serif;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--ac);margin-bottom:6px}
-.dir{display:flex;justify-content:space-between;font-size:9px;padding:3px 0;border-bottom:1px solid rgba(24,32,48,.5)}
+.dct{font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--ac);margin-bottom:6px}
+.dir{display:flex;justify-content:space-between;font-size:9px;padding:3px 0;border-bottom:1px solid rgba(42,58,80,.8)}
 .dir .k{color:var(--mt);font-family:'Share Tech Mono',monospace}.dir .v{color:var(--wh);font-weight:600}
 .sgrid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:7px}
 .sbtn{padding:9px 4px;border:none;border-radius:7px;font-family:'Rajdhani',sans-serif;font-size:9px;font-weight:700;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px;text-transform:uppercase;width:100%}
@@ -161,7 +161,7 @@ body{background:var(--bg);color:var(--tx);font-family:'Exo 2',sans-serif;display
     <div class="sc b"><div class="sc-lbl">Drivers</div><div class="sc-val" id="s-drv">0</div><div class="sc-sub">Registered</div></div>
     <div class="sc g"><div class="sc-lbl">GPS Tracked</div><div class="sc-val" id="s-gps">0</div><div class="sc-sub">Live now</div></div>
     <div class="sc r"><div class="sc-lbl">Alerts</div><div class="sc-val" style="color:var(--rd)">1</div><div class="sc-sub">Action needed</div></div>
-    <div class="sc p"><div class="sc-lbl">DOT / MC</div><div class="sc-val" style="font-size:11px;color:var(--ac)">2088835</div><div class="sc-sub">MC-744717</div></div>
+    <div class="sc p"><div class="sc-lbl">DOT / MC</div><div class="sc-val" style="font-size:13px;color:var(--ac)">2088835</div><div class="sc-sub">MC-744717</div></div>
   </div>
   <div class="tp">
     <div class="stitle r">Action Required</div>
@@ -256,42 +256,60 @@ body{background:var(--bg);color:var(--tx);font-family:'Exo 2',sans-serif;display
     <button class="btn btn-p" onclick="openM('addLoad')">MANUAL ENTRY</button>
   </div>
   <div class="tp"><div class="stitle b">Upload or Drag Rate Confirmation</div>
-    <div class="rc-drop" onclick="document.getElementById('rcFile').click()" ondragover="event.preventDefault();this.style.borderColor='var(--ac)'" ondragleave="this.style.borderColor='var(--bd)'" ondrop="handleDrop(event)">
-      <input type="file" id="rcFile" accept=".pdf,.jpg,.jpeg,.png" onchange="scanRC(this)">
+    <!-- UPLOAD AREA -->
+    <div class="rc-drop" id="rc-dropzone" onclick="document.getElementById('rcFile').click()" ondragover="event.preventDefault();this.style.borderColor='var(--ac)'" ondragleave="this.style.borderColor='var(--bd)'" ondrop="handleDrop(event)">
+      <input type="file" id="rcFile" accept=".pdf,.jpg,.jpeg,.png" onchange="uploadRC(this)">
       <div style="font-size:32px;margin-bottom:8px;opacity:.4">&#128203;</div>
-      <div style="font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--mt)">DRAG AND DROP RATE CONFIRMATION HERE<br>or click to upload PDF or image</div>
-      <div style="margin-top:8px;font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--mt)">Reads broker info, pickup, delivery, weight, commodity, rate, and all instructions automatically</div>
+      <div style="font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--mt)">DRAG AND DROP YOUR RATE CONFIRMATION HERE<br>or click to upload PDF or image</div>
+      <div style="margin-top:8px;font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--mt)">Supports PDF, JPG, PNG &bull; AI reads your real RC and fills in all the info</div>
     </div>
-    <div id="rcResult" style="display:none;background:var(--pn);border:1px solid var(--bd);padding:14px;border-left:3px solid var(--ac)">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
-        <div style="font-family:'Rajdhani',sans-serif;font-size:14px;font-weight:700;color:var(--ac)">RATE CONFIRMATION SCANNED</div>
-        <span class="b bg">Auto-Filled</span>
+
+    <!-- SCANNING STATUS -->
+    <div id="rc-scanning" style="display:none;text-align:center;padding:20px">
+      <div style="font-size:28px;margin-bottom:8px">&#129302;</div>
+      <div style="font-family:'Rajdhani',sans-serif;font-size:16px;font-weight:700;color:var(--ac);letter-spacing:2px">AI READING YOUR RATE CONFIRMATION...</div>
+      <div style="font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--mt);margin-top:6px">Extracting broker info, pickup, delivery, rates, and all details from your actual document</div>
+    </div>
+
+    <!-- SCANNED RESULTS - EDITABLE FIELDS -->
+    <div id="rcResult" style="display:none">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+        <div style="font-family:'Rajdhani',sans-serif;font-size:15px;font-weight:700;color:var(--ac)">YOUR RATE CONFIRMATION - CHECK AND CONFIRM</div>
+        <span class="b bg" id="rc-status-badge">AI Scanned</span>
       </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr">
+      <div style="font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--yw);margin-bottom:12px">Review the info below - edit anything that needs correcting - then click CREATE LOAD</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:11px">
         <div>
-          <div class="rc-field"><span class="rk">Broker</span><span class="rv" id="rc-broker">-</span></div>
-          <div class="rc-field"><span class="rk">Broker Phone</span><span class="rv" id="rc-bphone">-</span></div>
-          <div class="rc-field"><span class="rk">Broker Email</span><span class="rv" id="rc-bemail">-</span></div>
-          <div class="rc-field"><span class="rk">Load Number</span><span class="rv" id="rc-lnum">-</span></div>
-          <div class="rc-field"><span class="rk">Pickup Address</span><span class="rv" id="rc-paddr">-</span></div>
-          <div class="rc-field"><span class="rk">Pickup Time</span><span class="rv" id="rc-ptime">-</span></div>
-          <div class="rc-field"><span class="rk">Pickup Number</span><span class="rv" id="rc-pnum">-</span></div>
+          <div class="ff"><label>Broker Name</label><input id="rc-broker" placeholder="Will be filled from your RC"></div>
+          <div class="ff"><label>Broker Phone</label><input id="rc-bphone" placeholder="Broker phone number"></div>
+          <div class="ff"><label>Broker Email</label><input id="rc-bemail" placeholder="Broker email"></div>
+          <div class="ff"><label>Load Number</label><input id="rc-lnum" placeholder="Load or reference number"></div>
+          <div class="ff"><label>Pickup Full Address</label><input id="rc-paddr" placeholder="Full pickup address"></div>
+          <div class="ff"><label>Pickup Date and Time</label><input id="rc-ptime" placeholder="Pickup appointment"></div>
+          <div class="ff"><label>Pickup Number</label><input id="rc-pnum" placeholder="PU number"></div>
         </div>
         <div>
-          <div class="rc-field"><span class="rk">Delivery Address</span><span class="rv" id="rc-daddr">-</span></div>
-          <div class="rc-field"><span class="rk">Delivery Time</span><span class="rv" id="rc-dtime">-</span></div>
-          <div class="rc-field"><span class="rk">BOL Number</span><span class="rv" id="rc-bol">-</span></div>
-          <div class="rc-field"><span class="rk">PO Number</span><span class="rv" id="rc-po">-</span></div>
-          <div class="rc-field"><span class="rk">Commodity</span><span class="rv" id="rc-commodity">-</span></div>
-          <div class="rc-field"><span class="rk">Weight</span><span class="rv" id="rc-weight">-</span></div>
-          <div class="rc-field"><span class="rk">Rate</span><span class="rv" id="rc-rate" style="color:var(--gn);font-size:14px;font-weight:800">-</span></div>
+          <div class="ff"><label>Delivery Full Address</label><input id="rc-daddr" placeholder="Full delivery address"></div>
+          <div class="ff"><label>Delivery Date and Time</label><input id="rc-dtime" placeholder="Delivery appointment"></div>
+          <div class="ff"><label>BOL Number</label><input id="rc-bol" placeholder="BOL number"></div>
+          <div class="ff"><label>PO Number</label><input id="rc-po" placeholder="PO number"></div>
+          <div class="ff"><label>Commodity</label><input id="rc-commodity" placeholder="Type of freight"></div>
+          <div class="ff"><label>Weight (lbs)</label><input id="rc-weight" placeholder="Weight in pounds"></div>
+          <div class="ff"><label>Rate ($)</label><input id="rc-rate" placeholder="0.00" style="color:var(--gn);font-size:16px;font-weight:700"></div>
         </div>
       </div>
-      <div class="rc-field" style="border-bottom:none;margin-top:4px"><span class="rk">Special Instructions</span><span class="rv" id="rc-special" style="color:var(--yw)">-</span></div>
+      <div class="ff"><label>Special Instructions</label><textarea id="rc-special" rows="2" placeholder="Any special instructions from the rate confirmation..."></textarea></div>
+      <div class="ff"><label>Assign Driver</label><select id="rc-driver"><option value="">Assign driver later</option></select></div>
       <div class="brow" style="margin-top:12px">
         <button class="btn btn-p" onclick="createFromRC()">CREATE LOAD IN TMS</button>
-        <button class="btn btn-s" onclick="resetRC()">SCAN NEW RC</button>
+        <button class="btn btn-s" onclick="resetRC()">UPLOAD DIFFERENT RC</button>
       </div>
+    </div>
+
+    <!-- MANUAL ENTRY OPTION -->
+    <div id="rc-manual-option" style="margin-top:13px">
+      <div style="text-align:center;font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--mt);margin-bottom:8px">- OR ENTER MANUALLY -</div>
+      <button class="btn btn-s" style="width:100%" onclick="showManualRC()">ENTER RATE CONFIRMATION INFO MANUALLY</button>
     </div>
   </div>
 </div>
@@ -477,10 +495,10 @@ body{background:var(--bg);color:var(--tx);font-family:'Exo 2',sans-serif;display
   </div>
   <div class="tp"><div class="stitle">Truck 001 - 2023 Freightliner Cascadia Auto - 8 MPG Target</div>
     <table class="tt"><thead><tr><th>Service</th><th>Last Done</th><th>Mileage</th><th>Next Due</th><th>Cost</th><th>Shop</th><th>Status</th><th></th></tr></thead><tbody>
-      <tr><td>Oil Change</td><td>04/10/26</td><td>142,800</td><td>157,800 mi</td><td>$380</td><td>TA Truck Stop</td><td><span class="b bg">Current</span></td><td><button class="btn btn-s" style="font-size:9px;padding:2px 7px">VIEW</button></td></tr>
-      <tr><td>Annual DOT Inspection</td><td>06/28/25</td><td>128,000</td><td>06/28/26</td><td>$220</td><td>PA DOT Station</td><td><span class="b by">Due 14 days</span></td><td><button class="btn btn-y" style="font-size:9px;padding:2px 7px" onclick="toast('Scheduled!')">SCHEDULE</button></td></tr>
-      <tr><td>Tire Rotation</td><td>03/22/26</td><td>138,000</td><td>153,000 mi</td><td>$180</td><td>Loves</td><td><span class="b bg">Current</span></td><td><button class="btn btn-s" style="font-size:9px;padding:2px 7px">VIEW</button></td></tr>
-      <tr><td>Brake Inspection</td><td>02/15/26</td><td>132,000</td><td>147,000 mi</td><td>$320</td><td>Petro</td><td><span class="b bg">Current</span></td><td><button class="btn btn-s" style="font-size:9px;padding:2px 7px">VIEW</button></td></tr>
+      <tr><td>Oil Change</td><td>04/10/26</td><td>142,800</td><td>157,800 mi</td><td>$380</td><td>TA Truck Stop</td><td><span class="b bg">Current</span></td><td><button class="btn btn-s" style="font-size:11px;padding:4px 9px">VIEW</button></td></tr>
+      <tr><td>Annual DOT Inspection</td><td>06/28/25</td><td>128,000</td><td>06/28/26</td><td>$220</td><td>PA DOT Station</td><td><span class="b by">Due 14 days</span></td><td><button class="btn btn-y" style="font-size:11px;padding:4px 9px" onclick="toast('Scheduled!')">SCHEDULE</button></td></tr>
+      <tr><td>Tire Rotation</td><td>03/22/26</td><td>138,000</td><td>153,000 mi</td><td>$180</td><td>Loves</td><td><span class="b bg">Current</span></td><td><button class="btn btn-s" style="font-size:11px;padding:4px 9px">VIEW</button></td></tr>
+      <tr><td>Brake Inspection</td><td>02/15/26</td><td>132,000</td><td>147,000 mi</td><td>$320</td><td>Petro</td><td><span class="b bg">Current</span></td><td><button class="btn btn-s" style="font-size:11px;padding:4px 9px">VIEW</button></td></tr>
     </tbody></table>
   </div>
   <div class="tp"><div class="stitle b">Driver Documents</div>
@@ -511,7 +529,7 @@ body{background:var(--bg);color:var(--tx);font-family:'Exo 2',sans-serif;display
   <div class="tp"><div class="stitle y">All Compliance Items</div>
     <table class="tt"><thead><tr><th>Item</th><th>Person</th><th>Expires</th><th>Days Left</th><th>Status</th><th>SMS Sent</th><th>Email Sent</th><th>Actions</th></tr></thead>
     <tbody id="comp-table">
-      <tr><td>DOT Inspection</td><td>Truck 001</td><td>06/28/2026</td><td><span class="b by">14 days</span></td><td><span class="b by">Due Soon</span></td><td>N/A</td><td>05/14/26</td><td><button class="btn btn-y" style="font-size:9px;padding:2px 7px" onclick="toast('Scheduled!')">SCHEDULE</button></td></tr>
+      <tr><td>DOT Inspection</td><td>Truck 001</td><td>06/28/2026</td><td><span class="b by">14 days</span></td><td><span class="b by">Due Soon</span></td><td>N/A</td><td>05/14/26</td><td><button class="btn btn-y" style="font-size:11px;padding:4px 9px" onclick="toast('Scheduled!')">SCHEDULE</button></td></tr>
       <tr><td>Insurance</td><td>Truck 001</td><td>01/15/2027</td><td><span class="b bg">245 days</span></td><td><span class="b bg">OK</span></td><td>-</td><td>-</td><td></td></tr>
       <tr><td>Registration</td><td>Truck 001</td><td>12/31/2026</td><td><span class="b bg">230 days</span></td><td><span class="b bg">OK</span></td><td>-</td><td>-</td><td></td></tr>
     </tbody></table>
@@ -521,16 +539,20 @@ body{background:var(--bg);color:var(--tx);font-family:'Exo 2',sans-serif;display
 <!-- INVOICES -->
 <div class="view" id="view-invoices">
   <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
-    <div class="stitle" style="margin:0">Invoices - Deep Trucking LLC</div>
-    <button class="btn btn-p" onclick="openM('addInvoice')">+ CREATE INVOICE</button>
+    <div class="stitle" style="margin:0">Invoices and Factoring - Deep Trucking LLC</div>
+    <button class="btn btn-p" onclick="openM('createInvoice')">+ CREATE INVOICE</button>
   </div>
   <div class="stats s4">
-    <div class="sc g"><div class="sc-lbl">Paid</div><div class="sc-val">$0</div><div class="sc-sub">This month</div></div>
-    <div class="sc y"><div class="sc-lbl">Pending</div><div class="sc-val">$0</div><div class="sc-sub">Awaiting payment</div></div>
-    <div class="sc r"><div class="sc-lbl">Overdue</div><div class="sc-val">$0</div><div class="sc-sub">Follow up needed</div></div>
-    <div class="sc b"><div class="sc-lbl">Apex Ultima 1.5%</div><div class="sc-val">-</div><div class="sc-sub">Factoring ready</div></div>
+    <div class="sc g"><div class="sc-lbl">Paid This Month</div><div class="sc-val" id="inv-paid">$0</div><div class="sc-sub">Received</div></div>
+    <div class="sc y"><div class="sc-lbl">Pending</div><div class="sc-val" id="inv-pending">$0</div><div class="sc-sub">Awaiting payment</div></div>
+    <div class="sc r"><div class="sc-lbl">Overdue</div><div class="sc-val" id="inv-overdue">$0</div><div class="sc-sub">Follow up needed</div></div>
+    <div class="sc b"><div class="sc-lbl">Apex Ultima 1.5%</div><div class="sc-val" id="inv-apex">$0</div><div class="sc-sub">Factoring fees paid</div></div>
   </div>
-  <div class="tp"><table class="tt"><thead><tr><th>Invoice</th><th>Broker</th><th>Load</th><th>Amount</th><th>Apex 1.5%</th><th>Net</th><th>Date</th><th>Due</th><th>Status</th><th>Actions</th></tr></thead><tbody id="inv-table"><tr><td colspan="10" class="empty-msg">No invoices yet - create your first invoice after delivering a load</td></tr></tbody></table></div>
+  <div class="tp"><div class="stitle">Invoice Log</div>
+    <table class="tt"><thead><tr><th>Invoice #</th><th>Broker</th><th>Load</th><th>Amount</th><th>Apex 1.5%</th><th>You Receive</th><th>Date</th><th>Status</th><th>Actions</th></tr></thead>
+    <tbody id="inv-table"><tr><td colspan="9" class="empty-msg">No invoices yet - click CREATE INVOICE to get started</td></tr></tbody></table>
+  </div>
+  <div id="inv-preview-area"></div>
 </div>
 
 <!-- DRIVER APP -->
@@ -555,8 +577,8 @@ body{background:var(--bg);color:var(--tx);font-family:'Exo 2',sans-serif;display
               <div class="dir"><span class="k">Pickup #</span><span class="v">PU-88421</span></div>
               <div class="dir"><span class="k">BOL #</span><span class="v">BOL-99210</span></div>
               <div class="dir"><span class="k">PO #</span><span class="v">PO-44821</span></div>
-              <button style="width:100%;padding:9px;background:var(--a2);color:var(--bg);border:none;border-radius:6px;font-family:'Rajdhani',sans-serif;font-size:11px;font-weight:700;cursor:pointer;margin-top:8px" onclick="toast('Status updated - Manny notified!','info')">ARRIVED AT PICKUP</button>
-              <button style="width:100%;padding:9px;background:var(--gn);color:var(--bg);border:none;border-radius:6px;font-family:'Rajdhani',sans-serif;font-size:11px;font-weight:700;cursor:pointer;margin-top:5px" onclick="toast('POD sent to Manny for approval!')">CONFIRM DELIVERY</button>
+              <button style="width:100%;padding:9px;background:var(--a2);color:var(--bg);border:none;border-radius:6px;font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;cursor:pointer;margin-top:8px" onclick="toast('Status updated - Manny notified!','info')">ARRIVED AT PICKUP</button>
+              <button style="width:100%;padding:9px;background:var(--gn);color:var(--bg);border:none;border-radius:6px;font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;cursor:pointer;margin-top:5px" onclick="toast('POD sent to Manny for approval!')">CONFIRM DELIVERY</button>
             </div>
           </div>
           <div class="dscreen" id="ds-scan">
@@ -720,13 +742,77 @@ body{background:var(--bg);color:var(--tx);font-family:'Exo 2',sans-serif;display
   </div>
 </div>
 
-<div class="mo" id="modal-addInvoice">
-  <div class="mbox"><button class="mclose" onclick="cm('addInvoice')">X</button><div class="mtitle">Create Invoice - Deep Trucking LLC</div>
-    <div class="fg"><div class="ff"><label>Broker Name</label><input placeholder="Echo Global Logistics"></div><div class="ff"><label>Load Number</label><input placeholder="LD-1001"></div></div>
-    <div class="fg"><div class="ff"><label>Amount ($)</label><input type="number" placeholder="2280"></div><div class="ff"><label>Factor with Apex Ultima 1.5%?</label><select><option>Yes - 1.5% fee</option><option>No - Direct Payment</option></select></div></div>
-    <div class="fg"><div class="ff"><label>Invoice Date</label><input type="date"></div><div class="ff"><label>Due Date</label><input type="date"></div></div>
-    <div class="ff"><label>Broker Email</label><input placeholder="ap@broker.com"></div>
-    <div class="brow"><button class="btn btn-p" onclick="toast('Invoice created!');cm('addInvoice')">CREATE</button><button class="btn btn-s" onclick="cm('addInvoice')">CANCEL</button></div>
+<div class="mo" id="modal-createInvoice">
+  <div class="mbox" style="width:700px"><button class="mclose" onclick="cm('createInvoice')">X</button>
+  <div class="mtitle">Create Professional Invoice - Deep Trucking LLC</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:11px">
+    <div>
+      <div style="font-family:'Rajdhani',sans-serif;font-size:12px;font-weight:700;color:var(--ac);margin-bottom:8px;letter-spacing:1px">INVOICE INFO</div>
+      <div class="ff"><label>Invoice Number</label><input id="ci-num" placeholder="INV-0001"></div>
+      <div class="ff"><label>Invoice Date</label><input type="date" id="ci-date"></div>
+      <div class="ff"><label>Due Date</label><input type="date" id="ci-due"></div>
+      <div class="ff"><label>Factor with Apex Ultima?</label><select id="ci-apex"><option value="yes">Yes - Factor at 1.5%</option><option value="no">No - Send Direct to Broker</option></select></div>
+    </div>
+    <div>
+      <div style="font-family:'Rajdhani',sans-serif;font-size:12px;font-weight:700;color:var(--ac);margin-bottom:8px;letter-spacing:1px">BROKER INFO</div>
+      <div class="ff"><label>Broker Company Name</label><input id="ci-broker" placeholder="Echo Global Logistics"></div>
+      <div class="ff"><label>Broker Address</label><input id="ci-baddr" placeholder="600 W Chicago Ave, Chicago IL 60654"></div>
+      <div class="ff"><label>Broker Phone</label><input id="ci-bphone" placeholder="800-354-7993"></div>
+      <div class="ff"><label>Broker Email</label><input id="ci-bemail" placeholder="ap@echo.com"></div>
+    </div>
+  </div>
+  <div style="font-family:'Rajdhani',sans-serif;font-size:12px;font-weight:700;color:var(--ac);margin:10px 0 8px;letter-spacing:1px">LOAD DETAILS</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:11px">
+    <div class="ff"><label>Load Number</label><input id="ci-load" placeholder="LD-1001"></div>
+    <div class="ff"><label>Pickup Number</label><input id="ci-punum" placeholder="PU-88421"></div>
+    <div class="ff"><label>BOL Number</label><input id="ci-bol" placeholder="BOL-99210"></div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:11px">
+    <div class="ff"><label>PO Number</label><input id="ci-po" placeholder="PO-44821"></div>
+    <div class="ff"><label>Rate Confirmation #</label><input id="ci-rc" placeholder="RC-12345"></div>
+    <div class="ff"><label>Amount ($)</label><input type="number" id="ci-amount" placeholder="2280" oninput="calcInv()"></div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:11px">
+    <div class="ff"><label>Pickup Address</label><input id="ci-paddr" placeholder="123 Warehouse Dr, Chicago IL 60601"></div>
+    <div class="ff"><label>Delivery Address</label><input id="ci-daddr" placeholder="456 Dock Rd, Philadelphia PA 19103"></div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:11px">
+    <div class="ff"><label>Pickup Date</label><input type="date" id="ci-pdate"></div>
+    <div class="ff"><label>Delivery Date</label><input type="date" id="ci-ddate"></div>
+    <div class="ff"><label>Commodity</label><input id="ci-commodity" placeholder="General Freight"></div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:11px">
+    <div class="ff"><label>Weight (lbs)</label><input id="ci-weight" placeholder="42000"></div>
+    <div class="ff"><label>Miles</label><input id="ci-miles" placeholder="760"></div>
+    <div class="ff"><label>Driver Name</label><input id="ci-driver" placeholder="Driver Name"></div>
+  </div>
+  <div style="background:var(--pn);border:1px solid var(--bd);padding:12px;margin-bottom:12px;border-left:3px solid var(--ac)">
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:13px">
+      <div><div style="font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--mt);margin-bottom:3px">INVOICE AMOUNT</div><div style="font-family:'Rajdhani',sans-serif;font-size:22px;font-weight:700;color:var(--wh)" id="ci-show-amount">$0.00</div></div>
+      <div><div style="font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--mt);margin-bottom:3px">APEX FEE 1.5%</div><div style="font-family:'Rajdhani',sans-serif;font-size:22px;font-weight:700;color:var(--rd)" id="ci-show-fee">$0.00</div></div>
+      <div><div style="font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--mt);margin-bottom:3px">YOU RECEIVE</div><div style="font-family:'Rajdhani',sans-serif;font-size:22px;font-weight:700;color:var(--gn)" id="ci-show-net">$0.00</div></div>
+    </div>
+  </div>
+  <div class="brow">
+    <button class="btn btn-p" onclick="generateInvoice()">GENERATE INVOICE</button>
+    <button class="btn btn-s" onclick="cm('createInvoice')">CANCEL</button>
+  </div>
+  </div>
+</div>
+
+<div class="mo" id="modal-viewInvoice">
+  <div class="mbox" style="width:720px;max-height:92vh"><button class="mclose" onclick="cm('viewInvoice')">X</button>
+  <div class="mtitle">Invoice Preview</div>
+  <div id="invoice-print-area" style="background:#fff;color:#111;padding:28px;font-family:'Exo 2',sans-serif">
+    <!-- Invoice printed here by JS -->
+  </div>
+  <div class="brow" style="margin-top:14px">
+    <button class="btn btn-p" onclick="printInvoice()">PRINT INVOICE</button>
+    <button class="btn btn-g" onclick="toast('Invoice emailed to Apex Ultima!')">EMAIL TO APEX</button>
+    <button class="btn btn-b" onclick="toast('Invoice emailed to broker!')">EMAIL TO BROKER</button>
+    <button class="btn btn-s" onclick="toast('PDF downloaded!')">DOWNLOAD PDF</button>
+    <button class="btn btn-s" onclick="cm('viewInvoice')">CLOSE</button>
+  </div>
   </div>
 </div>
 
@@ -761,7 +847,7 @@ body{background:var(--bg);color:var(--tx);font-family:'Exo 2',sans-serif;display
         <div><div style="font-size:18px;font-weight:800;letter-spacing:2px">DEEP <span style="color:#d4820a">TRUCKING LLC</span></div><div style="font-size:8px;color:#666;font-family:'Share Tech Mono',monospace;line-height:1.8">1059 Bramble Dr, Breinigsville PA 18031<br>610-922-1113 &bull; DOT-2088835 &bull; MC-744717</div></div>
         <div style="text-align:right;font-family:'Share Tech Mono',monospace;font-size:9px;color:#666"><div style="font-size:14px;font-weight:700;color:#d4820a">PAY STATEMENT</div>Dispatcher: Manny</div>
       </div>
-      <div id="stmt-content" style="color:#666;font-size:11px;padding:10px 0">Add loads and select a driver to generate pay statement</div>
+      <div id="stmt-content" style="color:#666;font-size:13px;padding:10px 0">Add loads and select a driver to generate pay statement</div>
       <div style="display:flex;justify-content:space-between;padding:10px 0;border-top:2px solid #111;margin-top:8px;font-size:16px;font-weight:800"><span>NET PAY</span><span style="color:#d4820a;font-family:'Share Tech Mono',monospace" id="stmt-total">$0.00</span></div>
       <div style="font-size:8px;color:#999;margin-top:8px;font-family:'Share Tech Mono',monospace">Driver signature: _________________  Date: _________</div>
     </div>
@@ -781,7 +867,7 @@ body{background:var(--bg);color:var(--tx);font-family:'Exo 2',sans-serif;display
         <div><div style="font-size:18px;font-weight:800;letter-spacing:2px">DEEP <span style="color:#d4820a">TRUCKING LLC</span></div><div style="font-size:8px;color:#666;font-family:'Share Tech Mono',monospace">1059 Bramble Dr, Breinigsville PA 18031 &bull; DOT-2088835</div></div>
         <div style="text-align:right;font-family:'Share Tech Mono',monospace;font-size:9px;color:#666"><div style="font-size:14px;font-weight:700;color:#d4820a">IFTA REPORT</div>Q2 2026 Apr-Jun<br>Due July 31 2026<br>Base State: Pennsylvania</div>
       </div>
-      <div style="font-size:11px;color:#666;padding:10px 0;text-align:center">Add miles using the IFTA calculator to populate this report</div>
+      <div style="font-size:13px;color:#666;padding:10px 0;text-align:center">Add miles using the IFTA calculator to populate this report</div>
     </div>
     <div class="brow" style="margin-top:12px">
       <button class="btn btn-g" onclick="toast('Report exported!')">EXPORT PDF</button>
@@ -892,7 +978,7 @@ function renderDriversTable(){
   var t=document.getElementById('drivers-table');
   if(!drivers.length){t.innerHTML='<tr><td colspan="13" class="empty-msg">No drivers yet - click ADD DRIVER to get started</td></tr>';return;}
   t.innerHTML=drivers.map(function(d){
-    return'<tr><td><span class="b bb">'+d.id+'</span></td><td><b>'+d.name+'</b></td><td>'+d.phone+'</td><td>'+d.cdl+'</td><td>'+dayB(d.cdlDays)+' '+d.cdlExp+'</td><td>'+d.medExp+'</td><td><span class="b bg" style="font-size:7px">&#128205; LIVE</span></td><td style="font-family:\'Share Tech Mono\',monospace;font-size:9px;color:var(--a2)">'+d.loc+'</td><td>'+dBadge(d.status)+'</td><td>'+d.loads+'</td><td style="color:var(--gn)">$'+d.pay.toLocaleString()+'</td><td><button class="btn btn-s" style="font-size:9px;padding:2px 7px" onclick="openPerms(\''+d.id+'\')">PERMS</button></td><td><div class="brow"><button class="btn btn-s" style="font-size:9px;padding:2px 7px" onclick="editD(\''+d.id+'\')">EDIT</button><button class="btn btn-r" style="font-size:9px;padding:2px 7px" onclick="delD(\''+d.id+'\')">DEL</button></div></td></tr>';
+    return'<tr><td><span class="b bb">'+d.id+'</span></td><td><b>'+d.name+'</b></td><td>'+d.phone+'</td><td>'+d.cdl+'</td><td>'+dayB(d.cdlDays)+' '+d.cdlExp+'</td><td>'+d.medExp+'</td><td><span class="b bg" style="font-size:7px">&#128205; LIVE</span></td><td style="font-family:\'Share Tech Mono\',monospace;font-size:9px;color:var(--a2)">'+d.loc+'</td><td>'+dBadge(d.status)+'</td><td>'+d.loads+'</td><td style="color:var(--gn)">$'+d.pay.toLocaleString()+'</td><td><button class="btn btn-s" style="font-size:11px;padding:4px 9px" onclick="openPerms(\''+d.id+'\')">PERMS</button></td><td><div class="brow"><button class="btn btn-s" style="font-size:11px;padding:4px 9px" onclick="editD(\''+d.id+'\')">EDIT</button><button class="btn btn-r" style="font-size:11px;padding:4px 9px" onclick="delD(\''+d.id+'\')">DEL</button></div></td></tr>';
   }).join('');
   var db=document.getElementById('db-drivers');
   if(db) db.innerHTML=drivers.map(function(d){return'<tr><td>'+d.name+'</td><td><span class="b bg" style="font-size:7px">&#128205; '+d.loc+'</span></td><td>'+dBadge(d.status)+'</td></tr>';}).join('');
@@ -924,7 +1010,7 @@ function renderLoadsTable(){
   }
   t.innerHTML=loads.map(function(l){
     var rpm=l.miles>0?'$'+(l.rate/l.miles).toFixed(2):'$0.00';
-    return'<tr><td><b style="color:var(--a2)">'+l.id+'</b></td><td>'+l.broker+'</td><td>'+l.origin+'</td><td>'+l.dest+'</td><td>'+l.miles+'</td><td style="color:var(--gn)">$'+l.rate.toLocaleString()+'</td><td style="color:var(--yw)">'+rpm+'</td><td>'+(l.weight||'-')+' lbs</td><td>'+(l.commodity||'-')+'</td><td>'+(l.driver||'Unassigned')+'</td><td>'+(l.driver?'<span class="b bg" style="font-size:7px">&#128205; ON</span>':'<span class="b br2" style="font-size:7px">NO DRIVER</span>')+'</td><td>'+dBadge(l.status)+'</td><td><div class="brow"><button class="btn btn-s" style="font-size:9px;padding:2px 7px" onclick="editL(\''+l.id+'\')">EDIT</button><button class="btn btn-p" style="font-size:9px;padding:2px 7px" onclick="toast(\''+l.id+' dispatched!\')">DISPATCH</button></div></td></tr>';
+    return'<tr><td><b style="color:var(--a2)">'+l.id+'</b></td><td>'+l.broker+'</td><td>'+l.origin+'</td><td>'+l.dest+'</td><td>'+l.miles+'</td><td style="color:var(--gn)">$'+l.rate.toLocaleString()+'</td><td style="color:var(--yw)">'+rpm+'</td><td>'+(l.weight||'-')+' lbs</td><td>'+(l.commodity||'-')+'</td><td>'+(l.driver||'Unassigned')+'</td><td>'+(l.driver?'<span class="b bg" style="font-size:7px">&#128205; ON</span>':'<span class="b br2" style="font-size:7px">NO DRIVER</span>')+'</td><td>'+dBadge(l.status)+'</td><td><div class="brow"><button class="btn btn-s" style="font-size:11px;padding:4px 9px" onclick="editL(\''+l.id+'\')">EDIT</button><button class="btn btn-p" style="font-size:11px;padding:4px 9px" onclick="toast(\''+l.id+' dispatched!\')">DISPATCH</button></div></td></tr>';
   }).join('');
   var db=document.getElementById('db-loads');
   if(db) db.innerHTML=loads.slice(0,5).map(function(l){return'<tr><td><b style="color:var(--a2)">'+l.id+'</b></td><td>'+l.origin+'</td><td>'+l.dest+'</td><td>'+(l.driver||'Unassigned')+'</td><td>'+(l.driver?'<span class="b bg" style="font-size:7px">&#128205; GPS</span>':'-')+'</td><td style="color:var(--gn)">$'+l.rate.toLocaleString()+'</td><td>'+dBadge(l.status)+'</td></tr>';}).join('');
@@ -957,7 +1043,7 @@ function renderPayroll(){
   var t=document.getElementById('payroll-table');
   if(!drivers.length){t.innerHTML='<tr><td colspan="11" class="empty-msg">Add drivers and loads to see payroll</td></tr>';return;}
   t.innerHTML=drivers.map(function(d){
-    return'<tr><td><b>'+d.name+'</b></td><td>'+d.loads+'</td><td style="color:var(--gn)">$'+d.pay.toLocaleString()+'</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td style="color:var(--ac)"><b>$'+d.pay.toLocaleString()+'</b></td><td><div class="brow"><button class="btn btn-s" style="font-size:9px;padding:2px 7px" onclick="openM(\'payStmt\')">STATEMENT</button><button class="btn btn-p" style="font-size:9px;padding:2px 7px" onclick="toast(\'Sent to '+d.name+'!\')">SEND</button></div></td></tr>';
+    return'<tr><td><b>'+d.name+'</b></td><td>'+d.loads+'</td><td style="color:var(--gn)">$'+d.pay.toLocaleString()+'</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td style="color:var(--ac)"><b>$'+d.pay.toLocaleString()+'</b></td><td><div class="brow"><button class="btn btn-s" style="font-size:11px;padding:4px 9px" onclick="openM(\'payStmt\')">STATEMENT</button><button class="btn btn-p" style="font-size:11px;padding:4px 9px" onclick="toast(\'Sent to '+d.name+'!\')">SEND</button></div></td></tr>';
   }).join('');
 }
 
@@ -988,7 +1074,7 @@ function renderGPS(){
   if(!t)return;
   if(!drivers.length){t.innerHTML='<tr><td colspan="8" class="empty-msg">Add drivers to see GPS tracking</td></tr>';renderMap();return;}
   t.innerHTML=drivers.map(function(d){
-    return'<tr><td><b>'+d.name+'</b></td><td style="color:var(--a2);font-family:\'Share Tech Mono\',monospace;font-size:9px">&#128205; '+d.loc+'</td><td><b>'+d.locState+'</b></td><td>'+d.speed+' mph</td><td>'+(d.loads>0?'LD-100'+d.loads:'None')+'</td><td><span class="b bg" style="font-size:7px">&#128205; LIVE CANNOT DISABLE</span></td><td style="font-family:\'Share Tech Mono\',monospace;font-size:9px;color:var(--mt)">'+d.updated+'</td><td><button class="btn btn-b" style="font-size:9px;padding:2px 7px" onclick="showHist(\''+d.id+'\')">HISTORY</button></td></tr>';
+    return'<tr><td><b>'+d.name+'</b></td><td style="color:var(--a2);font-family:\'Share Tech Mono\',monospace;font-size:9px">&#128205; '+d.loc+'</td><td><b>'+d.locState+'</b></td><td>'+d.speed+' mph</td><td>'+(d.loads>0?'LD-100'+d.loads:'None')+'</td><td><span class="b bg" style="font-size:7px">&#128205; LIVE CANNOT DISABLE</span></td><td style="font-family:\'Share Tech Mono\',monospace;font-size:9px;color:var(--mt)">'+d.updated+'</td><td><button class="btn btn-b" style="font-size:11px;padding:4px 9px" onclick="showHist(\''+d.id+'\')">HISTORY</button></td></tr>';
   }).join('');
   var hs=document.getElementById('hist-drv');
   if(hs) hs.innerHTML='<option value="">Select driver</option>'+drivers.map(function(d){return'<option value="'+d.id+'">'+d.name+'</option>';}).join('');
@@ -1072,6 +1158,8 @@ function populateSelects(){
   });
   var nl=document.getElementById('nl-driver');
   if(nl) nl.innerHTML='<option value="">Unassigned</option>'+opts;
+  var rcd=document.getElementById('rc-driver');
+  if(rcd) rcd.innerHTML='<option value="">Assign driver later</option>'+opts;
   var dl=document.getElementById('d-load');
   if(dl) dl.innerHTML=loads.length?loads.map(function(l){return'<option value="'+l.id+'">'+l.id+' | '+l.origin+' to '+l.dest+' | $'+l.rate.toLocaleString()+'</option>';}).join(''):'<option>No loads yet</option>';
   var ls=document.getElementById('log-sel');
@@ -1093,35 +1181,174 @@ function savePerms(){
   toast('Permissions saved for '+(d?d.name:'driver')+'!');
 }
 
+var rcImageData = null;
+
 function handleDrop(e){
   e.preventDefault();
-  if(e.dataTransfer.files[0])simRC();
+  document.getElementById('rc-dropzone').style.borderColor='var(--bd)';
+  var file = e.dataTransfer.files[0];
+  if(file) processRCFile(file);
 }
-function scanRC(input){if(input.files[0])simRC();}
-function simRC(){
-  toast('Scanning rate confirmation...','info');
-  setTimeout(function(){
-    document.getElementById('rc-broker').textContent='Echo Global Logistics';
-    document.getElementById('rc-bphone').textContent='800-354-7993';
-    document.getElementById('rc-bemail').textContent='dispatch@echo.com';
-    document.getElementById('rc-lnum').textContent='EGL-'+Math.floor(Math.random()*90000+10000);
-    document.getElementById('rc-paddr').textContent='1200 Commerce Pkwy, Chicago IL 60601';
-    document.getElementById('rc-ptime').textContent='05/17/2026 07:00 AM';
-    document.getElementById('rc-pnum').textContent='PU-'+Math.floor(Math.random()*90000+10000);
-    document.getElementById('rc-daddr').textContent='450 Distribution Dr, Philadelphia PA 19103';
-    document.getElementById('rc-dtime').textContent='05/18/2026 05:00 PM';
-    document.getElementById('rc-bol').textContent='BOL-'+Math.floor(Math.random()*90000+10000);
-    document.getElementById('rc-po').textContent='PO-'+Math.floor(Math.random()*90000+10000);
-    document.getElementById('rc-commodity').textContent='General Freight / Dry Goods';
-    document.getElementById('rc-weight').textContent='42,000 lbs';
-    document.getElementById('rc-rate').textContent='$2,350';
-    document.getElementById('rc-special').textContent='Delivery appointment required. Call 1 hour before. No lumper.';
-    document.getElementById('rcResult').style.display='block';
-    toast('Rate confirmation scanned! All info filled in automatically.');
-  },1200);
+
+function uploadRC(input){
+  if(input.files[0]) processRCFile(input.files[0]);
 }
-function createFromRC(){toast('Load created from rate confirmation!');}
-function resetRC(){document.getElementById('rcResult').style.display='none';document.getElementById('rcFile').value='';}
+
+function processRCFile(file){
+  var reader = new FileReader();
+  reader.onload = function(e){
+    rcImageData = e.target.result;
+    // Show scanning state
+    document.getElementById('rc-dropzone').style.display='none';
+    document.getElementById('rc-manual-option').style.display='none';
+    document.getElementById('rc-scanning').style.display='block';
+    document.getElementById('rcResult').style.display='none';
+    // Call AI to read the actual RC
+    readRCWithAI(rcImageData, file.type);
+  };
+  if(file.type === 'application/pdf'){
+    // For PDF show manual form since we cannot encode PDF as image
+    showManualRC();
+    toast('PDF uploaded - please verify the info below matches your RC','info');
+  } else {
+    reader.readAsDataURL(file);
+  }
+}
+
+async function readRCWithAI(imageData, fileType){
+  try {
+    var base64 = imageData.split(',')[1];
+    var mediaType = fileType || 'image/jpeg';
+
+    var response = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1000,
+        messages: [{
+          role: 'user',
+          content: [
+            {
+              type: 'image',
+              source: {type: 'base64', media_type: mediaType, data: base64}
+            },
+            {
+              type: 'text',
+              text: 'This is a trucking rate confirmation document. Extract ALL of the following information and return ONLY a JSON object with these exact keys. If a field is not found return empty string: {"broker_name":"","broker_phone":"","broker_email":"","load_number":"","pickup_address":"","pickup_datetime":"","pickup_number":"","delivery_address":"","delivery_datetime":"","bol_number":"","po_number":"","commodity":"","weight":"","rate":"","special_instructions":""}'
+            }
+          ]
+        }]
+      })
+    });
+
+    var data = await response.json();
+    var text = data.content && data.content[0] && data.content[0].text || '';
+
+    // Parse the JSON from AI response
+    var jsonMatch = text.match(/\{[\s\S]*\}/);
+    if(jsonMatch){
+      var info = JSON.parse(jsonMatch[0]);
+      fillRCFields(info);
+      document.getElementById('rc-status-badge').textContent = 'AI Scanned from Your RC';
+    } else {
+      showManualRC();
+      toast('Could not read RC automatically - please fill in manually','warn');
+    }
+  } catch(err){
+    console.error('AI scan error:', err);
+    showManualRC();
+    toast('Please fill in your RC info manually below','warn');
+  }
+  document.getElementById('rc-scanning').style.display='none';
+}
+
+function fillRCFields(info){
+  document.getElementById('rc-broker').value = info.broker_name || '';
+  document.getElementById('rc-bphone').value = info.broker_phone || '';
+  document.getElementById('rc-bemail').value = info.broker_email || '';
+  document.getElementById('rc-lnum').value = info.load_number || '';
+  document.getElementById('rc-paddr').value = info.pickup_address || '';
+  document.getElementById('rc-ptime').value = info.pickup_datetime || '';
+  document.getElementById('rc-pnum').value = info.pickup_number || '';
+  document.getElementById('rc-daddr').value = info.delivery_address || '';
+  document.getElementById('rc-dtime').value = info.delivery_datetime || '';
+  document.getElementById('rc-bol').value = info.bol_number || '';
+  document.getElementById('rc-po').value = info.po_number || '';
+  document.getElementById('rc-commodity').value = info.commodity || '';
+  document.getElementById('rc-weight').value = info.weight || '';
+  document.getElementById('rc-rate').value = info.rate ? info.rate.replace(/[^0-9.]/g,'') : '';
+  document.getElementById('rc-special').value = info.special_instructions || '';
+  document.getElementById('rcResult').style.display='block';
+  toast('Rate confirmation read successfully! Review the info and create load.','info');
+}
+
+function showManualRC(){
+  document.getElementById('rc-scanning').style.display='none';
+  document.getElementById('rc-dropzone').style.display='none';
+  document.getElementById('rc-manual-option').style.display='none';
+  // Clear all fields
+  ['rc-broker','rc-bphone','rc-bemail','rc-lnum','rc-paddr','rc-ptime','rc-pnum','rc-daddr','rc-dtime','rc-bol','rc-po','rc-commodity','rc-weight','rc-rate','rc-special'].forEach(function(id){
+    var el = document.getElementById(id);
+    if(el) el.value = '';
+  });
+  document.getElementById('rc-status-badge').textContent = 'Manual Entry';
+  document.getElementById('rcResult').style.display='block';
+}
+
+function createFromRC(){
+  var broker = document.getElementById('rc-broker').value.trim();
+  var rate = parseFloat(document.getElementById('rc-rate').value)||0;
+  var origin = document.getElementById('rc-paddr').value.trim();
+  var dest = document.getElementById('rc-daddr').value.trim();
+  if(!broker){ toast('Enter the broker name!','err'); return; }
+  if(!rate){ toast('Enter the load rate!','err'); return; }
+
+  // Get city from address for origin/dest
+  var originCity = origin ? origin.split(',').slice(-2).join(',').trim() : 'TBD';
+  var destCity = dest ? dest.split(',').slice(-2).join(',').trim() : 'TBD';
+
+  var dEl = document.getElementById('rc-driver');
+  var driverName = dEl && dEl.selectedIndex > 0 ? dEl.options[dEl.selectedIndex].text : '';
+
+  var id = 'LD-' + (1001 + loads.length);
+  loads.push({
+    id: id,
+    broker: broker,
+    origin: originCity,
+    dest: destCity,
+    paddr: origin,
+    daddr: dest,
+    miles: 0,
+    rate: rate,
+    weight: parseInt(document.getElementById('rc-weight').value)||0,
+    commodity: document.getElementById('rc-commodity').value,
+    punum: document.getElementById('rc-pnum').value,
+    bol: document.getElementById('rc-bol').value,
+    po: document.getElementById('rc-po').value,
+    driver: driverName,
+    ptime: document.getElementById('rc-ptime').value,
+    dtime: document.getElementById('rc-dtime').value,
+    special: document.getElementById('rc-special').value,
+    bphone: document.getElementById('rc-bphone').value,
+    bemail: document.getElementById('rc-bemail').value,
+    status: 'booked'
+  });
+
+  renderAll();
+  toast('Load ' + id + ' created from your rate confirmation!');
+  resetRC();
+  sv('loads', document.querySelectorAll('.nb')[3]);
+}
+
+function resetRC(){
+  document.getElementById('rcResult').style.display='none';
+  document.getElementById('rc-scanning').style.display='none';
+  document.getElementById('rc-dropzone').style.display='block';
+  document.getElementById('rc-manual-option').style.display='block';
+  document.getElementById('rcFile').value='';
+  rcImageData = null;
+}
 
 var STATES=['AL','AZ','AR','CA','CO','CT','DE','FL','GA','ID','IL','IN','IA','KS','KY','LA','ME','MD','MA','MI','MN','MS','MO','MT','NE','NV','NH','NJ','NM','NY','NC','ND','OH','OK','OR','PA','RI','SC','SD','TN','TX','UT','VT','VA','WA','WV','WI','WY'];
 var IFTA_R={PA:0.576,OH:0.460,NJ:0.418,NY:0.440,IL:0.455,IN:0.530,DE:0.230,MD:0.362,VA:0.278,TX:0.200,TN:0.270,GA:0.290,NC:0.361,KY:0.259,WV:0.352,MI:0.263,SC:0.226,FL:0.349,MA:0.300};
@@ -1136,7 +1363,7 @@ function addIS(isL){
   var div=document.createElement('div');
   div.className='istop'+(isL?'':' empty');
   div.id=id;
-  div.innerHTML='<div style="font-family:\'Rajdhani\',sans-serif;font-size:11px;font-weight:700;color:'+(isL?'var(--ac)':'var(--mt)')+';margin-bottom:8px">'+(isL?'LOADED STOP':'EMPTY MILES')+' #'+isCount+' <button onclick="document.getElementById(\''+id+'\').remove()" style="float:right;background:none;border:none;color:var(--rd);cursor:pointer;font-size:11px">REMOVE</button></div><div class="fg3"><div class="ff"><label>From State</label><select class="sf">'+stOpts()+'</select></div><div class="ff"><label>To State</label><select class="st">'+stOpts()+'</select></div><div class="ff"><label>Miles</label><input type="number" class="sm" placeholder="0" min="0"></div></div><div style="font-family:\'Share Tech Mono\',monospace;font-size:8px;color:var(--mt);margin-top:3px">'+(isL?'Loaded = freight on board':'Empty = deadhead or bobtail')+'</div>';
+  div.innerHTML='<div style="font-family:\'Rajdhani\',sans-serif;font-size:13px;font-weight:700;color:'+(isL?'var(--ac)':'var(--mt)')+';margin-bottom:8px">'+(isL?'LOADED STOP':'EMPTY MILES')+' #'+isCount+' <button onclick="document.getElementById(\''+id+'\').remove()" style="float:right;background:none;border:none;color:var(--rd);cursor:pointer;font-size:11px">REMOVE</button></div><div class="fg3"><div class="ff"><label>From State</label><select class="sf">'+stOpts()+'</select></div><div class="ff"><label>To State</label><select class="st">'+stOpts()+'</select></div><div class="ff"><label>Miles</label><input type="number" class="sm" placeholder="0" min="0"></div></div><div style="font-family:\'Share Tech Mono\',monospace;font-size:8px;color:var(--mt);margin-top:3px">'+(isL?'Loaded = freight on board':'Empty = deadhead or bobtail')+'</div>';
   document.getElementById('ifta-stops').appendChild(div);
 }
 
@@ -1205,6 +1432,188 @@ function toast(msg,type){
   t.className='toast '+(type||'');
   t.classList.add('show');
   setTimeout(function(){t.classList.remove('show');},3200);
+}
+
+
+// ====== INVOICE SYSTEM ======
+var invoices = [];
+var invCount = 0;
+
+function calcInv() {
+  var amt = parseFloat(document.getElementById('ci-amount').value) || 0;
+  var apex = document.getElementById('ci-apex').value === 'yes' ? amt * 0.015 : 0;
+  var net = amt - apex;
+  document.getElementById('ci-show-amount').textContent = '$' + amt.toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2});
+  document.getElementById('ci-show-fee').textContent = '-$' + apex.toFixed(2);
+  document.getElementById('ci-show-net').textContent = '$' + net.toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2});
+}
+
+function generateInvoice() {
+  var amt = parseFloat(document.getElementById('ci-amount').value) || 0;
+  if (!amt) { toast('Enter the invoice amount!', 'err'); return; }
+  if (!document.getElementById('ci-broker').value.trim()) { toast('Enter broker name!', 'err'); return; }
+
+  invCount++;
+  var invNum = document.getElementById('ci-num').value.trim() || ('INV-' + String(invCount).padStart(4,'0'));
+  var apex = document.getElementById('ci-apex').value === 'yes';
+  var apexFee = apex ? amt * 0.015 : 0;
+  var net = amt - apexFee;
+  var today = new Date().toLocaleDateString('en-US');
+
+  var inv = {
+    num: invNum,
+    broker: document.getElementById('ci-broker').value,
+    baddr: document.getElementById('ci-baddr').value,
+    bphone: document.getElementById('ci-bphone').value,
+    bemail: document.getElementById('ci-bemail').value,
+    load: document.getElementById('ci-load').value,
+    punum: document.getElementById('ci-punum').value,
+    bol: document.getElementById('ci-bol').value,
+    po: document.getElementById('ci-po').value,
+    rc: document.getElementById('ci-rc').value,
+    amount: amt,
+    apexFee: apexFee,
+    net: net,
+    paddr: document.getElementById('ci-paddr').value,
+    daddr: document.getElementById('ci-daddr').value,
+    pdate: document.getElementById('ci-pdate').value,
+    ddate: document.getElementById('ci-ddate').value,
+    commodity: document.getElementById('ci-commodity').value,
+    weight: document.getElementById('ci-weight').value,
+    miles: document.getElementById('ci-miles').value,
+    driver: document.getElementById('ci-driver').value,
+    date: document.getElementById('ci-date').value || today,
+    due: document.getElementById('ci-due').value,
+    apex: apex,
+    status: 'pending'
+  };
+
+  invoices.push(inv);
+  renderInvoices();
+  showInvoice(inv);
+  cm('createInvoice');
+  toast('Invoice ' + invNum + ' created!');
+}
+
+function showInvoice(inv) {
+  var apexNote = inv.apex ? '<div style="background:#fff3cd;border:1px solid #ffc107;padding:8px 12px;margin-bottom:12px;font-size:11px;color:#856404"><b>FACTORING:</b> This invoice is submitted to Apex Ultima for factoring at 1.5%. You will receive $' + inv.net.toLocaleString('en-US',{minimumFractionDigits:2}) + ' after the $' + inv.apexFee.toFixed(2) + ' factoring fee.</div>' : '';
+
+  var html = apexNote + \`
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px;padding-bottom:16px;border-bottom:3px solid #d4820a">
+    <div>
+      <div style="font-size:26px;font-weight:900;letter-spacing:3px;color:#111">DEEP <span style="color:#d4820a">TRUCKING LLC</span></div>
+      <div style="font-size:11px;color:#555;margin-top:4px;line-height:1.8">
+        1059 Bramble Dr, Breinigsville PA 18031<br>
+        Phone: 610-922-1113 &bull; Email: deeptrucking007@gmail.com<br>
+        DOT: 2088835 &bull; MC: 744717 &bull; EIN: 27-4259995
+      </div>
+    </div>
+    <div style="text-align:right">
+      <div style="font-size:28px;font-weight:900;color:#d4820a;letter-spacing:2px">INVOICE</div>
+      <div style="font-family:monospace;font-size:11px;color:#555;margin-top:4px;line-height:1.8">
+        Invoice #: <b style="color:#111">\${inv.num}</b><br>
+        Date: <b style="color:#111">\${inv.date}</b><br>
+        Due Date: <b style="color:#111">\${inv.due||'Upon Receipt'}</b>
+      </div>
+    </div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:16px">
+    <div>
+      <div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#888;margin-bottom:6px;border-bottom:1px solid #ddd;padding-bottom:4px">BILL TO</div>
+      <div style="font-size:14px;font-weight:700;color:#111">\${inv.broker}</div>
+      <div style="font-size:11px;color:#555;margin-top:3px;line-height:1.8">\${inv.baddr||''}<br>\${inv.bphone||''}<br>\${inv.bemail||''}</div>
+    </div>
+    <div>
+      <div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#888;margin-bottom:6px;border-bottom:1px solid #ddd;padding-bottom:4px">REFERENCE NUMBERS</div>
+      <div style="font-size:11px;color:#333;line-height:2">
+        Load #: <b>\${inv.load||'-'}</b><br>
+        Rate Confirmation #: <b>\${inv.rc||'-'}</b><br>
+        BOL #: <b>\${inv.bol||'-'}</b><br>
+        Pickup #: <b>\${inv.punum||'-'}</b><br>
+        PO #: <b>\${inv.po||'-'}</b>
+      </div>
+    </div>
+  </div>
+
+  <table style="width:100%;border-collapse:collapse;margin-bottom:16px;font-size:12px">
+    <thead>
+      <tr style="background:#f5a623;color:#fff">
+        <th style="padding:8px 10px;text-align:left;font-size:10px;letter-spacing:1px">DESCRIPTION</th>
+        <th style="padding:8px 10px;text-align:center;font-size:10px;letter-spacing:1px">PICKUP</th>
+        <th style="padding:8px 10px;text-align:center;font-size:10px;letter-spacing:1px">DELIVERY</th>
+        <th style="padding:8px 10px;text-align:center;font-size:10px;letter-spacing:1px">MILES</th>
+        <th style="padding:8px 10px;text-align:right;font-size:10px;letter-spacing:1px">AMOUNT</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="border-bottom:1px solid #eee">
+        <td style="padding:10px;color:#111">
+          <b>Freight Transportation Services</b><br>
+          <span style="font-size:11px;color:#666">Commodity: \${inv.commodity||'General Freight'} &bull; Weight: \${inv.weight||'-'} lbs<br>
+          Driver: \${inv.driver||'-'}</span>
+        </td>
+        <td style="padding:10px;text-align:center;font-size:11px;color:#333">\${inv.paddr||'-'}<br><b>\${inv.pdate||''}</b></td>
+        <td style="padding:10px;text-align:center;font-size:11px;color:#333">\${inv.daddr||'-'}<br><b>\${inv.ddate||''}</b></td>
+        <td style="padding:10px;text-align:center;font-size:11px;color:#333">\${inv.miles||'-'}</td>
+        <td style="padding:10px;text-align:right;font-size:14px;font-weight:700;color:#111">$\${inv.amount.toLocaleString('en-US',{minimumFractionDigits:2})}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div style="display:flex;justify-content:flex-end;margin-bottom:16px">
+    <div style="width:280px">
+      <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #eee;font-size:12px">
+        <span style="color:#555">Subtotal</span>
+        <span style="font-weight:600">$\${inv.amount.toLocaleString('en-US',{minimumFractionDigits:2})}</span>
+      </div>
+      \${inv.apex ? \`<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #eee;font-size:12px"><span style="color:#cc0000">Apex Ultima Factoring Fee (1.5%)</span><span style="color:#cc0000;font-weight:600">-$\${inv.apexFee.toFixed(2)}</span></div>\` : ''}
+      <div style="display:flex;justify-content:space-between;padding:10px 0;border-top:3px solid #d4820a;margin-top:4px;font-size:16px;font-weight:900">
+        <span>TOTAL DUE</span>
+        <span style="color:#d4820a">$\${inv.amount.toLocaleString('en-US',{minimumFractionDigits:2})}</span>
+      </div>
+      \${inv.apex ? \`<div style="font-size:10px;color:#888;margin-top:4px">After factoring fee you receive: <b style="color:#118844">$\${inv.net.toLocaleString('en-US',{minimumFractionDigits:2})}</b></div>\` : ''}
+    </div>
+  </div>
+
+  <div style="background:#f9f9f9;border:1px solid #ddd;padding:12px;margin-bottom:12px">
+    <div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#888;margin-bottom:6px">PAYMENT INSTRUCTIONS</div>
+    \${inv.apex ?
+      \`<div style="font-size:11px;color:#333;line-height:1.8">Please remit payment to:<br><b>Apex Ultima Capital</b> (Factor)<br>Reference Invoice #: \${inv.num} &bull; Deep Trucking LLC &bull; MC-744717</div>\` :
+      \`<div style="font-size:11px;color:#333;line-height:1.8">Please remit payment to:<br><b>Deep Trucking LLC</b><br>1059 Bramble Dr, Breinigsville PA 18031<br>Reference Invoice #: \${inv.num}</div>\`
+    }
+  </div>
+
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px;padding-top:12px;border-top:1px solid #ddd">
+    <div style="font-size:10px;color:#aaa">Deep Trucking LLC &bull; DOT-2088835 &bull; MC-744717 &bull; EIN-27-4259995</div>
+    <div style="font-size:10px;color:#aaa">Thank you for your business!</div>
+  </div>
+  \`;
+
+  document.getElementById('invoice-print-area').innerHTML = html;
+  openM('viewInvoice');
+}
+
+function printInvoice() {
+  var content = document.getElementById('invoice-print-area').innerHTML;
+  var w = window.open('', '_blank');
+  w.document.write('<html><head><title>Invoice - Deep Trucking LLC</title><style>body{font-family:Exo 2,sans-serif;margin:20px}@media print{body{margin:0}}</style></head><body>' + content + '</body></html>');
+  w.document.close();
+  w.print();
+}
+
+function renderInvoices() {
+  var t = document.getElementById('inv-table');
+  if (!invoices.length) { t.innerHTML = '<tr><td colspan="9" class="empty-msg">No invoices yet - click CREATE INVOICE to get started</td></tr>'; return; }
+  var smap = {pending:'<span class="b by">Pending</span>', paid:'<span class="b bg">Paid</span>', overdue:'<span class="b br2">Overdue</span>'};
+  t.innerHTML = invoices.map(function(inv) {
+    return '<tr><td><b style="color:var(--ac)">' + inv.num + '</b></td><td>' + inv.broker + '</td><td>' + (inv.load||'-') + '</td><td style="color:var(--gn)">$' + inv.amount.toLocaleString('en-US',{minimumFractionDigits:2}) + '</td><td style="color:var(--rd)">' + (inv.apex ? '-$'+inv.apexFee.toFixed(2) : 'No factoring') + '</td><td style="color:var(--gn);font-weight:700">$' + inv.net.toLocaleString('en-US',{minimumFractionDigits:2}) + '</td><td>' + inv.date + '</td><td>' + smap[inv.status] + '</td><td><div class="brow"><button class="btn btn-b" style="font-size:11px;padding:4px 9px" onclick='showInvoice(invoices.find(function(x){return x.num==="' + inv.num + '"}))'>VIEW</button><button class="btn btn-g" style="font-size:11px;padding:4px 9px" onclick='markPaid("' + inv.num + '")'>MARK PAID</button></div></td></tr>';
+  }).join('');
+}
+
+function markPaid(num) {
+  var inv = invoices.find(function(x){return x.num===num;});
+  if (inv) { inv.status = 'paid'; renderInvoices(); toast('Invoice ' + num + ' marked as paid!'); }
 }
 
 init();
