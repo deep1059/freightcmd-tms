@@ -5,1002 +5,1209 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Deep Trucking LLC TMS</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&family=Exo+2:wght@300;400;600;800&display=swap');
-
-:root {
-  --bg: #070b0f;
-  --surface: #0c1117;
-  --panel: #101820;
-  --border: #1a2535;
-  --accent: #00c8ff;
-  --accent2: #ff6200;
-  --green: #00e87a;
-  --red: #ff2d55;
-  --yellow: #ffc600;
-  --purple: #a855f7;
-  --text: #b8ccd8;
-  --muted: #3d5468;
-  --white: #eaf4ff;
-}
-
-*{box-sizing:border-box;margin:0;padding:0}
-html,body{height:100%;overflow:hidden}
-body{background:var(--bg);color:var(--text);font-family:'Exo 2',sans-serif;height:100vh;display:flex;flex-direction:column}
-
-/* ===== LOGIN ===== */
-#loginScreen{position:fixed;inset:0;background:var(--bg);display:flex;align-items:center;justify-content:center;z-index:9999;
-  background-image:radial-gradient(ellipse at 20% 50%,rgba(0,200,255,.05) 0,transparent 60%),radial-gradient(ellipse at 80% 50%,rgba(255,98,0,.05) 0,transparent 60%)}
-.lb{background:var(--surface);border:1px solid var(--border);border-top:3px solid var(--accent);padding:40px;width:380px}
-.lb-brand{font-family:'Rajdhani',sans-serif;font-size:36px;font-weight:700;letter-spacing:4px;color:var(--white);line-height:1}
-.lb-brand span{color:var(--accent)}
-.lb-sub{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:4px;color:var(--muted);margin-bottom:28px;margin-top:4px}
-.login-tabs{display:flex;border-bottom:1px solid var(--border);margin-bottom:22px}
-.ltab{flex:1;padding:8px;text-align:center;font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:600;letter-spacing:2px;text-transform:uppercase;cursor:pointer;color:var(--muted);border-bottom:2px solid transparent;margin-bottom:-1px;transition:all .2s}
-.ltab.active{color:var(--accent);border-bottom-color:var(--accent)}
-.lf label{display:block;font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-bottom:5px}
-.lf{margin-bottom:14px}
-.lf input,.lf select{width:100%;background:var(--bg);border:1px solid var(--border);color:var(--white);padding:10px 14px;font-family:'Share Tech Mono',monospace;font-size:13px;outline:none;transition:border-color .2s}
-.lf input:focus{border-color:var(--accent)}
-.lbtn{width:100%;background:var(--accent);color:var(--bg);border:none;padding:13px;font-family:'Rajdhani',sans-serif;font-size:19px;font-weight:700;letter-spacing:3px;cursor:pointer;margin-top:8px;transition:all .2s}
-.lbtn:hover{background:#33d4ff}
-
-/* ===== TOPBAR ===== */
-.topbar{height:50px;background:var(--surface);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 14px;gap:0;flex-shrink:0;position:relative}
-.tb-brand{font-family:'Rajdhani',sans-serif;font-size:22px;font-weight:700;letter-spacing:3px;color:var(--white);margin-right:20px;flex-shrink:0}
-.tb-brand span{color:var(--accent)}
-.tb-nav{display:flex;flex:1;overflow-x:auto;gap:0}
-.tb-nav::-webkit-scrollbar{height:0}
-.nbtn{padding:0 12px;height:50px;background:transparent;border:none;color:var(--muted);font-family:'Rajdhani',sans-serif;font-size:12px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;border-bottom:2px solid transparent;transition:all .15s;white-space:nowrap}
-.nbtn:hover{color:var(--text)}
-.nbtn.active{color:var(--accent);border-bottom-color:var(--accent)}
-.tb-right{display:flex;align-items:center;gap:10px;flex-shrink:0;margin-left:10px}
-.sdot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green);animation:blink 2s infinite}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
-.uchip{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--muted)}
-.lgbtn{background:transparent;border:1px solid var(--border);color:var(--muted);padding:4px 10px;font-family:'Rajdhani',sans-serif;font-size:11px;font-weight:600;letter-spacing:1px;cursor:pointer;transition:all .15s}
-.lgbtn:hover{border-color:var(--red);color:var(--red)}
-
-/* ===== MAIN ===== */
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Share+Tech+Mono&family=Exo+2:wght@300;400;600;800&display=swap');
+:root{--bg:#06080b;--sf:#0b0e14;--pn:#0f1318;--bd:#182030;--ac:#f5a623;--a2:#00d4ff;--gn:#00e87a;--rd:#ff2d55;--yw:#ffd60a;--pu:#bf5af2;--tx:#a0b4c8;--mt:#304050;--wh:#e8f4ff}
+*{box-sizing:border-box;margin:0;padding:0}html,body{height:100%;overflow:hidden}
+body{background:var(--bg);color:var(--tx);font-family:'Exo 2',sans-serif;display:flex;flex-direction:column}
+.hdr{background:var(--sf);border-bottom:2px solid var(--ac);padding:0 12px;display:flex;align-items:center;height:54px;flex-shrink:0;z-index:300}
+.logo{font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:700;letter-spacing:3px;color:var(--wh);margin-right:12px;flex-shrink:0;line-height:1.1}
+.logo span{color:var(--ac)}
+.logo-sub{font-family:'Share Tech Mono',monospace;font-size:6.5px;letter-spacing:2px;color:var(--mt);display:block}
+.hnav{display:flex;flex:1;overflow-x:auto}.hnav::-webkit-scrollbar{height:0}
+.nb{padding:0 8px;height:54px;background:transparent;border:none;color:var(--mt);font-family:'Rajdhani',sans-serif;font-size:10px;font-weight:600;letter-spacing:1px;text-transform:uppercase;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .15s;white-space:nowrap}
+.nb:hover{color:var(--tx)}.nb.active{color:var(--ac);border-bottom-color:var(--ac)}
+.hright{margin-left:auto;display:flex;align-items:center;gap:6px;flex-shrink:0}
+.sdot{width:7px;height:7px;border-radius:50%;background:var(--gn);box-shadow:0 0 8px var(--gn);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.uchip{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--ac)}
 .main{flex:1;overflow:hidden;display:flex}
-.view{display:none;flex:1;overflow-y:auto;padding:16px}
-.view.active{display:block}
-
-/* ===== STATS ===== */
-.stats{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-bottom:16px}
-.sc{background:var(--surface);border:1px solid var(--border);border-top:2px solid var(--accent);padding:14px;position:relative;overflow:hidden}
-.sc.o{border-top-color:var(--accent2)}
-.sc.g{border-top-color:var(--green)}
-.sc.r{border-top-color:var(--red)}
-.sc.y{border-top-color:var(--yellow)}
-.sc.p{border-top-color:var(--purple)}
-.sc::after{content:'';position:absolute;top:0;right:0;width:50px;height:50px;background:radial-gradient(circle at top right,rgba(0,200,255,.06),transparent)}
-.sc-lbl{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
-.sc-val{font-family:'Rajdhani',sans-serif;font-size:26px;font-weight:700;color:var(--white);line-height:1}
-.sc-sub{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--muted);margin-top:3px}
-
-/* ===== SECTION TITLE ===== */
-.stitle{font-family:'Rajdhani',sans-serif;font-size:15px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:10px;display:flex;align-items:center;gap:8px}
-.stitle::before{content:'';width:3px;height:15px;background:var(--accent)}
-.stitle.o::before{background:var(--accent2)}
-.stitle.g::before{background:var(--green)}
-
-/* ===== PANEL ===== */
-.tp{background:var(--surface);border:1px solid var(--border);padding:14px;margin-bottom:14px}
-
-/* ===== TABLE ===== */
-.tt{width:100%;border-collapse:collapse;font-size:12px}
-.tt th{background:var(--panel);font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);padding:7px 10px;text-align:left;border-bottom:1px solid var(--border);white-space:nowrap}
-.tt td{padding:9px 10px;border-bottom:1px solid rgba(26,37,53,.6);font-size:11px;color:var(--text);vertical-align:middle}
-.tt tr:hover td{background:rgba(0,200,255,.025)}
-
-/* ===== BADGE ===== */
-.b{display:inline-block;padding:2px 7px;font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:1px;text-transform:uppercase;border-radius:2px}
-.bg{background:rgba(0,232,122,.1);color:var(--green);border:1px solid rgba(0,232,122,.25)}
-.by{background:rgba(255,198,0,.1);color:var(--yellow);border:1px solid rgba(255,198,0,.25)}
-.bb{background:rgba(0,200,255,.1);color:var(--accent);border:1px solid rgba(0,200,255,.25)}
-.br{background:rgba(255,45,85,.1);color:var(--red);border:1px solid rgba(255,45,85,.25)}
-.bo{background:rgba(255,98,0,.1);color:var(--accent2);border:1px solid rgba(255,98,0,.25)}
-.bp{background:rgba(168,85,247,.1);color:var(--purple);border:1px solid rgba(168,85,247,.25)}
-
-/* ===== FORM ===== */
-.fg{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px}
-.fg3{grid-template-columns:1fr 1fr 1fr}
-.fg4{grid-template-columns:1fr 1fr 1fr 1fr}
-.ff label{display:block;font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
-.ff input,.ff select,.ff textarea{width:100%;background:var(--panel);border:1px solid var(--border);color:var(--white);padding:8px 11px;font-family:'Exo 2',sans-serif;font-size:12px;outline:none;transition:border-color .2s}
-.ff input:focus,.ff select:focus,.ff textarea:focus{border-color:var(--accent)}
-.ff select option{background:var(--panel)}
-
-/* ===== BUTTONS ===== */
-.ab{padding:7px 16px;font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;border:none;transition:all .15s}
-.ab-p{background:var(--accent);color:var(--bg)}
-.ab-p:hover{background:#33d4ff}
-.ab-s{background:transparent;border:1px solid var(--border);color:var(--muted)}
-.ab-s:hover{border-color:var(--accent);color:var(--accent)}
-.ab-d{background:transparent;border:1px solid var(--red);color:var(--red)}
-.ab-d:hover{background:rgba(255,45,85,.1)}
-.ab-g{background:var(--green);color:var(--bg)}
-.ab-g:hover{background:#33ffaa}
-.ab-o{background:var(--accent2);color:var(--white)}
-.br-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-
-/* ===== MODAL ===== */
-.mo{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:500;align-items:center;justify-content:center}
+.view{display:none;flex:1;overflow-y:auto;padding:13px}.view.active{display:block}
+::-webkit-scrollbar{width:3px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--bd)}
+.stats{display:grid;gap:8px;margin-bottom:13px}
+.s6{grid-template-columns:repeat(6,1fr)}.s4{grid-template-columns:repeat(4,1fr)}.s3{grid-template-columns:repeat(3,1fr)}
+.sc{background:var(--sf);border:1px solid var(--bd);border-top:2px solid var(--ac);padding:11px}
+.sc.g{border-top-color:var(--gn)}.sc.r{border-top-color:var(--rd)}.sc.b{border-top-color:var(--a2)}.sc.y{border-top-color:var(--yw)}.sc.p{border-top-color:var(--pu)}
+.sc-lbl{font-family:'Share Tech Mono',monospace;font-size:7px;letter-spacing:2px;text-transform:uppercase;color:var(--mt);margin-bottom:4px}
+.sc-val{font-family:'Rajdhani',sans-serif;font-size:22px;font-weight:700;color:var(--wh);line-height:1}
+.sc-sub{font-family:'Share Tech Mono',monospace;font-size:7px;color:var(--mt);margin-top:2px}
+.tp{background:var(--sf);border:1px solid var(--bd);padding:13px;margin-bottom:13px}
+.stitle{font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--ac);margin-bottom:10px;display:flex;align-items:center;gap:7px}
+.stitle::before{content:'';width:3px;height:13px;background:var(--ac)}
+.stitle.g::before{background:var(--gn)}.stitle.r::before{background:var(--rd)}.stitle.b::before{background:var(--a2)}.stitle.y::before{background:var(--yw)}
+.tt{width:100%;border-collapse:collapse;font-size:11px}
+.tt th{background:var(--pn);font-family:'Share Tech Mono',monospace;font-size:7px;letter-spacing:2px;text-transform:uppercase;color:var(--mt);padding:6px 8px;text-align:left;border-bottom:1px solid var(--bd);white-space:nowrap}
+.tt td{padding:7px 8px;border-bottom:1px solid rgba(24,32,48,.5);vertical-align:middle}
+.b{display:inline-block;padding:2px 5px;font-family:'Share Tech Mono',monospace;font-size:7px;letter-spacing:1px;text-transform:uppercase;border-radius:2px}
+.bg{background:rgba(0,232,122,.1);color:var(--gn);border:1px solid rgba(0,232,122,.25)}
+.by{background:rgba(255,214,10,.1);color:var(--yw);border:1px solid rgba(255,214,10,.25)}
+.bb{background:rgba(0,212,255,.1);color:var(--a2);border:1px solid rgba(0,212,255,.25)}
+.br2{background:rgba(255,45,85,.1);color:var(--rd);border:1px solid rgba(255,45,85,.25)}
+.bo{background:rgba(245,166,35,.1);color:var(--ac);border:1px solid rgba(245,166,35,.25)}
+.acard{padding:10px 13px;margin-bottom:7px;display:flex;align-items:center;gap:11px}
+.acard.warn{background:rgba(255,214,10,.07);border:1px solid rgba(255,214,10,.25)}
+.acard.info{background:rgba(0,212,255,.07);border:1px solid rgba(0,212,255,.25)}
+.acard.crit{background:rgba(255,45,85,.07);border:1px solid rgba(255,45,85,.25)}
+.ai{font-size:18px;flex-shrink:0}.ab2{flex:1}
+.at{font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;color:var(--wh);margin-bottom:1px}
+.as2{font-family:'Share Tech Mono',monospace;font-size:8px;color:var(--mt);line-height:1.6}
+.abts{display:flex;gap:5px;margin-top:5px}
+.ad{font-family:'Rajdhani',sans-serif;font-size:19px;font-weight:700;flex-shrink:0}
+.ad.r{color:var(--rd)}.ad.y{color:var(--yw)}
+.btn{padding:6px 13px;font-family:'Rajdhani',sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;border:none;transition:all .15s}
+.btn-p{background:var(--ac);color:var(--bg)}.btn-p:hover{background:#f7b843}
+.btn-s{background:transparent;border:1px solid var(--bd);color:var(--mt)}.btn-s:hover{border-color:var(--ac);color:var(--ac)}
+.btn-g{background:var(--gn);color:var(--bg)}.btn-r{background:var(--rd);color:#fff}
+.btn-b{background:var(--a2);color:var(--bg)}.btn-y{background:var(--yw);color:var(--bg)}
+.btn-sms{background:rgba(0,232,122,.15);border:1px solid rgba(0,232,122,.3);color:var(--gn)}
+.brow{display:flex;gap:7px;align-items:center;flex-wrap:wrap}
+.fg{display:grid;grid-template-columns:1fr 1fr;gap:11px}.fg3{grid-template-columns:1fr 1fr 1fr}
+.ff label{display:block;font-family:'Share Tech Mono',monospace;font-size:7px;letter-spacing:2px;text-transform:uppercase;color:var(--mt);margin-bottom:3px}
+.ff{margin-bottom:9px}
+.ff input,.ff select,.ff textarea{width:100%;background:var(--pn);border:1px solid var(--bd);color:var(--wh);padding:7px 9px;font-family:'Exo 2',sans-serif;font-size:11px;outline:none;transition:border-color .2s}
+.ff input:focus,.ff select:focus,.ff textarea:focus{border-color:var(--ac)}
+.ff select option{background:var(--pn)}
+.tog-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid rgba(24,32,48,.5)}
+.tog-row .tl{font-size:12px;color:var(--tx)}.tog-row .td{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--mt)}
+.tog{position:relative;width:36px;height:20px;flex-shrink:0}
+.tog input{opacity:0;width:0;height:0}
+.tsl{position:absolute;cursor:pointer;top:0;left:0;right:0;bottom:0;background:var(--bd);border-radius:20px;transition:.3s}
+.tsl:before{position:absolute;content:'';height:14px;width:14px;left:3px;bottom:3px;background:var(--mt);border-radius:50%;transition:.3s}
+.tog input:checked+.tsl{background:var(--ac)}.tog input:checked+.tsl:before{transform:translateX(16px);background:var(--bg)}
+.mo{display:none;position:fixed;inset:0;background:rgba(0,0,0,.82);z-index:500;align-items:center;justify-content:center}
 .mo.show{display:flex}
-.mbox{background:var(--surface);border:1px solid var(--border);border-top:2px solid var(--accent);padding:24px;width:580px;max-height:85vh;overflow-y:auto;position:relative}
-.mtitle{font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:700;letter-spacing:2px;color:var(--white);margin-bottom:18px}
-.mclose{position:absolute;top:14px;right:14px;background:none;border:none;color:var(--muted);font-size:20px;cursor:pointer;line-height:1}
-.mclose:hover{color:var(--red)}
-
-/* ===== TOAST ===== */
-.toast{position:fixed;bottom:20px;right:20px;background:var(--green);color:var(--bg);padding:11px 20px;font-family:'Rajdhani',sans-serif;font-size:14px;font-weight:700;letter-spacing:1px;z-index:9998;transform:translateY(50px);opacity:0;transition:all .3s;pointer-events:none}
+.mbox{background:var(--sf);border:1px solid var(--bd);border-top:2px solid var(--ac);padding:20px;width:640px;max-height:90vh;overflow-y:auto;position:relative}
+.mtitle{font-family:'Rajdhani',sans-serif;font-size:17px;font-weight:700;letter-spacing:2px;color:var(--wh);margin-bottom:14px}
+.mclose{position:absolute;top:12px;right:12px;background:none;border:none;color:var(--mt);font-size:18px;cursor:pointer}.mclose:hover{color:var(--rd)}
+.gps-bar{background:rgba(0,232,122,.08);border:1px solid rgba(0,232,122,.25);padding:8px 12px;display:flex;align-items:center;gap:8px;margin-bottom:8px;border-radius:6px}
+.gps-dot{width:8px;height:8px;border-radius:50%;background:var(--gn);box-shadow:0 0 6px var(--gn);animation:pulse 2s infinite}
+.gps-txt{font-family:'Share Tech Mono',monospace;font-size:8px;color:var(--gn);letter-spacing:1px}
+.rc-drop{border:2px dashed var(--bd);padding:24px;text-align:center;cursor:pointer;transition:all .2s;border-radius:4px;margin-bottom:13px}
+.rc-drop:hover{border-color:var(--ac);background:rgba(245,166,35,.04)}
+.rc-drop input{display:none}
+.rc-field{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid rgba(24,32,48,.4);font-size:11px}
+.rc-field .rk{color:var(--mt);font-family:'Share Tech Mono',monospace;font-size:9px}.rc-field .rv{color:var(--wh);font-weight:600;text-align:right;max-width:60%}
+.istop{background:var(--pn);border:1px solid var(--bd);padding:12px;margin-bottom:8px;border-left:3px solid var(--ac)}
+.istop.empty{border-left-color:var(--mt)}
+.map-wrap{background:var(--pn);border:1px solid var(--bd);height:300px;position:relative;overflow:hidden;border-radius:4px;margin-bottom:13px}
+.map-dot{position:absolute;width:14px;height:14px;border-radius:50%;border:2px solid #fff;display:flex;align-items:center;justify-content:center;cursor:pointer;transform:translate(-50%,-50%);z-index:10;font-size:8px}
+.map-dot::after{content:'';position:absolute;width:22px;height:22px;border-radius:50%;border:2px solid currentColor;opacity:.4;animation:ring 2s infinite}
+@keyframes ring{0%{transform:scale(.5);opacity:.8}100%{transform:scale(1.5);opacity:0}}
+.daf{display:flex;gap:18px;align-items:flex-start}
+.pframe{width:280px;flex-shrink:0;background:#050710;border:2px solid #18202e;border-radius:34px;padding:10px}
+.pnotch{width:64px;height:16px;background:#050710;border:2px solid #18202e;border-radius:9px;margin:0 auto 7px}
+.pscreen{background:var(--bg);border-radius:24px;overflow:hidden;min-height:520px;display:flex;flex-direction:column}
+.dtop{background:var(--sf);padding:9px 12px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--bd);flex-shrink:0}
+.dtitle{font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;letter-spacing:2px;color:var(--ac)}
+.dscroll{flex:1;overflow-y:auto;padding:8px}.dscroll::-webkit-scrollbar{width:0}
+.dscreen{display:none}.dscreen.active{display:block}
+.dcard{background:var(--sf);border:1px solid var(--bd);border-radius:7px;padding:10px;margin-bottom:8px}
+.dct{font-family:'Rajdhani',sans-serif;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--ac);margin-bottom:6px}
+.dir{display:flex;justify-content:space-between;font-size:9px;padding:3px 0;border-bottom:1px solid rgba(24,32,48,.5)}
+.dir .k{color:var(--mt);font-family:'Share Tech Mono',monospace}.dir .v{color:var(--wh);font-weight:600}
+.sgrid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:7px}
+.sbtn{padding:9px 4px;border:none;border-radius:7px;font-family:'Rajdhani',sans-serif;font-size:9px;font-weight:700;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px;text-transform:uppercase;width:100%}
+.sbtn .si{font-size:15px}
+.sb1{background:rgba(0,212,255,.15);color:var(--a2);border:1px solid rgba(0,212,255,.3)}
+.sb2{background:rgba(245,166,35,.12);color:var(--ac);border:1px solid rgba(245,166,35,.25)}
+.sb3{background:rgba(0,232,122,.12);color:var(--gn);border:1px solid rgba(0,232,122,.25)}
+.sb4{background:rgba(255,45,85,.12);color:var(--rd);border:1px solid rgba(255,45,85,.25)}
+.sb5{background:rgba(191,90,242,.12);color:var(--pu);border:1px solid rgba(191,90,242,.25)}
+.sb6{background:rgba(255,214,10,.12);color:var(--yw);border:1px solid rgba(255,214,10,.25)}
+.dbnav{display:flex;background:var(--sf);border-top:1px solid var(--bd);padding:5px 0 2px;flex-shrink:0}
+.dnb{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;font-family:'Rajdhani',sans-serif;font-size:7px;letter-spacing:1px;text-transform:uppercase;color:var(--mt);cursor:pointer;background:none;border:none;padding:3px;transition:color .15s}
+.dnb.active{color:var(--ac)}.dico{font-size:13px}
+.toast{position:fixed;bottom:20px;right:20px;background:var(--gn);color:var(--bg);padding:10px 18px;font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;letter-spacing:1px;z-index:9999;transform:translateY(50px);opacity:0;transition:all .3s;pointer-events:none;max-width:300px;border-radius:4px}
 .toast.show{transform:translateY(0);opacity:1}
-
-/* ===== DRIVER APP ===== */
-.daf{display:flex;gap:20px;align-items:flex-start}
-.pframe{width:310px;flex-shrink:0;background:#080c10;border:2px solid #1e2a38;border-radius:34px;padding:10px;box-shadow:0 0 50px rgba(0,200,255,.08)}
-.pnotch{width:70px;height:18px;background:#080c10;border:2px solid #1e2a38;border-radius:9px;margin:0 auto 8px}
-.pscreen{background:var(--bg);border-radius:24px;overflow:hidden;min-height:560px;display:flex;flex-direction:column}
-.dtopbar{background:var(--surface);padding:10px 14px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border);flex-shrink:0}
-.dtitle{font-family:'Rajdhani',sans-serif;font-size:15px;font-weight:700;letter-spacing:2px;color:var(--accent)}
-.dscroll{flex:1;overflow-y:auto}
-.dscroll::-webkit-scrollbar{width:0}
-.dscreen{display:none}
-.dscreen.active{display:block}
-.dsec{padding:10px}
-.dcard{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:11px;margin-bottom:9px}
-.dct{font-family:'Rajdhani',sans-serif;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);margin-bottom:7px}
-.dir{display:flex;justify-content:space-between;font-size:10px;padding:4px 0;border-bottom:1px solid rgba(26,37,53,.5)}
-.dir .k{color:var(--muted);font-family:'Share Tech Mono',monospace}
-.dir .v{color:var(--white);font-weight:600;font-family:'Exo 2',sans-serif}
-.dsb{width:100%;padding:9px;border:none;border-radius:6px;font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;letter-spacing:2px;cursor:pointer;margin-top:7px;transition:all .15s}
-.dbnav{display:flex;background:var(--surface);border-top:1px solid var(--border);padding:6px 0 2px;flex-shrink:0}
-.dnb{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;font-family:'Rajdhani',sans-serif;font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);cursor:pointer;background:none;border:none;padding:3px;transition:color .15s}
-.dnb.active{color:var(--accent)}
-.dico{font-size:16px}
-
-/* ===== IFTA ===== */
-.ifta-bar{height:6px;background:var(--panel);border-radius:3px;overflow:hidden;margin-top:4px}
-.ifta-fill{height:100%;background:var(--accent);border-radius:3px;transition:width .5s}
-
-/* ===== FUEL ===== */
-.fuel-stat{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px}
-
-::-webkit-scrollbar{width:4px}
-::-webkit-scrollbar-track{background:var(--bg)}
-::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
+.toast.warn{background:var(--yw)}.toast.err{background:var(--rd);color:#fff}.toast.info{background:var(--a2);color:var(--bg)}
+.empty-msg{text-align:center;color:var(--mt);padding:20px;font-family:'Share Tech Mono',monospace;font-size:9px}
 </style>
 </head>
 <body>
-
-<!-- LOGIN -->
-<div id="loginScreen">
-  <div class="lb">
-    <div class="lb-brand">FREIGHT<span>CMD</span></div>
-    <div class="lb-sub">Deep Trucking LLC &bull; DOT-2088835 | MC-744717</div>
-    <div class="login-tabs">
-      <div class="ltab active" onclick="setTab('dispatcher',this)">Dispatcher</div>
-      <div class="ltab" onclick="setTab('driver',this)">Driver</div>
-    </div>
-    <div class="lf"><label>Username</label><input id="lu" value="admin" placeholder="Username"></div>
-    <div class="lf"><label>Password</label><input type="password" id="lp" value="deep2026" placeholder="Password"></div>
-    <div class="lf" id="didField" style="display:none"><label>Driver ID</label><input placeholder="e.g. DRV-001"></div>
-    <button class="lbtn" onclick="doLogin()">ACCESS SYSTEM</button>
+<div class="hdr">
+  <div>
+    <div class="logo">DEEP<span>TMS</span></div>
+    <div class="logo-sub">Deep Trucking LLC &bull; 1059 Bramble Dr Breinigsville PA 18031 &bull; DOT-2088835 &bull; MC-744717 &bull; 610-922-1113</div>
   </div>
-</div>
-
-<!-- APP -->
-<div class="topbar" id="topbar" style="display:none">
-  <div class="tb-brand">FREIGHT<span>CMD</span></div>
-  <div class="tb-nav" id="tbNav"></div>
-  <div class="tb-right">
+  <div class="hnav">
+    <button class="nb active" onclick="sv('dashboard',this)">Dashboard</button>
+    <button class="nb" onclick="sv('gps',this)">GPS Tracking</button>
+    <button class="nb" onclick="sv('ratecon',this)">Rate Confirm</button>
+    <button class="nb" onclick="sv('loads',this)">Loads</button>
+    <button class="nb" onclick="sv('dispatch',this)">Dispatch</button>
+    <button class="nb" onclick="sv('drivers',this)">Drivers</button>
+    <button class="nb" onclick="sv('payroll',this)">Payroll</button>
+    <button class="nb" onclick="sv('performance',this)">Performance</button>
+    <button class="nb" onclick="sv('fuel',this)">TCS Fuel</button>
+    <button class="nb" onclick="sv('ifta',this)">IFTA</button>
+    <button class="nb" onclick="sv('logbook',this)">Logbook</button>
+    <button class="nb" onclick="sv('documents',this)">Documents</button>
+    <button class="nb" onclick="sv('maintenance',this)">Maintenance</button>
+    <button class="nb" onclick="sv('compliance',this)">Compliance</button>
+    <button class="nb" onclick="sv('invoices',this)">Invoices</button>
+    <button class="nb" onclick="sv('driverapp',this)">Driver App</button>
+    <button class="nb" onclick="sv('settings',this)">Settings</button>
+  </div>
+  <div class="hright">
     <div class="sdot"></div>
-    <div class="uchip" id="uchip">ADMIN</div>
-    <button class="lgbtn" onclick="doLogout()">LOGOUT</button>
+    <div class="uchip">MANNY</div>
+  </div>
+</div>
+<div class="main">
+<!-- DASHBOARD -->
+<div class="view active" id="view-dashboard">
+  <div class="stats s6">
+    <div class="sc g"><div class="sc-lbl">Active Loads</div><div class="sc-val" id="s-loads">0</div><div class="sc-sub">Add loads to track</div></div>
+    <div class="sc"><div class="sc-lbl">Weekly Revenue</div><div class="sc-val" id="s-rev">$0</div><div class="sc-sub">This week</div></div>
+    <div class="sc b"><div class="sc-lbl">Drivers</div><div class="sc-val" id="s-drv">0</div><div class="sc-sub">Registered</div></div>
+    <div class="sc g"><div class="sc-lbl">GPS Tracked</div><div class="sc-val" id="s-gps">0</div><div class="sc-sub">Live now</div></div>
+    <div class="sc r"><div class="sc-lbl">Alerts</div><div class="sc-val" style="color:var(--rd)">1</div><div class="sc-sub">Action needed</div></div>
+    <div class="sc p"><div class="sc-lbl">DOT / MC</div><div class="sc-val" style="font-size:11px;color:var(--ac)">2088835</div><div class="sc-sub">MC-744717</div></div>
+  </div>
+  <div class="tp">
+    <div class="stitle r">Action Required</div>
+    <div class="acard warn"><div class="ai">&#128269;</div><div class="ab2"><div class="at">DOT Annual Inspection Due - Truck 001 (2023 Cascadia)</div><div class="as2">Due 06/28/2026 - 14 days - Email sent to deeptrucking007@gmail.com - SMS to Manny 718-820-3531</div><div class="abts"><button class="btn btn-y" onclick="toast('Inspection scheduled!')">SCHEDULE NOW</button></div></div><div class="ad y">14<br><span style="font-size:7px;font-family:'Share Tech Mono',monospace">DAYS</span></div></div>
+    <div class="acard info"><div class="ai">&#128100;</div><div class="ab2"><div class="at">Add Your First Driver</div><div class="as2">Click Drivers tab - Add driver - GPS tracking starts automatically - Driver cannot disable it</div><div class="abts"><button class="btn btn-p" onclick="sv('drivers',document.querySelectorAll('.nb')[5]);setTimeout(()=>openM('addDriver'),100)">ADD DRIVER NOW</button></div></div><div class="ad" style="color:var(--a2)">GO</div></div>
+  </div>
+  <div style="display:grid;grid-template-columns:2fr 1fr;gap:13px">
+    <div>
+      <div class="tp"><div class="stitle">Active Loads</div><table class="tt"><thead><tr><th>Load</th><th>Origin</th><th>Destination</th><th>Driver</th><th>GPS</th><th>Rate</th><th>Status</th></tr></thead><tbody id="db-loads"><tr><td colspan="7" class="empty-msg">No loads yet - scan a rate confirmation or add manually</td></tr></tbody></table></div>
+      <div class="tp"><div class="stitle b">Company Info</div>
+        <div style="font-family:'Share Tech Mono',monospace;font-size:9px;line-height:2.4;color:var(--mt)">
+          Owner: <span style="color:var(--wh)">Manny</span> &bull; Phone: <span style="color:var(--wh)">718-820-3531</span><br>
+          Company: <span style="color:var(--wh)">610-922-1113</span> &bull; Email: <span style="color:var(--ac)">deeptrucking007@gmail.com</span><br>
+          Address: <span style="color:var(--wh)">1059 Bramble Dr, Breinigsville PA 18031</span><br>
+          DOT: <span style="color:var(--wh)">2088835</span> &bull; MC: <span style="color:var(--wh)">744717</span> &bull; Apex: <span style="color:var(--wh)">1.5%</span> &bull; Driver Pay: <span style="color:var(--wh)">25%</span>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="tp"><div class="stitle b">Driver Status</div><table class="tt"><thead><tr><th>Name</th><th>GPS</th><th>Status</th></tr></thead><tbody id="db-drivers"><tr><td colspan="3" class="empty-msg">No drivers yet</td></tr></tbody></table></div>
+      <div class="tp"><div class="stitle">Getting Started</div>
+        <div style="font-family:'Share Tech Mono',monospace;font-size:9px;line-height:2.4;color:var(--mt)">
+          <span style="color:var(--ac)">1.</span> Click <b style="color:var(--wh)">Drivers</b> - Add your driver<br>
+          <span style="color:var(--ac)">2.</span> Click <b style="color:var(--wh)">Rate Confirm</b> - Upload RC<br>
+          <span style="color:var(--ac)">3.</span> Click <b style="color:var(--wh)">Dispatch</b> - Assign load<br>
+          <span style="color:var(--gn)">GPS tracks driver automatically!</span>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
-<div class="main" id="mainArea" style="display:none">
-
-  <!-- ====== DASHBOARD ====== -->
-  <div class="view active" id="view-dashboard">
-    <div class="stats">
-      <div class="sc g"><div class="sc-lbl">Active Loads</div><div class="sc-val" id="s1">5</div><div class="sc-sub">3 in transit</div></div>
-      <div class="sc"><div class="sc-lbl">Monthly Revenue</div><div class="sc-val">$22,840</div><div class="sc-sub">+8% vs last mo</div></div>
-      <div class="sc o"><div class="sc-lbl">Drivers On Duty</div><div class="sc-val">3</div><div class="sc-sub">1 available</div></div>
-      <div class="sc y"><div class="sc-lbl">Fuel Spend (Mo)</div><div class="sc-val">$3,210</div><div class="sc-sub">Avg $3.82/gal</div></div>
-      <div class="sc r"><div class="sc-lbl">Pending Invoices</div><div class="sc-val">$8,400</div><div class="sc-sub">4 unpaid</div></div>
-      <div class="sc p"><div class="sc-lbl">Net Profit (Mo)</div><div class="sc-val">$5,620</div><div class="sc-sub">After all costs</div></div>
+<!-- GPS TRACKING -->
+<div class="view" id="view-gps">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+    <div class="stitle" style="margin:0">Live GPS Tracking - All Drivers</div>
+    <div class="brow"><span class="b bg">Always On - Cannot Be Disabled</span><button class="btn btn-p" onclick="refreshGPS()">REFRESH</button></div>
+  </div>
+  <div style="background:rgba(0,232,122,.07);border:1px solid rgba(0,232,122,.3);padding:12px 14px;margin-bottom:13px;display:flex;align-items:center;gap:12px;border-radius:4px">
+    <div style="font-size:20px">&#128205;</div>
+    <div>
+      <div style="font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;color:var(--gn)">GPS Tracking Always Active - Drivers Cannot Turn It Off</div>
+      <div style="font-family:'Share Tech Mono',monospace;font-size:8px;color:var(--mt);margin-top:2px">Updates every 30 seconds - Runs in background - 90 day history - No disable button for driver</div>
     </div>
-    <div style="display:grid;grid-template-columns:2fr 1fr;gap:14px">
-      <div>
-        <div class="tp">
-          <div class="stitle">Active Loads</div>
-          <table class="tt">
-            <thead><tr><th>Load #</th><th>Origin</th><th>Destination</th><th>Driver</th><th>Miles</th><th>Rate</th><th>Status</th></tr></thead>
-            <tbody id="dashLoads"></tbody>
-          </table>
-        </div>
-        <div class="tp">
-          <div class="stitle o">Recent Fuel Stops (TCS)</div>
-          <table class="tt">
-            <thead><tr><th>Date</th><th>Location</th><th>State</th><th>Gallons</th><th>$/Gal</th><th>Total</th><th>Truck</th></tr></thead>
-            <tbody id="dashFuel"></tbody>
-          </table>
-        </div>
-      </div>
-      <div>
-        <div class="tp">
-          <div class="stitle">Driver Status</div>
-          <table class="tt">
-            <thead><tr><th>Driver</th><th>Status</th><th>HOS</th></tr></thead>
-            <tbody id="dashDrivers"></tbody>
-          </table>
-        </div>
-        <div class="tp">
-          <div class="stitle g">IFTA This Quarter</div>
-          <div style="font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--muted);margin-bottom:10px">Q2 2026 &bull; PA-based</div>
-          <div id="iftaBar"></div>
-        </div>
+  </div>
+  <div class="tp" style="padding:0;overflow:hidden">
+    <div style="padding:10px 13px;border-bottom:1px solid var(--bd);display:flex;justify-content:space-between;align-items:center">
+      <div class="stitle" style="margin:0;font-size:12px">Live Fleet Map</div>
+      <div style="font-family:'Share Tech Mono',monospace;font-size:8px;color:var(--mt)" id="map-time">Live</div>
+    </div>
+    <div class="map-wrap" id="mapWrap">
+      <svg viewBox="0 0 900 300" style="position:absolute;inset:0;width:100%;height:100%;opacity:.07">
+        <rect x="30" y="20" width="840" height="260" rx="8" fill="var(--a2)" stroke="var(--bd)" stroke-width="2"/>
+        <line x1="180" y1="20" x2="180" y2="280" stroke="var(--bd)" stroke-width="1" opacity=".6"/>
+        <line x1="360" y1="20" x2="360" y2="280" stroke="var(--bd)" stroke-width="1" opacity=".6"/>
+        <line x1="540" y1="20" x2="540" y2="280" stroke="var(--bd)" stroke-width="1" opacity=".6"/>
+        <line x1="720" y1="20" x2="720" y2="280" stroke="var(--bd)" stroke-width="1" opacity=".6"/>
+        <line x1="30" y1="110" x2="870" y2="110" stroke="var(--bd)" stroke-width="1" opacity=".6"/>
+        <line x1="30" y1="200" x2="870" y2="200" stroke="var(--bd)" stroke-width="1" opacity=".6"/>
+        <text x="100" y="100" fill="var(--mt)" font-size="12" font-family="Share Tech Mono">PA</text>
+        <text x="200" y="90" fill="var(--mt)" font-size="12" font-family="Share Tech Mono">NJ/NY</text>
+        <text x="390" y="100" fill="var(--mt)" font-size="12" font-family="Share Tech Mono">OH</text>
+        <text x="550" y="100" fill="var(--mt)" font-size="12" font-family="Share Tech Mono">IN</text>
+        <text x="700" y="100" fill="var(--mt)" font-size="12" font-family="Share Tech Mono">IL</text>
+        <text x="100" y="160" fill="var(--mt)" font-size="12" font-family="Share Tech Mono">MD/VA</text>
+        <text x="380" y="200" fill="var(--mt)" font-size="12" font-family="Share Tech Mono">KY/TN</text>
+        <text x="600" y="240" fill="var(--mt)" font-size="12" font-family="Share Tech Mono">TX</text>
+      </svg>
+      <div id="mapDots"></div>
+      <div style="position:absolute;bottom:8px;right:8px;background:rgba(11,14,20,.9);border:1px solid var(--bd);padding:6px 10px;font-family:'Share Tech Mono',monospace;font-size:8px;color:var(--mt)">
+        <div style="display:flex;align-items:center;gap:5px;margin-bottom:3px"><div style="width:8px;height:8px;border-radius:50%;background:var(--gn)"></div>In Transit</div>
+        <div style="display:flex;align-items:center;gap:5px;margin-bottom:3px"><div style="width:8px;height:8px;border-radius:50%;background:var(--yw)"></div>At Stop</div>
+        <div style="display:flex;align-items:center;gap:5px"><div style="width:8px;height:8px;border-radius:50%;background:var(--rd)"></div>Off Duty</div>
       </div>
     </div>
   </div>
+  <div class="tp"><div class="stitle g">Driver Locations Live</div>
+    <table class="tt"><thead><tr><th>Driver</th><th>Location</th><th>State</th><th>Speed</th><th>Load</th><th>GPS Status</th><th>Updated</th><th>Actions</th></tr></thead>
+    <tbody id="gps-table"><tr><td colspan="8" class="empty-msg">Add drivers to see GPS tracking</td></tr></tbody></table>
+  </div>
+  <div class="tp"><div class="stitle b">Location History - Last 24 Hours</div>
+    <div class="ff"><label>Select Driver</label><select id="hist-drv" onchange="showHist(this.value)"><option value="">Select a driver</option></select></div>
+    <table class="tt"><thead><tr><th>Time</th><th>Location</th><th>State</th><th>Speed</th><th>Event</th></tr></thead>
+    <tbody id="hist-body"><tr><td colspan="5" class="empty-msg">Select a driver to view history</td></tr></tbody></table>
+  </div>
+</div>
 
-  <!-- ====== LOADS ====== -->
-  <div class="view" id="view-loads">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
-      <div class="stitle" style="margin:0">Load Management</div>
-      <button class="ab ab-p" onclick="openModal('addLoad')">+ NEW LOAD</button>
+<!-- RATE CONFIRMATION -->
+<div class="view" id="view-ratecon">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+    <div class="stitle" style="margin:0">Rate Confirmation Scanner</div>
+    <button class="btn btn-p" onclick="openM('addLoad')">MANUAL ENTRY</button>
+  </div>
+  <div class="tp"><div class="stitle b">Upload or Drag Rate Confirmation</div>
+    <div class="rc-drop" onclick="document.getElementById('rcFile').click()" ondragover="event.preventDefault();this.style.borderColor='var(--ac)'" ondragleave="this.style.borderColor='var(--bd)'" ondrop="handleDrop(event)">
+      <input type="file" id="rcFile" accept=".pdf,.jpg,.jpeg,.png" onchange="scanRC(this)">
+      <div style="font-size:32px;margin-bottom:8px;opacity:.4">&#128203;</div>
+      <div style="font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--mt)">DRAG AND DROP RATE CONFIRMATION HERE<br>or click to upload PDF or image</div>
+      <div style="margin-top:8px;font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--mt)">Reads broker info, pickup, delivery, weight, commodity, rate, and all instructions automatically</div>
     </div>
-    <div class="tp">
-      <table class="tt">
-        <thead><tr><th>Load #</th><th>Broker</th><th>Origin</th><th>Destination</th><th>Miles</th><th>Rate</th><th>RPM</th><th>Driver</th><th>Pickup</th><th>Status</th><th>Actions</th></tr></thead>
-        <tbody id="loadsTable"></tbody>
-      </table>
+    <div id="rcResult" style="display:none;background:var(--pn);border:1px solid var(--bd);padding:14px;border-left:3px solid var(--ac)">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+        <div style="font-family:'Rajdhani',sans-serif;font-size:14px;font-weight:700;color:var(--ac)">RATE CONFIRMATION SCANNED</div>
+        <span class="b bg">Auto-Filled</span>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr">
+        <div>
+          <div class="rc-field"><span class="rk">Broker</span><span class="rv" id="rc-broker">-</span></div>
+          <div class="rc-field"><span class="rk">Broker Phone</span><span class="rv" id="rc-bphone">-</span></div>
+          <div class="rc-field"><span class="rk">Broker Email</span><span class="rv" id="rc-bemail">-</span></div>
+          <div class="rc-field"><span class="rk">Load Number</span><span class="rv" id="rc-lnum">-</span></div>
+          <div class="rc-field"><span class="rk">Pickup Address</span><span class="rv" id="rc-paddr">-</span></div>
+          <div class="rc-field"><span class="rk">Pickup Time</span><span class="rv" id="rc-ptime">-</span></div>
+          <div class="rc-field"><span class="rk">Pickup Number</span><span class="rv" id="rc-pnum">-</span></div>
+        </div>
+        <div>
+          <div class="rc-field"><span class="rk">Delivery Address</span><span class="rv" id="rc-daddr">-</span></div>
+          <div class="rc-field"><span class="rk">Delivery Time</span><span class="rv" id="rc-dtime">-</span></div>
+          <div class="rc-field"><span class="rk">BOL Number</span><span class="rv" id="rc-bol">-</span></div>
+          <div class="rc-field"><span class="rk">PO Number</span><span class="rv" id="rc-po">-</span></div>
+          <div class="rc-field"><span class="rk">Commodity</span><span class="rv" id="rc-commodity">-</span></div>
+          <div class="rc-field"><span class="rk">Weight</span><span class="rv" id="rc-weight">-</span></div>
+          <div class="rc-field"><span class="rk">Rate</span><span class="rv" id="rc-rate" style="color:var(--gn);font-size:14px;font-weight:800">-</span></div>
+        </div>
+      </div>
+      <div class="rc-field" style="border-bottom:none;margin-top:4px"><span class="rk">Special Instructions</span><span class="rv" id="rc-special" style="color:var(--yw)">-</span></div>
+      <div class="brow" style="margin-top:12px">
+        <button class="btn btn-p" onclick="createFromRC()">CREATE LOAD IN TMS</button>
+        <button class="btn btn-s" onclick="resetRC()">SCAN NEW RC</button>
+      </div>
     </div>
   </div>
+</div>
 
-  <!-- ====== DISPATCH ====== -->
-  <div class="view" id="view-dispatch">
-    <div class="stitle">Dispatch Center</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
-      <div>
-        <div class="tp">
-          <div class="stitle" style="font-size:13px">Assign Load</div>
-          <div class="fg" style="grid-template-columns:1fr">
-            <div class="ff"><label>Select Load</label>
-              <select id="asgLoad"><option>LD-1001 | Chicago → Philadelphia | $2,280</option><option>LD-1002 | Atlanta → Newark | $1,950</option><option>LD-1003 | Dallas → Boston | $3,100</option></select>
+<!-- LOADS -->
+<div class="view" id="view-loads">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+    <div class="stitle" style="margin:0">Load Management</div>
+    <div class="brow">
+      <button class="btn btn-s" onclick="sv('ratecon',document.querySelectorAll('.nb')[2])">SCAN RC</button>
+      <button class="btn btn-p" onclick="openM('addLoad')">+ NEW LOAD</button>
+    </div>
+  </div>
+  <div class="tp"><table class="tt"><thead><tr><th>Load</th><th>Broker</th><th>Origin</th><th>Destination</th><th>Miles</th><th>Rate</th><th>RPM</th><th>Weight</th><th>Commodity</th><th>Driver</th><th>GPS</th><th>Status</th><th>Actions</th></tr></thead><tbody id="loads-table"><tr><td colspan="13" class="empty-msg">No loads yet - scan a rate confirmation or add manually</td></tr></tbody></table></div>
+</div>
+
+<!-- DISPATCH -->
+<div class="view" id="view-dispatch">
+  <div class="stitle">Dispatch Center</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:13px">
+    <div>
+      <div class="tp"><div class="stitle" style="font-size:12px">Assign Load to Driver</div>
+        <div class="ff"><label>Select Load</label><select id="d-load"><option>No loads yet</option></select></div>
+        <div class="ff"><label>Select Driver</label><select id="d-driver"><option>No drivers yet</option></select></div>
+        <div class="fg"><div class="ff"><label>Pickup Date and Time</label><input type="datetime-local"></div><div class="ff"><label>Delivery Date and Time</label><input type="datetime-local"></div></div>
+        <div class="ff"><label>Special Instructions</label><textarea rows="2" placeholder="Notes for driver..."></textarea></div>
+        <div class="brow"><button class="btn btn-p" onclick="toast('Load assigned! Driver notified. GPS tracking active.')">ASSIGN LOAD</button><button class="btn btn-sms" onclick="toast('Text sent to driver!','info')">TEXT DRIVER</button></div>
+      </div>
+    </div>
+    <div>
+      <div class="tp"><div class="stitle g" style="font-size:12px">Live GPS Status</div>
+        <table class="tt"><thead><tr><th>Load</th><th>Driver</th><th>GPS Location</th><th>Status</th></tr></thead><tbody id="dispatch-gps"><tr><td colspan="4" class="empty-msg">No active loads</td></tr></tbody></table>
+      </div>
+      <div class="tp"><div class="stitle b" style="font-size:12px">Message Driver</div>
+        <div class="ff"><label>Driver</label><select id="msg-driver"><option>No drivers yet</option></select></div>
+        <div class="ff"><label>Message</label><textarea rows="2" placeholder="Type message..."></textarea></div>
+        <button class="btn btn-p" onclick="toast('Message sent!')">SEND</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DRIVERS -->
+<div class="view" id="view-drivers">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+    <div class="stitle" style="margin:0">Driver Management</div>
+    <button class="btn btn-p" onclick="openM('addDriver')">+ ADD DRIVER</button>
+  </div>
+  <div class="tp"><table class="tt"><thead><tr><th>ID</th><th>Name</th><th>Phone</th><th>CDL</th><th>CDL Expires</th><th>Med Card</th><th>GPS</th><th>Location</th><th>Status</th><th>Loads</th><th>Pay</th><th>Perms</th><th>Actions</th></tr></thead><tbody id="drivers-table"><tr><td colspan="13" class="empty-msg">No drivers yet - click ADD DRIVER to get started</td></tr></tbody></table></div>
+</div>
+
+<!-- PAYROLL -->
+<div class="view" id="view-payroll">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+    <div class="stitle" style="margin:0">Weekly Payroll - Deep Trucking LLC</div>
+    <div class="brow">
+      <select style="background:var(--pn);border:1px solid var(--bd);color:var(--wh);padding:5px 10px;font-family:'Share Tech Mono',monospace;font-size:10px;outline:none"><option>Current Week</option><option>Last Week</option></select>
+      <button class="btn btn-p" onclick="openM('payStmt')">VIEW STATEMENT</button>
+    </div>
+  </div>
+  <div class="tp"><table class="tt"><thead><tr><th>Driver</th><th>Loads</th><th>Gross 25%</th><th>Advance</th><th>Tolls</th><th>Layover</th><th>Detention</th><th>Stop Off</th><th>Other</th><th>Net Pay</th><th>Actions</th></tr></thead><tbody id="payroll-table"><tr><td colspan="11" class="empty-msg">Add drivers and loads to see payroll</td></tr></tbody></table></div>
+  <div class="tp"><div class="stitle y" style="font-size:12px">Add Deduction or Extra Pay</div>
+    <div class="fg3">
+      <div class="ff"><label>Driver</label><select id="pay-driver"><option>No drivers yet</option></select></div>
+      <div class="ff"><label>Type</label><select><option>Cash Advance</option><option>Toll Reimbursement</option><option>Layover Pay</option><option>Detention Pay</option><option>Stop Off Pay</option><option>Christmas Bonus $500</option><option>Medical Monthly $200</option><option>Vacation Pay $1000</option><option>Repair Deduction</option><option>Other Deduction</option><option>Other Addition</option></select></div>
+      <div class="ff"><label>Amount ($)</label><input type="number" placeholder="0.00"></div>
+    </div>
+    <div class="ff"><label>Notes</label><input placeholder="Description..."></div>
+    <button class="btn btn-p" onclick="toast('Entry added to payroll!')">ADD ENTRY</button>
+  </div>
+</div>
+
+<!-- PERFORMANCE -->
+<div class="view" id="view-performance">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+    <div class="stitle" style="margin:0">Driver Performance Analytics</div>
+    <button class="btn btn-p" onclick="toast('Report exported!')">EXPORT PDF</button>
+  </div>
+  <div id="perf-cards" style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:14px">
+    <div class="tp" style="grid-column:1/-1;text-align:center;color:var(--mt);padding:20px;font-family:'Share Tech Mono',monospace;font-size:10px">Add drivers and complete loads to see performance charts and analytics</div>
+  </div>
+  <div class="tp"><div class="stitle y">Full Breakdown</div>
+    <table class="tt"><thead><tr><th>Driver</th><th>Loads</th><th>Miles</th><th>Revenue</th><th>MPG</th><th>On-Time</th><th>Violations</th><th>Empty Miles</th><th>GPS</th><th>Score</th><th>Grade</th></tr></thead>
+    <tbody id="perf-table"><tr><td colspan="11" class="empty-msg">No performance data yet</td></tr></tbody></table>
+  </div>
+</div>
+
+<!-- TCS FUEL -->
+<div class="view" id="view-fuel">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+    <div class="stitle" style="margin:0">TCS Fuel Card - Deep Trucking LLC</div>
+    <div class="brow"><button class="btn btn-p" onclick="openM('addFuel')">+ ADD FUEL STOP</button><button class="btn btn-s" onclick="toast('Importing from TCS...','info')">IMPORT TCS DATA</button></div>
+  </div>
+  <div class="stats s4">
+    <div class="sc"><div class="sc-lbl">Gallons This Month</div><div class="sc-val" id="f-gals">0</div><div class="sc-sub">Add fuel stops</div></div>
+    <div class="sc y"><div class="sc-lbl">Fuel Spend</div><div class="sc-val" id="f-spend">$0</div><div class="sc-sub">This month</div></div>
+    <div class="sc b"><div class="sc-lbl">Avg MPG</div><div class="sc-val">-</div><div class="sc-sub">Target 8.0</div></div>
+    <div class="sc g"><div class="sc-lbl">States Fueled</div><div class="sc-val" id="f-states">0</div><div class="sc-sub">This quarter</div></div>
+  </div>
+  <div class="tp"><div class="stitle">Transaction Log</div><table class="tt"><thead><tr><th>Date</th><th>State</th><th>Station</th><th>Gallons</th><th>$/Gal</th><th>Total</th><th>Driver</th><th>Load</th></tr></thead><tbody id="fuel-table"><tr><td colspan="8" class="empty-msg">No fuel stops yet</td></tr></tbody></table></div>
+</div>
+
+<!-- IFTA -->
+<div class="view" id="view-ifta">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+    <div class="stitle g" style="margin:0">IFTA Mile Tracker and Calculator</div>
+    <div class="brow"><button class="btn btn-g" onclick="openM('iftaRpt')">GENERATE Q2 REPORT</button><button class="btn btn-s" onclick="toast('Syncing Zeromax...','info')">SYNC ZEROMAX</button></div>
+  </div>
+  <div class="stats s4">
+    <div class="sc g"><div class="sc-lbl">Total Miles Q2</div><div class="sc-val" id="it">0</div><div class="sc-sub">All states</div></div>
+    <div class="sc b"><div class="sc-lbl">Loaded Miles</div><div class="sc-val" id="il">0</div><div class="sc-sub">With freight</div></div>
+    <div class="sc y"><div class="sc-lbl">Empty Miles</div><div class="sc-val" id="ie">0</div><div class="sc-sub">Deadhead</div></div>
+    <div class="sc r"><div class="sc-lbl">Est Tax Due</div><div class="sc-val">$0</div><div class="sc-sub">Due Jul 31</div></div>
+  </div>
+  <div class="tp">
+    <div class="stitle b">IFTA Trip Calculator - Loaded and Empty Miles By State</div>
+    <div style="font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--mt);margin-bottom:12px">Add each stop. Enter from state, to state, and miles. TMS calculates loaded, empty, and state miles for IFTA filing.</div>
+    <div id="ifta-stops"></div>
+    <div class="brow" style="margin-bottom:12px">
+      <button class="btn btn-p" onclick="addIS(true)">+ LOADED STOP</button>
+      <button class="btn btn-s" onclick="addIS(false)">+ EMPTY MILES</button>
+      <button class="btn btn-g" onclick="calcIFTA()">CALCULATE</button>
+      <button class="btn btn-s" onclick="clearIF()">CLEAR</button>
+    </div>
+    <div id="ifta-result" style="display:none">
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:13px;margin-bottom:10px">
+        <div class="tp" style="margin:0;border-left:3px solid var(--gn)"><div style="font-family:'Share Tech Mono',monospace;font-size:8px;color:var(--mt);margin-bottom:3px">LOADED MILES</div><div style="font-family:'Rajdhani',sans-serif;font-size:22px;font-weight:700;color:var(--gn)" id="r-l">0</div></div>
+        <div class="tp" style="margin:0;border-left:3px solid var(--yw)"><div style="font-family:'Share Tech Mono',monospace;font-size:8px;color:var(--mt);margin-bottom:3px">EMPTY MILES</div><div style="font-family:'Rajdhani',sans-serif;font-size:22px;font-weight:700;color:var(--yw)" id="r-e">0</div></div>
+        <div class="tp" style="margin:0;border-left:3px solid var(--ac)"><div style="font-family:'Share Tech Mono',monospace;font-size:8px;color:var(--mt);margin-bottom:3px">TOTAL MILES</div><div style="font-family:'Rajdhani',sans-serif;font-size:22px;font-weight:700;color:var(--wh)" id="r-t">0</div></div>
+      </div>
+      <table class="tt"><thead><tr><th>State</th><th>Loaded Miles</th><th>Empty Miles</th><th>Total Miles</th><th>IFTA Rate</th><th>Est Tax</th></tr></thead><tbody id="r-states"></tbody></table>
+      <div class="brow" style="margin-top:10px"><button class="btn btn-g" onclick="toast('Miles added to IFTA report!')">ADD TO REPORT</button></div>
+    </div>
+  </div>
+  <div class="tp"><div class="stitle g">Miles By State Q2 2026</div>
+    <table class="tt"><thead><tr><th>State</th><th>Loaded Mi</th><th>Empty Mi</th><th>Total Mi</th><th>Gal Used</th><th>Gal Purch</th><th>Tax Rate</th><th>Net Tax</th></tr></thead><tbody id="ifta-table"><tr><td colspan="8" class="empty-msg">Add miles using calculator above or sync from Zeromax ELD</td></tr></tbody></table>
+  </div>
+</div>
+
+<!-- LOGBOOK -->
+<div class="view" id="view-logbook">
+  <div class="stitle b">HOS Logbook - Zeromax ELD</div>
+  <div class="stats s3">
+    <div class="sc g"><div class="sc-lbl">Drivers Clear</div><div class="sc-val">-</div><div class="sc-sub">Add drivers first</div></div>
+    <div class="sc r"><div class="sc-lbl">Violations Today</div><div class="sc-val">0</div><div class="sc-sub">None recorded</div></div>
+    <div class="sc b"><div class="sc-lbl">ELD Sync</div><div class="sc-val" style="color:var(--gn)">Ready</div><div class="sc-sub">Zeromax connected</div></div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:13px">
+    <div class="tp"><div class="stitle b">Driver Log</div>
+      <div class="ff"><label>Select Driver</label><select id="log-sel"><option>No drivers yet</option></select></div>
+      <table class="tt"><thead><tr><th>Time</th><th>Status</th><th>Duration</th><th>Location</th><th>Notes</th></tr></thead><tbody id="log-body"><tr><td colspan="5" class="empty-msg">Select a driver</td></tr></tbody></table>
+    </div>
+    <div class="tp"><div class="stitle r">HOS Violations</div>
+      <table class="tt"><thead><tr><th>Driver</th><th>Date</th><th>Violation</th><th>Severity</th></tr></thead><tbody>
+        <tr><td colspan="4" style="text-align:center;color:var(--gn);padding:12px;font-family:'Share Tech Mono',monospace;font-size:9px">No violations recorded</td></tr>
+      </tbody></table>
+    </div>
+  </div>
+</div>
+
+<!-- DOCUMENTS -->
+<div class="view" id="view-documents">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+    <div class="stitle" style="margin:0">Document Storage</div>
+    <button class="btn btn-p" onclick="openM('uploadDoc')">+ UPLOAD DOCUMENT</button>
+  </div>
+  <div class="tp"><div class="stitle b">POD Approval Queue - Manny Must Approve Before Broker Gets It</div>
+    <table class="tt"><thead><tr><th>Load</th><th>Driver</th><th>Uploaded</th><th>Broker</th><th>Status</th><th>Actions</th></tr></thead><tbody>
+      <tr><td colspan="6" class="empty-msg">No PODs awaiting approval - drivers upload from their app</td></tr>
+    </tbody></table>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:13px">
+    <div class="tp"><div class="stitle">Bills of Lading</div><table class="tt"><thead><tr><th>Load</th><th>Date</th><th>Driver</th><th>Status</th></tr></thead><tbody><tr><td colspan="4" class="empty-msg">No BOLs yet</td></tr></tbody></table></div>
+    <div class="tp"><div class="stitle">Scale Tickets and Receipts</div><table class="tt"><thead><tr><th>Type</th><th>Date</th><th>Driver</th><th>Details</th></tr></thead><tbody><tr><td colspan="4" class="empty-msg">Drivers upload from their app</td></tr></tbody></table></div>
+  </div>
+</div>
+
+<!-- MAINTENANCE -->
+<div class="view" id="view-maintenance">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+    <div class="stitle" style="margin:0">Maintenance Records</div>
+    <button class="btn btn-p" onclick="openM('addMaint')">+ ADD RECORD</button>
+  </div>
+  <div class="tp"><div class="stitle">Truck 001 - 2023 Freightliner Cascadia Auto - 8 MPG Target</div>
+    <table class="tt"><thead><tr><th>Service</th><th>Last Done</th><th>Mileage</th><th>Next Due</th><th>Cost</th><th>Shop</th><th>Status</th><th></th></tr></thead><tbody>
+      <tr><td>Oil Change</td><td>04/10/26</td><td>142,800</td><td>157,800 mi</td><td>$380</td><td>TA Truck Stop</td><td><span class="b bg">Current</span></td><td><button class="btn btn-s" style="font-size:9px;padding:2px 7px">VIEW</button></td></tr>
+      <tr><td>Annual DOT Inspection</td><td>06/28/25</td><td>128,000</td><td>06/28/26</td><td>$220</td><td>PA DOT Station</td><td><span class="b by">Due 14 days</span></td><td><button class="btn btn-y" style="font-size:9px;padding:2px 7px" onclick="toast('Scheduled!')">SCHEDULE</button></td></tr>
+      <tr><td>Tire Rotation</td><td>03/22/26</td><td>138,000</td><td>153,000 mi</td><td>$180</td><td>Loves</td><td><span class="b bg">Current</span></td><td><button class="btn btn-s" style="font-size:9px;padding:2px 7px">VIEW</button></td></tr>
+      <tr><td>Brake Inspection</td><td>02/15/26</td><td>132,000</td><td>147,000 mi</td><td>$320</td><td>Petro</td><td><span class="b bg">Current</span></td><td><button class="btn btn-s" style="font-size:9px;padding:2px 7px">VIEW</button></td></tr>
+    </tbody></table>
+  </div>
+  <div class="tp"><div class="stitle b">Driver Documents</div>
+    <table class="tt"><thead><tr><th>Driver</th><th>Document</th><th>Expires</th><th>Days Left</th><th>Status</th><th>SMS Sent</th></tr></thead><tbody id="maint-docs"><tr><td colspan="6" class="empty-msg">Add drivers to track their documents</td></tr></tbody></table>
+  </div>
+</div>
+
+<!-- COMPLIANCE -->
+<div class="view" id="view-compliance">
+  <div class="stitle r">Compliance Alerts - 30 Day Warning System</div>
+  <div class="stats s4">
+    <div class="sc r"><div class="sc-lbl">Critical 0-30 Days</div><div class="sc-val" style="color:var(--rd)">1</div><div class="sc-sub">Action needed</div></div>
+    <div class="sc y"><div class="sc-lbl">Warning 31-60 Days</div><div class="sc-val">0</div><div class="sc-sub">Plan ahead</div></div>
+    <div class="sc g"><div class="sc-lbl">All Clear</div><div class="sc-val">3</div><div class="sc-sub">Up to date</div></div>
+    <div class="sc b"><div class="sc-lbl">SMS Texts Sent</div><div class="sc-val" id="sms-count">0</div><div class="sc-sub">To drivers</div></div>
+  </div>
+  <div class="tp"><div class="stitle r">Critical Items</div>
+    <div class="acard warn"><div class="ai">&#128269;</div><div class="ab2"><div class="at">DOT Annual Inspection - Truck 001 (2023 Cascadia)</div><div class="as2">Due 06/28/2026 - 14 days - Email sent to deeptrucking007@gmail.com - SMS to Manny 718-820-3531</div><div class="abts"><button class="btn btn-y" onclick="toast('Scheduled!')">SCHEDULE</button><button class="btn btn-s" onclick="toast('Email sent!','info')">EMAIL MANNY</button></div></div><div class="ad y">14<br><span style="font-size:7px;font-family:'Share Tech Mono',monospace">DAYS</span></div></div>
+  </div>
+  <div class="tp"><div class="stitle g" style="font-size:12px">How SMS Alerts Work</div>
+    <div style="font-family:'Share Tech Mono',monospace;font-size:10px;line-height:2.2;color:var(--mt)">
+      When CDL or medical card expires within 30 days:<br>
+      <span style="color:var(--gn)">Driver gets text:</span> <span style="color:var(--wh)">"Hi [Name] this is Deep Trucking LLC. Your [document] expires in [X] days. Please renew ASAP. Contact Manny at 610-922-1113."</span><br>
+      <span style="color:var(--gn)">Manny gets email at:</span> <span style="color:var(--ac)">deeptrucking007@gmail.com</span><br>
+      <span style="color:var(--gn)">Manny gets SMS at:</span> <span style="color:var(--wh)">718-820-3531</span>
+    </div>
+  </div>
+  <div class="tp"><div class="stitle y">All Compliance Items</div>
+    <table class="tt"><thead><tr><th>Item</th><th>Person</th><th>Expires</th><th>Days Left</th><th>Status</th><th>SMS Sent</th><th>Email Sent</th><th>Actions</th></tr></thead>
+    <tbody id="comp-table">
+      <tr><td>DOT Inspection</td><td>Truck 001</td><td>06/28/2026</td><td><span class="b by">14 days</span></td><td><span class="b by">Due Soon</span></td><td>N/A</td><td>05/14/26</td><td><button class="btn btn-y" style="font-size:9px;padding:2px 7px" onclick="toast('Scheduled!')">SCHEDULE</button></td></tr>
+      <tr><td>Insurance</td><td>Truck 001</td><td>01/15/2027</td><td><span class="b bg">245 days</span></td><td><span class="b bg">OK</span></td><td>-</td><td>-</td><td></td></tr>
+      <tr><td>Registration</td><td>Truck 001</td><td>12/31/2026</td><td><span class="b bg">230 days</span></td><td><span class="b bg">OK</span></td><td>-</td><td>-</td><td></td></tr>
+    </tbody></table>
+  </div>
+</div>
+
+<!-- INVOICES -->
+<div class="view" id="view-invoices">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+    <div class="stitle" style="margin:0">Invoices - Deep Trucking LLC</div>
+    <button class="btn btn-p" onclick="openM('addInvoice')">+ CREATE INVOICE</button>
+  </div>
+  <div class="stats s4">
+    <div class="sc g"><div class="sc-lbl">Paid</div><div class="sc-val">$0</div><div class="sc-sub">This month</div></div>
+    <div class="sc y"><div class="sc-lbl">Pending</div><div class="sc-val">$0</div><div class="sc-sub">Awaiting payment</div></div>
+    <div class="sc r"><div class="sc-lbl">Overdue</div><div class="sc-val">$0</div><div class="sc-sub">Follow up needed</div></div>
+    <div class="sc b"><div class="sc-lbl">Apex Ultima 1.5%</div><div class="sc-val">-</div><div class="sc-sub">Factoring ready</div></div>
+  </div>
+  <div class="tp"><table class="tt"><thead><tr><th>Invoice</th><th>Broker</th><th>Load</th><th>Amount</th><th>Apex 1.5%</th><th>Net</th><th>Date</th><th>Due</th><th>Status</th><th>Actions</th></tr></thead><tbody id="inv-table"><tr><td colspan="10" class="empty-msg">No invoices yet - create your first invoice after delivering a load</td></tr></tbody></table></div>
+</div>
+
+<!-- DRIVER APP -->
+<div class="view" id="view-driverapp">
+  <div class="stitle">Android Driver App - Deep Trucking LLC</div>
+  <div class="daf">
+    <div class="pframe">
+      <div class="pnotch"></div>
+      <div class="pscreen">
+        <div class="dtop"><div class="dtitle">DEEP TMS</div><span class="b bg" style="font-size:7px">GPS ON</span></div>
+        <div class="dscroll">
+          <div class="dscreen active" id="ds-home">
+            <div class="gps-bar"><div class="gps-dot"></div><div class="gps-txt">GPS TRACKING ACTIVE - CANNOT BE DISABLED</div></div>
+            <div class="dcard"><div class="dct">Current Load</div>
+              <div class="dir"><span class="k">Load</span><span class="v">LD-1001</span></div>
+              <div class="dir"><span class="k">Pickup</span><span class="v">Chicago IL</span></div>
+              <div class="dir"><span class="k">Delivery</span><span class="v">Philadelphia PA</span></div>
+              <div class="dir"><span class="k">Pickup Time</span><span class="v">05/17 08:00 AM</span></div>
+              <div class="dir"><span class="k">Delivery Time</span><span class="v">05/18 06:00 PM</span></div>
+              <div class="dir"><span class="k">Weight</span><span class="v">42,000 lbs</span></div>
+              <div class="dir"><span class="k">Commodity</span><span class="v">General Freight</span></div>
+              <div class="dir"><span class="k">Pickup #</span><span class="v">PU-88421</span></div>
+              <div class="dir"><span class="k">BOL #</span><span class="v">BOL-99210</span></div>
+              <div class="dir"><span class="k">PO #</span><span class="v">PO-44821</span></div>
+              <button style="width:100%;padding:9px;background:var(--a2);color:var(--bg);border:none;border-radius:6px;font-family:'Rajdhani',sans-serif;font-size:11px;font-weight:700;cursor:pointer;margin-top:8px" onclick="toast('Status updated - Manny notified!','info')">ARRIVED AT PICKUP</button>
+              <button style="width:100%;padding:9px;background:var(--gn);color:var(--bg);border:none;border-radius:6px;font-family:'Rajdhani',sans-serif;font-size:11px;font-weight:700;cursor:pointer;margin-top:5px" onclick="toast('POD sent to Manny for approval!')">CONFIRM DELIVERY</button>
             </div>
-            <div class="ff"><label>Assign Driver</label>
-              <select id="asgDriver"><option>Mike Johnson — Available</option><option>Carlos Rivera — Available</option><option>James Williams — On Load</option></select>
-            </div>
-            <div class="ff"><label>Pickup Date &amp; Time</label><input type="datetime-local"></div>
-            <div class="ff"><label>Delivery Date &amp; Time</label><input type="datetime-local"></div>
-            <div class="ff"><label>Special Instructions</label><textarea rows="2" placeholder="Notes for driver..."></textarea></div>
           </div>
-          <div class="br-row">
-            <button class="ab ab-p" onclick="showToast('Load assigned successfully!')">ASSIGN LOAD</button>
-            <button class="ab ab-s" onclick="showToast('Notification sent to driver!')">NOTIFY DRIVER</button>
-          </div>
-        </div>
-        <div class="tp">
-          <div class="stitle" style="font-size:13px">Message Driver</div>
-          <div class="fg" style="grid-template-columns:1fr;margin-bottom:10px">
-            <div class="ff"><label>Driver</label><select><option>Mike Johnson</option><option>Carlos Rivera</option><option>James Williams</option></select></div>
-            <div class="ff"><label>Message</label><textarea rows="2" placeholder="Type message..."></textarea></div>
-          </div>
-          <button class="ab ab-p" onclick="showToast('Message sent!')">SEND MESSAGE</button>
-        </div>
-      </div>
-      <div>
-        <div class="tp">
-          <div class="stitle" style="font-size:13px">Live Tracking</div>
-          <table class="tt">
-            <thead><tr><th>Load</th><th>Driver</th><th>Location</th><th>ETA</th><th>Status</th></tr></thead>
-            <tbody>
-              <tr><td>LD-1001</td><td>Mike J.</td><td>Cleveland, OH</td><td>4h 20m</td><td><span class="b bb">In Transit</span></td></tr>
-              <tr><td>LD-0998</td><td>Carlos R.</td><td>Atlanta, GA</td><td>At Stop</td><td><span class="b by">At Pickup</span></td></tr>
-              <tr><td>LD-0995</td><td>James W.</td><td>Philadelphia, PA</td><td>Arrived</td><td><span class="b bg">Delivered</span></td></tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="tp">
-          <div class="stitle" style="font-size:13px">Today's Schedule</div>
-          <table class="tt">
-            <thead><tr><th>Time</th><th>Load</th><th>Event</th><th>Driver</th></tr></thead>
-            <tbody>
-              <tr><td>08:00 AM</td><td>LD-1001</td><td>Pickup Chicago</td><td>Mike J.</td></tr>
-              <tr><td>11:30 AM</td><td>LD-0998</td><td>Pickup Atlanta</td><td>Carlos R.</td></tr>
-              <tr><td>02:00 PM</td><td>LD-0995</td><td>Delivery Philly</td><td>James W.</td></tr>
-              <tr><td>06:00 PM</td><td>LD-1002</td><td>Pickup Newark</td><td>TBD</td></tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ====== DRIVERS ====== -->
-  <div class="view" id="view-drivers">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
-      <div class="stitle" style="margin:0">Driver Management</div>
-      <button class="ab ab-p" onclick="openModal('addDriver')">+ ADD DRIVER</button>
-    </div>
-    <div class="tp">
-      <table class="tt">
-        <thead><tr><th>ID</th><th>Name</th><th>Phone</th><th>CDL #</th><th>CDL Exp</th><th>Status</th><th>Loads (Mo)</th><th>Miles (Mo)</th><th>Pay (Mo)</th><th>Actions</th></tr></thead>
-        <tbody id="driversTable"></tbody>
-      </table>
-    </div>
-  </div>
-
-  <!-- ====== FUEL (TCS) ====== -->
-  <div class="view" id="view-fuel">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
-      <div class="stitle o" style="margin:0">TCS Fuel Card Tracker</div>
-      <div class="br-row">
-        <button class="ab ab-o" onclick="openModal('addFuel')">+ ADD FUEL STOP</button>
-        <button class="ab ab-s" onclick="showToast('Importing from TCS...')">IMPORT TCS DATA</button>
-      </div>
-    </div>
-    <div class="fuel-stat">
-      <div class="sc o"><div class="sc-lbl">Total Gallons (Mo)</div><div class="sc-val">840</div><div class="sc-sub">All trucks</div></div>
-      <div class="sc y"><div class="sc-lbl">Total Spend (Mo)</div><div class="sc-val">$3,210</div><div class="sc-sub">Avg $3.82/gal</div></div>
-      <div class="sc"><div class="sc-lbl">Avg MPG</div><div class="sc-val">7.8</div><div class="sc-sub">Cascadia target: 8</div></div>
-      <div class="sc g"><div class="sc-lbl">States Fueled</div><div class="sc-val">7</div><div class="sc-sub">This quarter</div></div>
-    </div>
-    <div class="tp">
-      <div class="stitle o">Fuel Transaction Log</div>
-      <table class="tt">
-        <thead><tr><th>Date</th><th>Time</th><th>State</th><th>City / Station</th><th>Gallons</th><th>$/Gal</th><th>Total</th><th>Truck</th><th>Driver</th><th>Load #</th></tr></thead>
-        <tbody id="fuelTable"></tbody>
-      </table>
-    </div>
-    <div class="tp">
-      <div class="stitle o">Fuel Cost By State (IFTA Reference)</div>
-      <table class="tt">
-        <thead><tr><th>State</th><th>Stops</th><th>Gallons</th><th>Total Spend</th><th>Avg $/Gal</th></tr></thead>
-        <tbody id="fuelByState"></tbody>
-      </table>
-    </div>
-  </div>
-
-  <!-- ====== IFTA ====== -->
-  <div class="view" id="view-ifta">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
-      <div class="stitle g" style="margin:0">IFTA Miles Tracker</div>
-      <div class="br-row">
-        <select style="background:var(--panel);border:1px solid var(--border);color:var(--white);padding:7px 12px;font-family:'Share Tech Mono',monospace;font-size:11px;outline:none">
-          <option>Q2 2026 (Current)</option><option>Q1 2026</option><option>Q4 2025</option>
-        </select>
-        <button class="ab ab-g" onclick="openModal('iftaReport')">GENERATE REPORT</button>
-        <button class="ab ab-s" onclick="showToast('Importing from Zeromax ELD...')">SYNC ZEROMAX</button>
-      </div>
-    </div>
-    <div class="fuel-stat">
-      <div class="sc g"><div class="sc-lbl">Total Miles (Q)</div><div class="sc-val">12,840</div><div class="sc-sub">All states</div></div>
-      <div class="sc"><div class="sc-lbl">Total Gallons (Q)</div><div class="sc-val">1,605</div><div class="sc-sub">From TCS data</div></div>
-      <div class="sc y"><div class="sc-lbl">Avg MPG</div><div class="sc-val">8.0</div><div class="sc-sub">On target!</div></div>
-      <div class="sc r"><div class="sc-lbl">Est. Tax Due</div><div class="sc-val">$418</div><div class="sc-sub">Q2 2026</div></div>
-    </div>
-    <div style="display:grid;grid-template-columns:2fr 1fr;gap:14px">
-      <div class="tp">
-        <div class="stitle g">Miles By State</div>
-        <table class="tt">
-          <thead><tr><th>State</th><th>Miles Driven</th><th>% of Total</th><th>Gallons Used</th><th>Tax Rate</th><th>Tax Due</th><th>Source</th></tr></thead>
-          <tbody id="iftaTable"></tbody>
-        </table>
-      </div>
-      <div>
-        <div class="tp">
-          <div class="stitle g">Add Miles Manually</div>
-          <div class="fg" style="grid-template-columns:1fr;margin-bottom:10px">
-            <div class="ff"><label>State</label>
-              <select id="iftaState"><option>PA</option><option>NJ</option><option>NY</option><option>OH</option><option>IL</option><option>DE</option><option>MD</option><option>VA</option><option>NC</option><option>SC</option><option>GA</option><option>FL</option><option>TX</option><option>TN</option><option>KY</option><option>IN</option><option>MI</option></select>
-            </div>
-            <div class="ff"><label>Miles</label><input type="number" id="iftaMiles" placeholder="e.g. 320"></div>
-            <div class="ff"><label>Date</label><input type="date"></div>
-            <div class="ff"><label>Driver</label>
-              <select><option>Mike Johnson</option><option>Carlos Rivera</option><option>James Williams</option></select>
-            </div>
-            <div class="ff"><label>Load #</label><input placeholder="e.g. LD-1001"></div>
-          </div>
-          <button class="ab ab-g" onclick="addIftaMiles()">ADD MILES</button>
-        </div>
-        <div class="tp">
-          <div class="stitle g">Filing Info</div>
-          <div style="font-family:'Share Tech Mono',monospace;font-size:10px;line-height:2.2;color:var(--muted)">
-            <div>Base State: <span style="color:var(--white)">Pennsylvania</span></div>
-            <div>Q2 Due Date: <span style="color:var(--yellow)">July 31, 2026</span></div>
-            <div>IFTA License: <span style="color:var(--white)">PA-IFTA-XXXX</span></div>
-            <div>Zeromax Sync: <span style="color:var(--green)">Connected</span></div>
-            <div>TCS Fuel Sync: <span style="color:var(--green)">Connected</span></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ====== DOCUMENTS ====== -->
-  <div class="view" id="view-documents">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
-      <div class="stitle" style="margin:0">Document Storage</div>
-      <button class="ab ab-p" onclick="showToast('Upload ready!')">+ UPLOAD DOCUMENT</button>
-    </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
-      <div class="tp">
-        <div class="stitle">Bills of Lading (BOL)</div>
-        <table class="tt">
-          <thead><tr><th>Load #</th><th>Date</th><th>Driver</th><th>Broker</th><th>Status</th><th></th></tr></thead>
-          <tbody>
-            <tr><td>LD-1001</td><td>05/14/26</td><td>Mike J.</td><td>Echo Global</td><td><span class="b bb">Signed</span></td><td><button class="ab ab-s" style="padding:2px 8px;font-size:10px" onclick="showToast('BOL opened!')">VIEW</button></td></tr>
-            <tr><td>LD-0998</td><td>05/13/26</td><td>Carlos R.</td><td>Coyote</td><td><span class="b by">Pending</span></td><td><button class="ab ab-s" style="padding:2px 8px;font-size:10px" onclick="showToast('BOL opened!')">VIEW</button></td></tr>
-            <tr><td>LD-0995</td><td>05/12/26</td><td>James W.</td><td>CH Robinson</td><td><span class="b bg">Complete</span></td><td><button class="ab ab-s" style="padding:2px 8px;font-size:10px" onclick="showToast('BOL opened!')">VIEW</button></td></tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="tp">
-        <div class="stitle">Proof of Delivery (POD)</div>
-        <table class="tt">
-          <thead><tr><th>Load #</th><th>Date</th><th>Receiver</th><th>Status</th><th></th></tr></thead>
-          <tbody>
-            <tr><td>LD-0995</td><td>05/13/26</td><td>Amazon WH-PA</td><td><span class="b bg">Confirmed</span></td><td><button class="ab ab-s" style="padding:2px 8px;font-size:10px" onclick="showToast('POD opened!')">VIEW</button></td></tr>
-            <tr><td>LD-0990</td><td>05/11/26</td><td>Home Depot DC</td><td><span class="b bg">Confirmed</span></td><td><button class="ab ab-s" style="padding:2px 8px;font-size:10px" onclick="showToast('POD opened!')">VIEW</button></td></tr>
-            <tr><td>LD-0985</td><td>05/09/26</td><td>Walmart DC</td><td><span class="b bg">Confirmed</span></td><td><button class="ab ab-s" style="padding:2px 8px;font-size:10px" onclick="showToast('POD opened!')">VIEW</button></td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-    <div class="tp">
-      <div class="stitle">Company Documents</div>
-      <table class="tt">
-        <thead><tr><th>Document</th><th>Type</th><th>Assigned To</th><th>Issue Date</th><th>Expiry</th><th>Status</th><th></th></tr></thead>
-        <tbody>
-          <tr><td>MC Authority</td><td>FMCSA</td><td>Company</td><td>01/2026</td><td>Never</td><td><span class="b bg">Active</span></td><td><button class="ab ab-s" style="padding:2px 8px;font-size:10px">VIEW</button></td></tr>
-          <tr><td>Insurance Certificate</td><td>Insurance</td><td>Truck 001</td><td>01/2026</td><td>12/2026</td><td><span class="b bg">Active</span></td><td><button class="ab ab-s" style="padding:2px 8px;font-size:10px">VIEW</button></td></tr>
-          <tr><td>IFTA License</td><td>IFTA</td><td>Company</td><td>01/2026</td><td>12/2026</td><td><span class="b bg">Active</span></td><td><button class="ab ab-s" style="padding:2px 8px;font-size:10px">VIEW</button></td></tr>
-          <tr><td>Annual Inspection - Cascadia</td><td>DOT Inspection</td><td>Truck 001</td><td>09/2025</td><td>09/2026</td><td><span class="b by">Due Soon</span></td><td><button class="ab ab-s" style="padding:2px 8px;font-size:10px">VIEW</button></td></tr>
-          <tr><td>CDL - Mike Johnson</td><td>CDL-A</td><td>Mike Johnson</td><td>06/2021</td><td>06/2027</td><td><span class="b bg">Valid</span></td><td><button class="ab ab-s" style="padding:2px 8px;font-size:10px">VIEW</button></td></tr>
-          <tr><td>Medical Card - Mike Johnson</td><td>Medical</td><td>Mike Johnson</td><td>03/2025</td><td>03/2027</td><td><span class="b bg">Valid</span></td><td><button class="ab ab-s" style="padding:2px 8px;font-size:10px">VIEW</button></td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-  <!-- ====== INVOICES ====== -->
-  <div class="view" id="view-invoices">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
-      <div class="stitle" style="margin:0">Invoices &amp; Billing</div>
-      <button class="ab ab-p" onclick="openModal('addInvoice')">+ CREATE INVOICE</button>
-    </div>
-    <div class="fuel-stat">
-      <div class="sc g"><div class="sc-lbl">Paid (Mo)</div><div class="sc-val">$14,440</div><div class="sc-sub">6 invoices</div></div>
-      <div class="sc y"><div class="sc-lbl">Pending</div><div class="sc-val">$8,400</div><div class="sc-sub">4 invoices</div></div>
-      <div class="sc r"><div class="sc-lbl">Overdue</div><div class="sc-val">$2,280</div><div class="sc-sub">1 invoice</div></div>
-      <div class="sc"><div class="sc-lbl">Factored (Apex)</div><div class="sc-val">$11,200</div><div class="sc-sub">1.5% fee</div></div>
-    </div>
-    <div class="tp">
-      <table class="tt">
-        <thead><tr><th>Invoice #</th><th>Broker</th><th>Load #</th><th>Amount</th><th>Apex Fee</th><th>Net After Fee</th><th>Date</th><th>Due</th><th>Status</th><th>Actions</th></tr></thead>
-        <tbody id="invoicesTable"></tbody>
-      </table>
-    </div>
-  </div>
-
-  <!-- ====== DRIVER APP ====== -->
-  <div class="view" id="view-driverapp">
-    <div class="stitle">Android Driver App Preview</div>
-    <div class="daf">
-      <div class="pframe">
-        <div class="pnotch"></div>
-        <div class="pscreen">
-          <div class="dtopbar">
-            <div class="dtitle">DEEP TRUCKING LLC</div>
-            <span class="b bg" style="font-size:7px">ONLINE</span>
-          </div>
-          <div class="dscroll">
-            <!-- HOME -->
-            <div class="dscreen active" id="ds-home">
-              <div class="dsec">
-                <div class="dcard">
-                  <div class="dct">Current Load</div>
-                  <div class="dir"><span class="k">Load #</span><span class="v">LD-1001</span></div>
-                  <div class="dir"><span class="k">Pickup</span><span class="v">Chicago, IL</span></div>
-                  <div class="dir"><span class="k">Delivery</span><span class="v">Philadelphia, PA</span></div>
-                  <div class="dir"><span class="k">Miles</span><span class="v">760 mi</span></div>
-                  <div class="dir"><span class="k">Gross Rate</span><span class="v">$2,280</span></div>
-                  <div class="dir"><span class="k">Your 25%</span><span class="v" style="color:var(--green)">$570</span></div>
-                  <button class="dsb" style="background:var(--accent);color:var(--bg)" onclick="showToast('Status: Arrived at Pickup!')">ARRIVED AT PICKUP</button>
-                  <button class="dsb" style="background:var(--green);color:var(--bg);margin-top:5px" onclick="showToast('Delivery Confirmed!')">CONFIRM DELIVERY</button>
-                </div>
-                <div class="dcard">
-                  <div class="dct">My Stats</div>
-                  <div class="dir"><span class="k">Driver</span><span class="v">Mike Johnson</span></div>
-                  <div class="dir"><span class="k">Status</span><span class="v"><span class="b bb" style="font-size:7px">In Transit</span></span></div>
-                  <div class="dir"><span class="k">Loads This Mo</span><span class="v">8</span></div>
-                  <div class="dir"><span class="k">Miles This Mo</span><span class="v">4,820</span></div>
-                  <div class="dir"><span class="k">Earned This Mo</span><span class="v" style="color:var(--green)">$3,420</span></div>
-                </div>
-              </div>
-            </div>
-            <!-- HOS -->
-            <div class="dscreen" id="ds-hos">
-              <div class="dsec">
-                <div class="dcard">
-                  <div class="dct">Hours of Service</div>
-                  <div class="dir"><span class="k">Drive Today</span><span class="v">5h 18m</span></div>
-                  <div class="dir"><span class="k">Remaining</span><span class="v" style="color:var(--yellow)">5h 42m</span></div>
-                  <div class="dir"><span class="k">On Duty</span><span class="v">7h 02m</span></div>
-                  <div class="dir"><span class="k">70hr Cycle</span><span class="v">42h used</span></div>
-                  <div class="dir"><span class="k">Restart Avail</span><span class="v" style="color:var(--green)">Yes</span></div>
-                  <button class="dsb" style="background:var(--yellow);color:var(--bg)" onclick="showToast('Status updated in Zeromax!')">UPDATE STATUS</button>
-                </div>
-                <div class="dcard">
-                  <div class="dct">Today's Log</div>
-                  <div class="dir"><span class="k">06:00</span><span class="v">Off Duty → On Duty</span></div>
-                  <div class="dir"><span class="k">06:30</span><span class="v">Pre-Trip Inspect</span></div>
-                  <div class="dir"><span class="k">07:00</span><span class="v">Driving</span></div>
-                  <div class="dir"><span class="k">12:00</span><span class="v">Off Duty 30min</span></div>
-                  <div class="dir"><span class="k">12:30</span><span class="v">Driving</span></div>
-                </div>
-              </div>
-            </div>
-            <!-- FUEL -->
-            <div class="dscreen" id="ds-fuel">
-              <div class="dsec">
-                <div class="dcard">
-                  <div class="dct">Log Fuel Stop (TCS)</div>
-                  <div style="display:flex;flex-direction:column;gap:6px;margin-top:6px">
-                    <input placeholder="State (e.g. OH)" style="background:var(--panel);border:1px solid var(--border);color:var(--white);padding:7px;font-size:11px;font-family:'Exo 2',sans-serif;outline:none;width:100%">
-                    <input placeholder="Gallons" type="number" style="background:var(--panel);border:1px solid var(--border);color:var(--white);padding:7px;font-size:11px;font-family:'Exo 2',sans-serif;outline:none;width:100%">
-                    <input placeholder="$/Gallon" type="number" step="0.01" style="background:var(--panel);border:1px solid var(--border);color:var(--white);padding:7px;font-size:11px;font-family:'Exo 2',sans-serif;outline:none;width:100%">
-                  </div>
-                  <button class="dsb" style="background:var(--accent2);color:var(--white)" onclick="showToast('Fuel stop logged to TCS!')">LOG FUEL STOP</button>
-                </div>
-                <div class="dcard">
-                  <div class="dct">My Fuel History</div>
-                  <div class="dir"><span class="k">05/14 Ohio</span><span class="v">82 gal — $312</span></div>
-                  <div class="dir"><span class="k">05/12 Indiana</span><span class="v">75 gal — $281</span></div>
-                  <div class="dir"><span class="k">05/10 Illinois</span><span class="v">90 gal — $346</span></div>
-                </div>
-              </div>
-            </div>
-            <!-- DOCS -->
-            <div class="dscreen" id="ds-docs">
-              <div class="dsec">
-                <div class="dcard">
-                  <div class="dct">Load Documents</div>
-                  <button class="dsb" style="background:var(--panel);color:var(--accent);border:1px solid var(--accent)" onclick="showToast('BOL opened!')">VIEW BOL — LD1001</button>
-                  <button class="dsb" style="background:var(--panel);color:var(--text);border:1px solid var(--border);margin-top:5px" onclick="showToast('Camera opened for POD!')">UPLOAD POD PHOTO</button>
-                  <button class="dsb" style="background:var(--panel);color:var(--text);border:1px solid var(--border);margin-top:5px" onclick="showToast('Signature captured!')">CAPTURE SIGNATURE</button>
-                </div>
-                <div class="dcard">
-                  <div class="dct">My Documents</div>
-                  <div class="dir"><span class="k">CDL-A</span><span class="v"><span class="b bg" style="font-size:7px">Valid 06/27</span></span></div>
-                  <div class="dir"><span class="k">Medical Card</span><span class="v"><span class="b bg" style="font-size:7px">Valid 03/27</span></span></div>
-                  <div class="dir"><span class="k">Drug Test</span><span class="v"><span class="b bg" style="font-size:7px">Clear</span></span></div>
-                  <div class="dir"><span class="k">Hazmat</span><span class="v"><span class="b br" style="font-size:7px">Not Certified</span></span></div>
-                </div>
+          <div class="dscreen" id="ds-scan">
+            <div class="gps-bar"><div class="gps-dot"></div><div class="gps-txt">GPS TRACKING ACTIVE</div></div>
+            <div class="dcard"><div class="dct">Scan and Upload</div>
+              <div class="sgrid">
+                <button class="sbtn sb1" onclick="toast('Camera opened!','info')"><span class="si">&#9878;</span>Scale Ticket</button>
+                <button class="sbtn sb2" onclick="toast('Camera opened!','info')"><span class="si">&#128203;</span>BOL</button>
+                <button class="sbtn sb3" onclick="toast('POD sent to Manny!','info')"><span class="si">&#9989;</span>POD</button>
+                <button class="sbtn sb4" onclick="toast('Receipt uploaded!','info')"><span class="si">&#129534;</span>Receipt</button>
+                <button class="sbtn sb5" onclick="toast('Doc uploaded!','info')"><span class="si">&#128269;</span>Inspection</button>
+                <button class="sbtn sb6" onclick="toast('Doc uploaded!','info')"><span class="si">&#128196;</span>Other</button>
               </div>
             </div>
           </div>
-          <!-- BOTTOM NAV -->
-          <div class="dbnav">
-            <button class="dnb active" id="dnb-home" onclick="switchDS('home')"><span class="dico">🏠</span>Home</button>
-            <button class="dnb" id="dnb-hos" onclick="switchDS('hos')"><span class="dico">⏱️</span>HOS</button>
-            <button class="dnb" id="dnb-fuel" onclick="switchDS('fuel')"><span class="dico">⛽</span>Fuel</button>
-            <button class="dnb" id="dnb-docs" onclick="switchDS('docs')"><span class="dico">📄</span>Docs</button>
+          <div class="dscreen" id="ds-pay">
+            <div class="gps-bar"><div class="gps-dot"></div><div class="gps-txt">GPS TRACKING ACTIVE</div></div>
+            <div class="dcard"><div class="dct">My Pay This Week</div>
+              <div class="dir"><span class="k">Gross 25%</span><span class="v" style="color:var(--gn)">$570</span></div>
+              <div class="dir"><span class="k">Detention Pay</span><span class="v" style="color:var(--gn)">+$75</span></div>
+              <div class="dir"><span class="k">Cash Advance</span><span class="v" style="color:var(--rd)">-$200</span></div>
+              <div style="display:flex;justify-content:space-between;padding:7px 0;border-top:1px solid var(--ac);margin-top:4px"><span style="font-family:'Rajdhani',sans-serif;font-size:12px;font-weight:700;color:var(--ac)">NET PAY</span><span style="font-family:'Rajdhani',sans-serif;font-size:12px;font-weight:700;color:var(--ac)">$445</span></div>
+              <button style="width:100%;padding:8px;background:var(--pn);color:var(--ac);border:1px solid var(--ac);border-radius:6px;font-family:'Rajdhani',sans-serif;font-size:10px;font-weight:700;cursor:pointer;margin-top:6px" onclick="toast('Statement downloaded!','info')">DOWNLOAD STATEMENT</button>
+            </div>
           </div>
+        </div>
+        <div class="dbnav">
+          <button class="dnb active" id="dnb-home" onclick="switchDS('home')"><span class="dico">&#127968;</span>Load</button>
+          <button class="dnb" id="dnb-scan" onclick="switchDS('scan')"><span class="dico">&#128247;</span>Scan</button>
+          <button class="dnb" id="dnb-pay" onclick="switchDS('pay')"><span class="dico">&#128176;</span>Pay</button>
         </div>
       </div>
-      <div style="flex:1">
-        <div class="tp">
-          <div class="stitle">App Features</div>
-          <table class="tt">
-            <thead><tr><th>Feature</th><th>Details</th><th>Status</th></tr></thead>
-            <tbody>
-              <tr><td>Load Details & Status</td><td>View assigned loads, update status</td><td><span class="b bg">Ready</span></td></tr>
-              <tr><td>HOS Log Viewer</td><td>View hours, sync with Zeromax ELD</td><td><span class="b bg">Ready</span></td></tr>
-              <tr><td>TCS Fuel Logging</td><td>Log fuel stops, auto-syncs to IFTA</td><td><span class="b bg">Ready</span></td></tr>
-              <tr><td>BOL / POD Viewer</td><td>View and upload delivery documents</td><td><span class="b bg">Ready</span></td></tr>
-              <tr><td>Digital Signature</td><td>Sign BOL/POD on screen</td><td><span class="b bg">Ready</span></td></tr>
-              <tr><td>Pay Summary</td><td>See earnings per load and monthly</td><td><span class="b bg">Ready</span></td></tr>
-              <tr><td>Dispatcher Messaging</td><td>Direct chat with dispatch</td><td><span class="b by">Coming Soon</span></td></tr>
-              <tr><td>GPS Tracking</td><td>Live location to dispatcher</td><td><span class="b by">Coming Soon</span></td></tr>
-            </tbody>
-          </table>
+    </div>
+    <div style="flex:1">
+      <div class="tp" style="border-left:3px solid var(--gn)">
+        <div class="stitle g">GPS Tracking - Always On - Driver Cannot Disable</div>
+        <div style="font-family:'Share Tech Mono',monospace;font-size:10px;line-height:2.2;color:var(--mt)">
+          1. Driver installs app on Android phone<br>
+          2. App requests location permission on first open<br>
+          3. Driver MUST allow location for app to work<br>
+          4. GPS runs in background at all times<br>
+          5. Location updates every 30 seconds<br>
+          6. Driver has NO button to turn it off<br>
+          7. Even if app is closed location still updates<br>
+          <br>
+          <span style="color:var(--gn)">You see on dashboard:</span><br>
+          Exact location - Speed - Heading - 90 day history<br>
+          <br>
+          <span style="color:var(--yw)">PA Law Note:</span> <span style="color:var(--wh)">Include GPS disclosure in driver offer letter.</span>
         </div>
-        <div class="tp">
-          <div class="stitle">Deploy to Android</div>
-          <div style="font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--muted);line-height:2.2">
-            <span style="color:var(--accent)">Step 1:</span> Host TMS on Railway.app (free hosting)<br>
-            <span style="color:var(--accent)">Step 2:</span> Drivers open in Chrome on Android<br>
-            <span style="color:var(--accent)">Step 3:</span> Chrome menu → "Add to Home Screen"<br>
-            <span style="color:var(--accent)">Step 4:</span> Works like a native Android app<br>
-            <span style="color:var(--green)">Cost: $0/month for up to 10 drivers</span>
-          </div>
+      </div>
+      <div class="tp"><div class="stitle">Driver Permissions - Manny Controls What Driver Sees</div>
+        <div class="ff"><label>Select Driver</label><select id="perm-drv" onchange="loadPerms(this.value)"><option value="">Add a driver first</option></select></div>
+        <div id="perm-panel" style="display:none">
+          <div class="tog-row"><div><div class="tl">GPS Tracking - Always On</div><div class="td">Cannot be turned off by driver</div></div><label class="tog"><input type="checkbox" checked disabled><span class="tsl" style="opacity:.5"></span></label></div>
+          <div class="tog-row"><div><div class="tl">Pickup and Delivery Address</div></div><label class="tog"><input type="checkbox" checked id="p-addr"><span class="tsl"></span></label></div>
+          <div class="tog-row"><div><div class="tl">Pickup and Delivery Times</div></div><label class="tog"><input type="checkbox" checked id="p-time"><span class="tsl"></span></label></div>
+          <div class="tog-row"><div><div class="tl">Weight and Commodity</div></div><label class="tog"><input type="checkbox" checked id="p-wt"><span class="tsl"></span></label></div>
+          <div class="tog-row"><div><div class="tl">Pickup Number and BOL Number</div></div><label class="tog"><input type="checkbox" checked id="p-nums"><span class="tsl"></span></label></div>
+          <div class="tog-row"><div><div class="tl">PO Number</div></div><label class="tog"><input type="checkbox" checked id="p-po"><span class="tsl"></span></label></div>
+          <div class="tog-row"><div><div class="tl">Load Rate - Hide if preferred</div></div><label class="tog"><input type="checkbox" id="p-rate"><span class="tsl"></span></label></div>
+          <div class="tog-row"><div><div class="tl">Pay Statement</div></div><label class="tog"><input type="checkbox" checked id="p-pay"><span class="tsl"></span></label></div>
+          <div class="tog-row"><div><div class="tl">Document Upload</div></div><label class="tog"><input type="checkbox" checked id="p-docs"><span class="tsl"></span></label></div>
+          <div class="brow" style="margin-top:12px"><button class="btn btn-p" onclick="savePerms()">SAVE PERMISSIONS</button></div>
+        </div>
+      </div>
+      <div class="tp"><div class="stitle g">How Driver Installs on Android</div>
+        <div style="font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--mt);line-height:2.2">
+          Step 1: Open Chrome on Android phone<br>
+          Step 2: Go to your Netlify TMS link<br>
+          Step 3: Tap 3 dots top right corner<br>
+          Step 4: Tap Add to Home Screen then Add<br>
+          <span style="color:var(--gn)">Free forever - Works on any Android</span>
         </div>
       </div>
     </div>
   </div>
+</div>
+
+<!-- SETTINGS -->
+<div class="view" id="view-settings">
+  <div class="stitle">Company Settings - Deep Trucking LLC</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:13px">
+    <div class="tp"><div class="stitle" style="font-size:12px">Company Information</div>
+      <div class="ff"><label>Company Name</label><input value="Deep Trucking LLC"></div>
+      <div class="ff"><label>Address</label><input value="1059 Bramble Dr, Breinigsville PA 18031"></div>
+      <div class="ff"><label>DOT Number</label><input value="2088835"></div>
+      <div class="ff"><label>MC Number</label><input value="744717"></div>
+      <div class="ff"><label>Company Phone</label><input value="610-922-1113"></div>
+      <div class="ff"><label>Email - Alerts Sent Here</label><input value="deeptrucking007@gmail.com"></div>
+      <button class="btn btn-p" onclick="toast('Saved!')">SAVE</button>
+    </div>
+    <div class="tp"><div class="stitle b" style="font-size:12px">Owner - Manny</div>
+      <div class="ff"><label>Your Name</label><input value="Manny"></div>
+      <div class="ff"><label>Your Phone - SMS Alerts</label><input value="718-820-3531"></div>
+      <div class="ff"><label>Alert Email</label><input value="deeptrucking007@gmail.com"></div>
+      <div class="ff"><label>Apex Ultima Factoring Rate %</label><input value="1.5" type="number" step="0.1"></div>
+      <div class="ff"><label>Driver Pay Rate %</label><input value="25" type="number"></div>
+      <div class="ff"><label>EIN Number</label><input value="27-4259995"></div>
+      <button class="btn btn-p" onclick="toast('Settings saved!')">SAVE</button>
+    </div>
+    <div class="tp"><div class="stitle g" style="font-size:12px">Notifications</div>
+      <div class="tog-row"><div><div class="tl">Email alerts to Manny</div><div class="td">deeptrucking007@gmail.com</div></div><label class="tog"><input type="checkbox" checked><span class="tsl"></span></label></div>
+      <div class="tog-row"><div><div class="tl">SMS alerts to Manny</div><div class="td">718-820-3531</div></div><label class="tog"><input type="checkbox" checked><span class="tsl"></span></label></div>
+      <div class="tog-row"><div><div class="tl">SMS to drivers for CDL expiry</div><div class="td">30 days before</div></div><label class="tog"><input type="checkbox" checked><span class="tsl"></span></label></div>
+      <div class="tog-row"><div><div class="tl">SMS to drivers for medical card</div><div class="td">30 days before</div></div><label class="tog"><input type="checkbox" checked><span class="tsl"></span></label></div>
+      <div class="tog-row"><div><div class="tl">POD approval required before broker</div><div class="td">Manny must approve first</div></div><label class="tog"><input type="checkbox" checked><span class="tsl"></span></label></div>
+      <div class="tog-row"><div><div class="tl">GPS tracking always on</div><div class="td">Cannot be disabled by drivers</div></div><label class="tog"><input type="checkbox" checked disabled><span class="tsl" style="opacity:.5"></span></label></div>
+      <button class="btn btn-p" style="margin-top:12px" onclick="toast('Saved!')">SAVE</button>
+    </div>
+    <div class="tp"><div class="stitle y" style="font-size:12px">Integrations</div>
+      <div style="font-family:'Share Tech Mono',monospace;font-size:10px;line-height:2.4;color:var(--mt)">
+        TCS Fuel Card: <span style="color:var(--gn)">Connected</span><br>
+        Zeromax ELD: <span style="color:var(--gn)">Connected</span><br>
+        Apex Ultima: <span style="color:var(--gn)">Connected</span><br>
+        GPS Tracking: <span style="color:var(--gn)">Active Built In</span><br>
+        DAT Load Board: <span style="color:var(--yw)">Add API Key Below</span>
+      </div>
+      <div class="ff" style="margin-top:10px"><label>DAT API Key</label><input placeholder="Enter DAT API key..."></div>
+      <button class="btn btn-p" onclick="toast('Saved!')">SAVE</button>
+    </div>
+  </div>
+</div>
 
 </div><!-- end main -->
-
-<!-- ====== MODALS ====== -->
-<div class="mo" id="modal-addLoad">
-  <div class="mbox">
-    <button class="mclose" onclick="closeModal('addLoad')">✕</button>
-    <div class="mtitle">Add New Load</div>
-    <div class="fg"><div class="ff"><label>Load Number</label><input placeholder="Auto: LD-1006"></div><div class="ff"><label>Broker Name</label><input placeholder="e.g. Echo Global Logistics"></div></div>
-    <div class="fg"><div class="ff"><label>Origin City</label><input placeholder="e.g. Chicago, IL"></div><div class="ff"><label>Destination City</label><input placeholder="e.g. Philadelphia, PA"></div></div>
-    <div class="fg fg3"><div class="ff"><label>Total Miles</label><input type="number" placeholder="760"></div><div class="ff"><label>Broker Rate ($)</label><input type="number" placeholder="2280"></div><div class="ff"><label>Commodity</label><input placeholder="e.g. General Freight"></div></div>
-    <div class="fg"><div class="ff"><label>Pickup Date</label><input type="datetime-local"></div><div class="ff"><label>Delivery Date</label><input type="datetime-local"></div></div>
-    <div class="fg"><div class="ff"><label>Assign Driver</label><select><option>Unassigned</option><option>Mike Johnson</option><option>Carlos Rivera</option><option>James Williams</option></select></div><div class="ff"><label>Weight (lbs)</label><input type="number" placeholder="42000"></div></div>
-    <div class="ff" style="margin-bottom:14px"><label>Notes</label><textarea rows="2" placeholder="Special instructions..."></textarea></div>
-    <div class="br-row"><button class="ab ab-p" onclick="addLoad()">SAVE LOAD</button><button class="ab ab-s" onclick="closeModal('addLoad')">CANCEL</button></div>
+<!-- MODALS -->
+<div class="mo" id="modal-addDriver">
+  <div class="mbox"><button class="mclose" onclick="cm('addDriver')">X</button><div class="mtitle">Add New Driver</div>
+    <div style="background:rgba(0,232,122,.07);border:1px solid rgba(0,232,122,.3);padding:10px 12px;margin-bottom:14px;font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--gn)">GPS TRACKING: Location tracked at all times. Driver cannot disable tracking.</div>
+    <div class="fg"><div class="ff"><label>Full Name</label><input id="nd-name" placeholder="First Last"></div><div class="ff"><label>Phone - For SMS Alerts</label><input id="nd-phone" placeholder="(570) 555-0000"></div></div>
+    <div class="fg"><div class="ff"><label>CDL Number</label><input id="nd-cdl" placeholder="PA CDL Number"></div><div class="ff"><label>CDL Expiry Date</label><input type="date" id="nd-cdlexp"></div></div>
+    <div class="fg"><div class="ff"><label>Medical Card Expiry</label><input type="date" id="nd-medexp"></div><div class="ff"><label>Hire Date</label><input type="date" id="nd-hire"></div></div>
+    <div class="fg"><div class="ff"><label>Home Address</label><input id="nd-addr" placeholder="Driver home address"></div><div class="ff"><label>Emergency Contact</label><input id="nd-emg" placeholder="Name and phone"></div></div>
+    <div class="ff"><label>Notes</label><textarea id="nd-notes" rows="2" placeholder="Any additional info..."></textarea></div>
+    <div class="brow"><button class="btn btn-p" onclick="saveDriver()">SAVE DRIVER</button><button class="btn btn-s" onclick="cm('addDriver')">CANCEL</button></div>
   </div>
 </div>
 
-<div class="mo" id="modal-addDriver">
-  <div class="mbox">
-    <button class="mclose" onclick="closeModal('addDriver')">✕</button>
-    <div class="mtitle">Add New Driver</div>
-    <div class="fg"><div class="ff"><label>Full Name</label><input placeholder="First Last"></div><div class="ff"><label>Phone</label><input placeholder="(555) 000-0000"></div></div>
-    <div class="fg"><div class="ff"><label>CDL Number</label><input placeholder="PA CDL Number"></div><div class="ff"><label>CDL Expiry</label><input type="date"></div></div>
-    <div class="fg"><div class="ff"><label>Medical Card Expiry</label><input type="date"></div><div class="ff"><label>Hire Date</label><input type="date"></div></div>
-    <div class="fg"><div class="ff"><label>Pay Type</label><select><option>25% of Gross</option><option>Per Mile</option><option>Salary</option></select></div><div class="ff"><label>Driver ID</label><input placeholder="Auto: DRV-004"></div></div>
-    <div class="br-row" style="margin-top:4px"><button class="ab ab-p" onclick="addDriver()">SAVE DRIVER</button><button class="ab ab-s" onclick="closeModal('addDriver')">CANCEL</button></div>
+<div class="mo" id="modal-addLoad">
+  <div class="mbox"><button class="mclose" onclick="cm('addLoad')">X</button><div class="mtitle">Add New Load</div>
+    <div class="fg"><div class="ff"><label>Broker Name</label><input id="nl-broker" placeholder="Echo Global Logistics"></div><div class="ff"><label>Load Number</label><input id="nl-num" placeholder="Auto-generated if blank"></div></div>
+    <div class="fg"><div class="ff"><label>Origin City</label><input id="nl-origin" placeholder="Chicago, IL"></div><div class="ff"><label>Destination City</label><input id="nl-dest" placeholder="Philadelphia, PA"></div></div>
+    <div class="ff"><label>Full Pickup Address</label><input id="nl-paddr" placeholder="123 Warehouse Dr, Chicago IL 60601"></div>
+    <div class="ff"><label>Full Delivery Address</label><input id="nl-daddr" placeholder="456 Dock Rd, Philadelphia PA 19103"></div>
+    <div class="fg3"><div class="ff"><label>Miles</label><input type="number" id="nl-miles" placeholder="760"></div><div class="ff"><label>Rate ($)</label><input type="number" id="nl-rate" placeholder="2280"></div><div class="ff"><label>Weight (lbs)</label><input type="number" id="nl-weight" placeholder="42000"></div></div>
+    <div class="fg3"><div class="ff"><label>Commodity</label><input id="nl-commodity" placeholder="General Freight"></div><div class="ff"><label>Pickup Number</label><input id="nl-punum" placeholder="PU-88421"></div><div class="ff"><label>BOL Number</label><input id="nl-bol" placeholder="BOL-99210"></div></div>
+    <div class="fg"><div class="ff"><label>PO Number</label><input id="nl-po" placeholder="PO-44821"></div><div class="ff"><label>Assign Driver</label><select id="nl-driver"><option value="">Unassigned</option></select></div></div>
+    <div class="fg"><div class="ff"><label>Pickup Date and Time</label><input type="datetime-local" id="nl-ptime"></div><div class="ff"><label>Delivery Date and Time</label><input type="datetime-local" id="nl-dtime"></div></div>
+    <div class="ff"><label>Special Instructions</label><textarea id="nl-special" rows="2" placeholder="Temp requirements, dock hours, lumper, TWIC, etc..."></textarea></div>
+    <div class="brow"><button class="btn btn-p" onclick="saveLoad()">SAVE LOAD</button><button class="btn btn-s" onclick="cm('addLoad')">CANCEL</button></div>
   </div>
 </div>
 
 <div class="mo" id="modal-addFuel">
-  <div class="mbox">
-    <button class="mclose" onclick="closeModal('addFuel')">✕</button>
-    <div class="mtitle">Add Fuel Stop (TCS)</div>
-    <div class="fg"><div class="ff"><label>Date</label><input type="date"></div><div class="ff"><label>Time</label><input type="time"></div></div>
-    <div class="fg"><div class="ff"><label>State</label><select id="fuelState"><option>PA</option><option>NJ</option><option>NY</option><option>OH</option><option>IL</option><option>IN</option><option>DE</option><option>MD</option><option>VA</option><option>NC</option><option>GA</option><option>TX</option><option>TN</option><option>KY</option></select></div><div class="ff"><label>City / Station</label><input placeholder="e.g. Love's #0542"></div></div>
-    <div class="fg fg3"><div class="ff"><label>Gallons</label><input type="number" id="fGal" placeholder="82.5" step="0.1"></div><div class="ff"><label>Price Per Gallon</label><input type="number" id="fPpg" placeholder="3.82" step="0.01"></div><div class="ff"><label>Total ($)</label><input id="fTotal" readonly placeholder="Auto-calc"></div></div>
-    <div class="fg"><div class="ff"><label>Truck</label><select><option>Truck 001 — 2023 Cascadia</option></select></div><div class="ff"><label>Driver</label><select><option>Mike Johnson</option><option>Carlos Rivera</option><option>James Williams</option></select></div></div>
-    <div class="ff" style="margin-bottom:14px"><label>Load # (optional)</label><input placeholder="e.g. LD-1001"></div>
-    <div class="br-row"><button class="ab ab-o" onclick="addFuel()">SAVE FUEL STOP</button><button class="ab ab-s" onclick="closeModal('addFuel')">CANCEL</button></div>
+  <div class="mbox"><button class="mclose" onclick="cm('addFuel')">X</button><div class="mtitle">Add Fuel Stop - TCS Card</div>
+    <div class="fg"><div class="ff"><label>Date</label><input type="date" id="f-date"></div><div class="ff"><label>State</label><select id="f-state"><option>PA</option><option>OH</option><option>IN</option><option>IL</option><option>NJ</option><option>NY</option><option>DE</option><option>MD</option><option>VA</option><option>NC</option><option>GA</option><option>TX</option><option>TN</option><option>KY</option></select></div></div>
+    <div class="fg"><div class="ff"><label>Station Name</label><input id="f-station" placeholder="Loves #0542"></div><div class="ff"><label>Driver</label><select id="f-drv"><option>No drivers yet</option></select></div></div>
+    <div class="fg3"><div class="ff"><label>Gallons</label><input type="number" id="f-gal" step="0.1" oninput="calcF()"></div><div class="ff"><label>Price Per Gallon</label><input type="number" id="f-ppg" step="0.01" oninput="calcF()"></div><div class="ff"><label>Total</label><input id="f-tot" readonly></div></div>
+    <div class="ff"><label>Load Number</label><input id="f-load" placeholder="LD-1001"></div>
+    <div class="brow"><button class="btn btn-p" onclick="saveFuel()">SAVE FUEL STOP</button><button class="btn btn-s" onclick="cm('addFuel')">CANCEL</button></div>
   </div>
 </div>
 
 <div class="mo" id="modal-addInvoice">
-  <div class="mbox">
-    <button class="mclose" onclick="closeModal('addInvoice')">✕</button>
-    <div class="mtitle">Create Invoice</div>
-    <div class="fg"><div class="ff"><label>Invoice #</label><input placeholder="Auto: INV-0012"></div><div class="ff"><label>Broker / Bill To</label><input placeholder="e.g. Echo Global Logistics"></div></div>
-    <div class="fg"><div class="ff"><label>Load #</label><input placeholder="e.g. LD-1001"></div><div class="ff"><label>Amount ($)</label><input type="number" placeholder="2280"></div></div>
+  <div class="mbox"><button class="mclose" onclick="cm('addInvoice')">X</button><div class="mtitle">Create Invoice - Deep Trucking LLC</div>
+    <div class="fg"><div class="ff"><label>Broker Name</label><input placeholder="Echo Global Logistics"></div><div class="ff"><label>Load Number</label><input placeholder="LD-1001"></div></div>
+    <div class="fg"><div class="ff"><label>Amount ($)</label><input type="number" placeholder="2280"></div><div class="ff"><label>Factor with Apex Ultima 1.5%?</label><select><option>Yes - 1.5% fee</option><option>No - Direct Payment</option></select></div></div>
     <div class="fg"><div class="ff"><label>Invoice Date</label><input type="date"></div><div class="ff"><label>Due Date</label><input type="date"></div></div>
-    <div class="fg"><div class="ff"><label>Factor with Apex?</label><select><option>Yes — Apex Ultima (1.5%)</option><option>No — Direct Payment</option></select></div><div class="ff"><label>Broker Email</label><input placeholder="ap@broker.com"></div></div>
-    <div class="br-row" style="margin-top:4px"><button class="ab ab-p" onclick="addInvoice()">CREATE INVOICE</button><button class="ab ab-s" onclick="closeModal('addInvoice')">CANCEL</button></div>
+    <div class="ff"><label>Broker Email</label><input placeholder="ap@broker.com"></div>
+    <div class="brow"><button class="btn btn-p" onclick="toast('Invoice created!');cm('addInvoice')">CREATE</button><button class="btn btn-s" onclick="cm('addInvoice')">CANCEL</button></div>
   </div>
 </div>
 
-<div class="mo" id="modal-iftaReport">
-  <div class="mbox" style="max-width:640px;width:95vw">
-    <button class="mclose" onclick="closeModal('iftaReport')">✕</button>
-    <div class="mtitle">IFTA Quarterly Report — Q2 2026</div>
-    <div style="background:#fff;color:#111;padding:24px;font-family:'Exo 2',sans-serif">
-      <div style="display:flex;justify-content:space-between;margin-bottom:20px">
-        <div>
-          <div style="font-size:22px;font-weight:800;letter-spacing:2px">YOUR COMPANY</div>
-          <div style="font-size:10px;color:#666;letter-spacing:1px">PA TRUCKING LLC &bull; USDOT: XXXXXXX<br>123 Trucking Lane, Philadelphia PA 19103</div>
-        </div>
-        <div style="text-align:right">
-          <div style="font-size:18px;font-weight:700;color:#0088aa">IFTA REPORT</div>
-          <div style="font-size:11px;color:#666">Q2 2026 (Apr–Jun)<br>Due: July 31, 2026<br>Base State: Pennsylvania</div>
-        </div>
+<div class="mo" id="modal-addMaint">
+  <div class="mbox"><button class="mclose" onclick="cm('addMaint')">X</button><div class="mtitle">Add Maintenance Record</div>
+    <div class="fg"><div class="ff"><label>Vehicle</label><select><option>Truck 001 - 2023 Cascadia</option></select></div><div class="ff"><label>Service Type</label><select><option>Oil Change</option><option>Tire Rotation</option><option>Brake Inspection</option><option>DOT Inspection</option><option>DPF Clean</option><option>Other</option></select></div></div>
+    <div class="fg"><div class="ff"><label>Date</label><input type="date"></div><div class="ff"><label>Mileage</label><input type="number" placeholder="142800"></div></div>
+    <div class="fg"><div class="ff"><label>Cost ($)</label><input type="number" placeholder="380"></div><div class="ff"><label>Next Due</label><input placeholder="06/28/26 or 157800 mi"></div></div>
+    <div class="ff"><label>Shop or Location</label><input placeholder="TA Truck Stop"></div>
+    <div class="ff"><label>Notes</label><textarea rows="2" placeholder="Details..."></textarea></div>
+    <div class="brow"><button class="btn btn-p" onclick="toast('Record saved!');cm('addMaint')">SAVE</button><button class="btn btn-s" onclick="cm('addMaint')">CANCEL</button></div>
+  </div>
+</div>
+
+<div class="mo" id="modal-uploadDoc">
+  <div class="mbox"><button class="mclose" onclick="cm('uploadDoc')">X</button><div class="mtitle">Upload Document</div>
+    <div class="fg"><div class="ff"><label>Document Type</label><select><option>Scale Ticket</option><option>BOL</option><option>POD</option><option>Receipt</option><option>CDL Copy</option><option>Medical Card</option><option>Drug Test</option><option>Insurance</option><option>Other</option></select></div><div class="ff"><label>Driver or Vehicle</label><select id="doc-drv"><option>Select</option></select></div></div>
+    <div class="ff"><label>Load Number if applicable</label><input placeholder="LD-1001"></div>
+    <div style="border:2px dashed var(--bd);padding:20px;text-align:center;cursor:pointer;margin-bottom:10px;border-radius:4px" onclick="toast('File selected!','info')">
+      <div style="font-size:26px;opacity:.3;margin-bottom:6px">&#128196;</div>
+      <div style="font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--mt)">Click to select file or take photo</div>
+    </div>
+    <div class="ff"><label>Notes</label><input placeholder="Description..."></div>
+    <div class="brow"><button class="btn btn-p" onclick="toast('Document uploaded!');cm('uploadDoc')">UPLOAD</button><button class="btn btn-s" onclick="cm('uploadDoc')">CANCEL</button></div>
+  </div>
+</div>
+
+<div class="mo" id="modal-payStmt">
+  <div class="mbox"><button class="mclose" onclick="cm('payStmt')">X</button><div class="mtitle">Driver Pay Statement</div>
+    <div style="background:#fff;color:#111;padding:20px;font-family:'Exo 2',sans-serif;font-size:12px">
+      <div style="display:flex;justify-content:space-between;margin-bottom:14px;padding-bottom:12px;border-bottom:2px solid #111">
+        <div><div style="font-size:18px;font-weight:800;letter-spacing:2px">DEEP <span style="color:#d4820a">TRUCKING LLC</span></div><div style="font-size:8px;color:#666;font-family:'Share Tech Mono',monospace;line-height:1.8">1059 Bramble Dr, Breinigsville PA 18031<br>610-922-1113 &bull; DOT-2088835 &bull; MC-744717</div></div>
+        <div style="text-align:right;font-family:'Share Tech Mono',monospace;font-size:9px;color:#666"><div style="font-size:14px;font-weight:700;color:#d4820a">PAY STATEMENT</div>Dispatcher: Manny</div>
       </div>
-      <table style="width:100%;border-collapse:collapse;font-size:12px;margin-bottom:16px">
-        <thead><tr style="background:#f0f0f0"><th style="padding:7px 10px;text-align:left;font-size:10px;text-transform:uppercase;letter-spacing:1px;color:#555">State</th><th style="padding:7px 10px;text-align:right;font-size:10px;text-transform:uppercase;letter-spacing:1px;color:#555">Miles</th><th style="padding:7px 10px;text-align:right;font-size:10px;text-transform:uppercase;letter-spacing:1px;color:#555">Gallons Used</th><th style="padding:7px 10px;text-align:right;font-size:10px;text-transform:uppercase;letter-spacing:1px;color:#555">Gallons Purchased</th><th style="padding:7px 10px;text-align:right;font-size:10px;text-transform:uppercase;letter-spacing:1px;color:#555">Tax Rate</th><th style="padding:7px 10px;text-align:right;font-size:10px;text-transform:uppercase;letter-spacing:1px;color:#555">Net Tax</th></tr></thead>
-        <tbody id="iftaReportRows"></tbody>
-        <tfoot><tr style="border-top:2px solid #0088aa"><td style="padding:8px 10px;font-weight:700">TOTAL</td><td style="padding:8px 10px;text-align:right;font-weight:700">12,840</td><td style="padding:8px 10px;text-align:right;font-weight:700">1,605</td><td style="padding:8px 10px;text-align:right;font-weight:700">1,605</td><td style="padding:8px 10px;text-align:right"></td><td style="padding:8px 10px;text-align:right;font-weight:700;color:#0088aa;font-size:16px">$418.20</td></tr></tfoot>
-      </table>
-      <div style="text-align:right;font-size:11px;color:#666">Generated by Deep Trucking LLC TMS &bull; Powered by TCS Fuel + Zeromax ELD data</div>
+      <div id="stmt-content" style="color:#666;font-size:11px;padding:10px 0">Add loads and select a driver to generate pay statement</div>
+      <div style="display:flex;justify-content:space-between;padding:10px 0;border-top:2px solid #111;margin-top:8px;font-size:16px;font-weight:800"><span>NET PAY</span><span style="color:#d4820a;font-family:'Share Tech Mono',monospace" id="stmt-total">$0.00</span></div>
+      <div style="font-size:8px;color:#999;margin-top:8px;font-family:'Share Tech Mono',monospace">Driver signature: _________________  Date: _________</div>
     </div>
-    <div class="br-row" style="margin-top:14px">
-      <button class="ab ab-g" onclick="showToast('Report exported to PDF!')">EXPORT PDF</button>
-      <button class="ab ab-p" onclick="showToast('Report emailed!')">EMAIL TO ACCOUNTANT</button>
-      <button class="ab ab-s" onclick="closeModal('iftaReport')">CLOSE</button>
+    <div class="brow" style="margin-top:12px">
+      <button class="btn btn-p" onclick="toast('Statement emailed to driver!')">EMAIL TO DRIVER</button>
+      <button class="btn btn-sms" onclick="toast('Statement texted!','info')">TEXT TO DRIVER</button>
+      <button class="btn btn-s" onclick="toast('PDF downloaded!')">DOWNLOAD PDF</button>
+      <button class="btn btn-s" onclick="cm('payStmt')">CLOSE</button>
     </div>
   </div>
 </div>
 
-<div class="toast" id="toast"></div>
+<div class="mo" id="modal-iftaRpt">
+  <div class="mbox"><button class="mclose" onclick="cm('iftaRpt')">X</button><div class="mtitle">IFTA Q2 2026 Report</div>
+    <div style="background:#fff;color:#111;padding:20px;font-family:'Exo 2',sans-serif;font-size:12px">
+      <div style="display:flex;justify-content:space-between;margin-bottom:14px">
+        <div><div style="font-size:18px;font-weight:800;letter-spacing:2px">DEEP <span style="color:#d4820a">TRUCKING LLC</span></div><div style="font-size:8px;color:#666;font-family:'Share Tech Mono',monospace">1059 Bramble Dr, Breinigsville PA 18031 &bull; DOT-2088835</div></div>
+        <div style="text-align:right;font-family:'Share Tech Mono',monospace;font-size:9px;color:#666"><div style="font-size:14px;font-weight:700;color:#d4820a">IFTA REPORT</div>Q2 2026 Apr-Jun<br>Due July 31 2026<br>Base State: Pennsylvania</div>
+      </div>
+      <div style="font-size:11px;color:#666;padding:10px 0;text-align:center">Add miles using the IFTA calculator to populate this report</div>
+    </div>
+    <div class="brow" style="margin-top:12px">
+      <button class="btn btn-g" onclick="toast('Report exported!')">EXPORT PDF</button>
+      <button class="btn btn-p" onclick="toast('Emailed to deeptrucking007@gmail.com!')">EMAIL TO MANNY</button>
+      <button class="btn btn-s" onclick="cm('iftaRpt')">CLOSE</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast-el"></div>
 
 <script>
-// ===== DATA =====
-let currentRole = 'dispatcher';
+var drivers=[];
+var loads=[];
+var fuelStops=[];
+var isCount=0;
+var GPS_LOCS=['Allentown PA','Philadelphia PA','Pittsburgh PA','Cleveland OH','Columbus OH','Chicago IL','Indianapolis IN','Nashville TN','Atlanta GA','Newark NJ','Baltimore MD','Charlotte NC','Memphis TN','Louisville KY','Harrisburg PA'];
+var GPS_POS={PA:[12,32],NJ:[20,27],NY:[22,18],OH:[42,24],IL:[68,22],IN:[58,24],MD:[18,37],VA:[20,44],NC:[28,50],GA:[38,58],TX:[50,68],TN:[44,48],KY:[42,38],DE:[20,31]};
 
-const loads = [
-  {id:'LD-1001',broker:'Echo Global',origin:'Chicago, IL',dest:'Philadelphia, PA',miles:760,rate:2280,driver:'Mike Johnson',pickup:'05/14/26',status:'transit'},
-  {id:'LD-1002',broker:'Coyote Logistics',origin:'Atlanta, GA',dest:'Newark, NJ',miles:870,rate:1950,driver:'Carlos Rivera',pickup:'05/14/26',status:'pickup'},
-  {id:'LD-1003',broker:'CH Robinson',origin:'Dallas, TX',dest:'Boston, MA',miles:1620,rate:3100,driver:'Unassigned',pickup:'05/15/26',status:'booked'},
-  {id:'LD-1004',broker:'TQL',origin:'Memphis, TN',dest:'Pittsburgh, PA',miles:710,rate:1680,driver:'James Williams',pickup:'05/15/26',status:'transit'},
-  {id:'LD-1005',broker:'Landstar',origin:'Charlotte, NC',dest:'Philadelphia, PA',miles:480,rate:1200,driver:'Unassigned',pickup:'05/16/26',status:'available'},
-];
+function init(){updateStats();initIF();setInterval(simGPS,20000);}
 
-const drivers = [
-  {id:'DRV-001',name:'Mike Johnson',phone:'(570) 555-0101',cdl:'PA12345678',cdlExp:'06/2027',status:'transit',loads:8,miles:4820,pay:3420},
-  {id:'DRV-002',name:'Carlos Rivera',phone:'(570) 555-0202',cdl:'PA87654321',cdlExp:'11/2026',status:'pickup',loads:6,miles:3640,pay:2580},
-  {id:'DRV-003',name:'James Williams',phone:'(570) 555-0303',cdl:'PA11223344',cdlExp:'03/2028',status:'transit',loads:7,miles:4210,pay:2940},
-];
-
-const fuelData = [
-  {date:'05/14/26',time:'09:14',state:'OH',city:"Love's #0542, Columbus",gal:82,ppg:3.79,total:310.78,truck:'Truck 001',driver:'Mike J.',load:'LD-1001'},
-  {date:'05/13/26',time:'14:22',state:'IN',city:'Pilot #1204, Indianapolis',gal:75,ppg:3.72,total:279.00,truck:'Truck 001',driver:'Mike J.',load:'LD-0998'},
-  {date:'05/12/26',time:'11:05',state:'IL',city:"TA #0887, Chicago",gal:90,ppg:3.85,total:346.50,truck:'Truck 001',driver:'Carlos R.',load:'LD-0995'},
-  {date:'05/11/26',time:'08:30',state:'PA',city:'Sheetz #0412, Allentown',gal:65,ppg:3.94,total:256.10,truck:'Truck 001',driver:'James W.',load:'LD-0990'},
-  {date:'05/10/26',time:'16:45',state:'NJ',city:'Wawa #0231, Newark',gal:58,ppg:3.88,total:225.04,truck:'Truck 001',driver:'Mike J.',load:'LD-0988'},
-];
-
-const iftaData = [
-  {state:'PA',miles:3820,gallons:477,taxRate:0.576,purchased:420},
-  {state:'OH',miles:2100,gallons:262,taxRate:0.460,purchased:280},
-  {state:'NJ',miles:980,gallons:122,taxRate:0.418,purchased:90},
-  {state:'NY',miles:760,gallons:95,taxRate:0.440,purchased:75},
-  {state:'IL',miles:1560,gallons:195,taxRate:0.455,purchased:200},
-  {state:'IN',miles:980,gallons:122,taxRate:0.530,purchased:120},
-  {state:'DE',miles:640,gallons:80,taxRate:0.230,purchased:65},
-];
-
-const invoices = [
-  {num:'INV-0011',broker:'Echo Global',load:'LD-0998',amount:2280,date:'05/13/26',due:'05/27/26',status:'paid',factored:true},
-  {num:'INV-0010',broker:'Coyote',load:'LD-0995',amount:1950,date:'05/12/26',due:'05/26/26',status:'paid',factored:true},
-  {num:'INV-0009',broker:'CH Robinson',load:'LD-0990',amount:3100,date:'05/11/26',due:'05/25/26',status:'pending',factored:true},
-  {num:'INV-0008',broker:'TQL',load:'LD-0985',amount:1680,date:'05/10/26',due:'05/24/26',status:'pending',factored:false},
-  {num:'INV-0007',broker:'Landstar',load:'LD-0980',amount:2280,date:'05/05/26',due:'05/19/26',status:'overdue',factored:false},
-];
-
-// ===== LOGIN =====
-let loginTab = 'dispatcher';
-function setTab(t, el) {
-  loginTab = t;
-  document.querySelectorAll('.ltab').forEach(x=>x.classList.remove('active'));
-  el.classList.add('active');
-  document.getElementById('didField').style.display = t==='driver'?'block':'none';
+function updateStats(){
+  document.getElementById('s-loads').textContent=loads.length;
+  document.getElementById('s-drv').textContent=drivers.length;
+  document.getElementById('s-gps').textContent=drivers.filter(function(d){return d.gps;}).length;
+  var rev=loads.reduce(function(s,l){return s+(l.rate||0);},0);
+  document.getElementById('s-rev').textContent='$'+rev.toLocaleString();
 }
 
-function doLogin() {
-  currentRole = loginTab;
-  document.getElementById('loginScreen').style.display = 'none';
-  document.getElementById('topbar').style.display = 'flex';
-  document.getElementById('mainArea').style.display = 'flex';
-  document.getElementById('uchip').textContent = loginTab === 'driver' ? 'DRIVER' : 'ADMIN';
-  buildNav();
+function dayB(d){
+  if(d<=30)return'<span class="b br2">'+d+' days</span>';
+  if(d<=60)return'<span class="b by">'+d+' days</span>';
+  return'<span class="b bg">'+d+' days</span>';
+}
+function dBadge(s){
+  var m={transit:'<span class="b bb">In Transit</span>',pickup:'<span class="b by">At Pickup</span>',delivered:'<span class="b bg">Delivered</span>',booked:'<span class="b bo">Booked</span>',available:'<span class="b bg">Available</span>'};
+  return m[s]||'<span class="b bg">'+s+'</span>';
+}
+
+function saveDriver(){
+  var name=document.getElementById('nd-name').value.trim();
+  if(!name){toast('Enter driver name!','err');return;}
+  var phone=document.getElementById('nd-phone').value.trim();
+  var cdl=document.getElementById('nd-cdl').value.trim();
+  var cdlExp=document.getElementById('nd-cdlexp').value;
+  var medExp=document.getElementById('nd-medexp').value;
+  var id='DRV-00'+(drivers.length+1);
+  var now=new Date();
+  var cdlDate=cdlExp?new Date(cdlExp):new Date(now.getTime()+400*24*60*60*1000);
+  var cdlDays=Math.max(0,Math.floor((cdlDate-now)/(1000*60*60*24)));
+  var medDate=medExp?new Date(medExp):new Date(now.getTime()+400*24*60*60*1000);
+  var medDays=Math.max(0,Math.floor((medDate-now)/(1000*60*60*24)));
+  var loc=GPS_LOCS[Math.floor(Math.random()*GPS_LOCS.length)];
+  var locState=loc.split(' ').pop();
+  drivers.push({id:id,name:name,phone:phone||'Not set',cdl:cdl||'Not set',cdlExp:cdlExp||'Not set',medExp:medExp||'Not set',cdlDays:cdlDays,medDays:medDays,status:'available',loads:0,miles:0,pay:0,gps:true,loc:loc,locState:locState,speed:0,heading:'N',updated:'Just now'});
   renderAll();
+  toast(name+' added! GPS tracking active.');
+  cm('addDriver');
+  document.getElementById('nd-name').value='';
+  document.getElementById('nd-phone').value='';
+  document.getElementById('nd-cdl').value='';
+  document.getElementById('nd-cdlexp').value='';
+  document.getElementById('nd-medexp').value='';
+  document.getElementById('nd-hire').value='';
+  document.getElementById('nd-addr').value='';
+  document.getElementById('nd-emg').value='';
+  document.getElementById('nd-notes').value='';
 }
 
-function doLogout() {
-  document.getElementById('loginScreen').style.display = 'flex';
-  document.getElementById('topbar').style.display = 'none';
-  document.getElementById('mainArea').style.display = 'none';
+function saveLoad(){
+  var broker=document.getElementById('nl-broker').value.trim();
+  var origin=document.getElementById('nl-origin').value.trim();
+  var rate=parseFloat(document.getElementById('nl-rate').value)||0;
+  if(!broker||!origin){toast('Fill in broker and origin!','err');return;}
+  var id=document.getElementById('nl-num').value.trim()||('LD-'+(1001+loads.length));
+  var dEl=document.getElementById('nl-driver');
+  var dName=dEl&&dEl.selectedIndex>0?dEl.options[dEl.selectedIndex].text:'';
+  if(dName==='Unassigned')dName='';
+  loads.push({id:id,broker:broker,origin:origin,dest:document.getElementById('nl-dest').value,paddr:document.getElementById('nl-paddr').value,daddr:document.getElementById('nl-daddr').value,miles:parseInt(document.getElementById('nl-miles').value)||0,rate:rate,weight:parseInt(document.getElementById('nl-weight').value)||0,commodity:document.getElementById('nl-commodity').value,punum:document.getElementById('nl-punum').value,bol:document.getElementById('nl-bol').value,po:document.getElementById('nl-po').value,driver:dName,ptime:document.getElementById('nl-ptime').value,dtime:document.getElementById('nl-dtime').value,special:document.getElementById('nl-special').value,status:'booked'});
+  renderAll();
+  toast('Load '+id+' saved!');
+  cm('addLoad');
 }
 
-// ===== NAV =====
-const dispatcherPages = ['dashboard','loads','dispatch','drivers','fuel','ifta','documents','invoices','driverapp'];
-const dispatcherLabels = ['Dashboard','Loads','Dispatch','Drivers','TCS Fuel','IFTA','Documents','Invoices','Driver App'];
-
-function buildNav() {
-  const nav = document.getElementById('tbNav');
-  nav.innerHTML = '';
-  dispatcherPages.forEach((p,i) => {
-    const b = document.createElement('button');
-    b.className = 'nbtn' + (i===0?' active':'');
-    b.textContent = dispatcherLabels[i];
-    b.onclick = () => showView(p, b);
-    nav.appendChild(b);
-  });
+function saveFuel(){
+  var gal=parseFloat(document.getElementById('f-gal').value)||0;
+  var ppg=parseFloat(document.getElementById('f-ppg').value)||0;
+  if(!gal||!ppg){toast('Enter gallons and price!','err');return;}
+  fuelStops.push({date:document.getElementById('f-date').value||'Today',state:document.getElementById('f-state').value,station:document.getElementById('f-station').value||'Unknown',gal:gal,ppg:ppg,total:(gal*ppg).toFixed(2),driver:document.getElementById('f-drv').options[document.getElementById('f-drv').selectedIndex]?.text||'',load:document.getElementById('f-load').value||''});
+  renderFuel();
+  toast('Fuel stop saved and synced to IFTA!');
+  cm('addFuel');
 }
 
-function showView(id, btn) {
-  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
-  document.querySelectorAll('.nbtn').forEach(b=>b.classList.remove('active'));
-  const v = document.getElementById('view-'+id);
-  if(v) v.classList.add('active');
-  if(btn) btn.classList.add('active');
+function renderAll(){
+  updateStats();
+  renderDriversTable();
+  renderLoadsTable();
+  renderPayroll();
+  renderPerfCards();
+  renderGPS();
+  renderMaintDocs();
+  renderFuel();
+  populateSelects();
 }
 
-// ===== RENDER =====
-function renderAll() {
-  renderDash(); renderLoads(); renderDrivers(); renderFuel(); renderIfta(); renderInvoices(); renderIftaReport();
-}
-
-function statusBadge(s) {
-  const map = {transit:'<span class="b bb">In Transit</span>',pickup:'<span class="b by">At Pickup</span>',delivered:'<span class="b bg">Delivered</span>',booked:'<span class="b bp">Booked</span>',available:'<span class="b bo">Available</span>'};
-  return map[s]||s;
-}
-function driverStatusBadge(s) {
-  const map = {transit:'<span class="b bb">In Transit</span>',pickup:'<span class="b by">At Pickup</span>',available:'<span class="b bg">Available</span>',off:'<span class="b br">Off Duty</span>'};
-  return map[s]||s;
-}
-
-function renderDash() {
-  const dl = document.getElementById('dashLoads');
-  dl.innerHTML = loads.slice(0,5).map(l=>`<tr><td><b>${l.id}</b></td><td>${l.origin}</td><td>${l.dest}</td><td>${l.driver}</td><td>${l.miles}</td><td style="color:var(--green)">$${l.rate.toLocaleString()}</td><td>${statusBadge(l.status)}</td></tr>`).join('');
-
-  const dd = document.getElementById('dashDrivers');
-  dd.innerHTML = drivers.map(d=>`<tr><td>${d.name}</td><td>${driverStatusBadge(d.status)}</td><td style="color:var(--yellow)">${d.miles} mi</td></tr>`).join('');
-
-  const df = document.getElementById('dashFuel');
-  df.innerHTML = fuelData.slice(0,3).map(f=>`<tr><td>${f.date}</td><td>${f.city}</td><td>${f.state}</td><td>${f.gal}</td><td>$${f.ppg}</td><td style="color:var(--accent2)">$${f.total.toFixed(2)}</td><td>${f.truck}</td></tr>`).join('');
-
-  const ib = document.getElementById('iftaBar');
-  ib.innerHTML = iftaData.map(s=>{
-    const pct = Math.round((s.miles/12840)*100);
-    return `<div style="display:flex;align-items:center;gap:8px;margin-bottom:5px">
-      <div style="width:24px;font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--muted)">${s.state}</div>
-      <div style="flex:1"><div class="ifta-bar"><div class="ifta-fill" style="width:${pct}%"></div></div></div>
-      <div style="width:50px;text-align:right;font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--text)">${s.miles.toLocaleString()}</div>
-    </div>`;
+function renderDriversTable(){
+  var t=document.getElementById('drivers-table');
+  if(!drivers.length){t.innerHTML='<tr><td colspan="13" class="empty-msg">No drivers yet - click ADD DRIVER to get started</td></tr>';return;}
+  t.innerHTML=drivers.map(function(d){
+    return'<tr><td><span class="b bb">'+d.id+'</span></td><td><b>'+d.name+'</b></td><td>'+d.phone+'</td><td>'+d.cdl+'</td><td>'+dayB(d.cdlDays)+' '+d.cdlExp+'</td><td>'+d.medExp+'</td><td><span class="b bg" style="font-size:7px">&#128205; LIVE</span></td><td style="font-family:\'Share Tech Mono\',monospace;font-size:9px;color:var(--a2)">'+d.loc+'</td><td>'+dBadge(d.status)+'</td><td>'+d.loads+'</td><td style="color:var(--gn)">$'+d.pay.toLocaleString()+'</td><td><button class="btn btn-s" style="font-size:9px;padding:2px 7px" onclick="openPerms(\''+d.id+'\')">PERMS</button></td><td><div class="brow"><button class="btn btn-s" style="font-size:9px;padding:2px 7px" onclick="editD(\''+d.id+'\')">EDIT</button><button class="btn btn-r" style="font-size:9px;padding:2px 7px" onclick="delD(\''+d.id+'\')">DEL</button></div></td></tr>';
   }).join('');
+  var db=document.getElementById('db-drivers');
+  if(db) db.innerHTML=drivers.map(function(d){return'<tr><td>'+d.name+'</td><td><span class="b bg" style="font-size:7px">&#128205; '+d.loc+'</span></td><td>'+dBadge(d.status)+'</td></tr>';}).join('');
 }
 
-function renderLoads() {
-  const t = document.getElementById('loadsTable');
-  t.innerHTML = loads.map(l=>`<tr>
-    <td><b style="color:var(--accent)">${l.id}</b></td>
-    <td>${l.broker}</td><td>${l.origin}</td><td>${l.dest}</td>
-    <td>${l.miles}</td>
-    <td style="color:var(--green)">$${l.rate.toLocaleString()}</td>
-    <td style="color:var(--yellow)">$${(l.rate/l.miles).toFixed(2)}</td>
-    <td>${l.driver}</td><td>${l.pickup}</td>
-    <td>${statusBadge(l.status)}</td>
-    <td><div class="br-row"><button class="ab ab-s" style="padding:2px 8px;font-size:10px" onclick="showToast('Load ${l.id} opened!')">EDIT</button><button class="ab ab-p" style="padding:2px 8px;font-size:10px" onclick="showToast('Dispatched!')">DISPATCH</button></div></td>
-  </tr>`).join('');
+function editD(id){
+  var d=drivers.find(function(x){return x.id===id;});
+  if(!d)return;
+  document.getElementById('nd-name').value=d.name;
+  document.getElementById('nd-phone').value=d.phone;
+  document.getElementById('nd-cdl').value=d.cdl;
+  openM('addDriver');
 }
 
-function renderDrivers() {
-  const t = document.getElementById('driversTable');
-  t.innerHTML = drivers.map(d=>`<tr>
-    <td><span class="b bb">${d.id}</span></td>
-    <td><b>${d.name}</b></td><td>${d.phone}</td><td>${d.cdl}</td><td>${d.cdlExp}</td>
-    <td>${driverStatusBadge(d.status)}</td>
-    <td>${d.loads}</td>
-    <td>${d.miles.toLocaleString()}</td>
-    <td style="color:var(--green)">$${d.pay.toLocaleString()}</td>
-    <td><button class="ab ab-s" style="padding:2px 8px;font-size:10px" onclick="showToast('Driver profile opened!')">VIEW</button></td>
-  </tr>`).join('');
+function delD(id){
+  if(!confirm('Delete this driver?'))return;
+  drivers=drivers.filter(function(d){return d.id!==id;});
+  renderAll();
+  toast('Driver removed','warn');
 }
 
-function renderFuel() {
-  const t = document.getElementById('fuelTable');
-  t.innerHTML = fuelData.map(f=>`<tr>
-    <td>${f.date}</td><td>${f.time}</td>
-    <td><b>${f.state}</b></td><td>${f.city}</td>
-    <td>${f.gal}</td><td>$${f.ppg}</td>
-    <td style="color:var(--accent2)">$${f.total.toFixed(2)}</td>
-    <td>${f.truck}</td><td>${f.driver}</td><td>${f.load}</td>
-  </tr>`).join('');
-
-  // by state
-  const byState = {};
-  fuelData.forEach(f=>{
-    if(!byState[f.state]) byState[f.state]={stops:0,gal:0,total:0};
-    byState[f.state].stops++; byState[f.state].gal+=f.gal; byState[f.state].total+=f.total;
-  });
-  const t2 = document.getElementById('fuelByState');
-  t2.innerHTML = Object.entries(byState).map(([s,d])=>`<tr>
-    <td><b>${s}</b></td><td>${d.stops}</td>
-    <td>${d.gal.toFixed(1)}</td>
-    <td style="color:var(--accent2)">$${d.total.toFixed(2)}</td>
-    <td>$${(d.total/d.gal).toFixed(3)}</td>
-  </tr>`).join('');
-}
-
-function renderIfta() {
-  const t = document.getElementById('iftaTable');
-  t.innerHTML = iftaData.map(s=>{
-    const tax = ((s.gallons - s.purchased) * s.taxRate).toFixed(2);
-    const pct = Math.round((s.miles/12840)*100);
-    return `<tr>
-      <td><b>${s.state}</b></td>
-      <td>${s.miles.toLocaleString()}<div class="ifta-bar" style="margin-top:4px"><div class="ifta-fill" style="width:${pct}%"></div></div></td>
-      <td>${pct}%</td><td>${s.gallons}</td>
-      <td>$${s.taxRate.toFixed(3)}</td>
-      <td style="color:${parseFloat(tax)>0?'var(--red)':'var(--green)'}">${parseFloat(tax)>0?'+$'+tax:'-$'+Math.abs(tax)}</td>
-      <td><span class="b bg" style="font-size:7px">Zeromax+TCS</span></td>
-    </tr>`;
-  }).join('');
-}
-
-function renderInvoices() {
-  const t = document.getElementById('invoicesTable');
-  const smap = {paid:'<span class="b bg">Paid</span>',pending:'<span class="b by">Pending</span>',overdue:'<span class="b br">Overdue</span>'};
-  t.innerHTML = invoices.map(i=>{
-    const fee = i.factored?(i.amount*0.015).toFixed(2):'0.00';
-    const net = (i.amount - parseFloat(fee)).toFixed(2);
-    return `<tr>
-      <td><b style="color:var(--accent)">${i.num}</b></td>
-      <td>${i.broker}</td><td>${i.load}</td>
-      <td style="color:var(--green)">$${i.amount.toLocaleString()}</td>
-      <td style="color:var(--accent2)">${i.factored?'$'+fee:'—'}</td>
-      <td>$${parseFloat(net).toLocaleString()}</td>
-      <td>${i.date}</td><td>${i.due}</td>
-      <td>${smap[i.status]}</td>
-      <td><div class="br-row"><button class="ab ab-s" style="padding:2px 8px;font-size:10px" onclick="showToast('Invoice opened!')">VIEW</button>${i.status==='pending'?'<button class="ab ab-g" style="padding:2px 8px;font-size:10px" onclick="showToast(\'Marked paid!\')">PAID</button>':''}</div></td>
-    </tr>`;
-  }).join('');
-}
-
-function renderIftaReport() {
-  const t = document.getElementById('iftaReportRows');
-  if(!t) return;
-  t.innerHTML = iftaData.map(s=>{
-    const tax = ((s.gallons - s.purchased) * s.taxRate).toFixed(2);
-    return `<tr style="border-bottom:1px solid #eee">
-      <td style="padding:6px 10px">${s.state}</td>
-      <td style="padding:6px 10px;text-align:right">${s.miles.toLocaleString()}</td>
-      <td style="padding:6px 10px;text-align:right">${s.gallons}</td>
-      <td style="padding:6px 10px;text-align:right">${s.purchased}</td>
-      <td style="padding:6px 10px;text-align:right">$${s.taxRate.toFixed(3)}</td>
-      <td style="padding:6px 10px;text-align:right;color:${parseFloat(tax)>0?'#cc2244':'#118844'};font-weight:600">${parseFloat(tax)>0?'+$'+tax:'($'+Math.abs(tax)+')'}</td>
-    </tr>`;
-  }).join('');
-}
-
-// ===== ACTIONS =====
-function addLoad() {
-  showToast('New load saved successfully!');
-  closeModal('addLoad');
-}
-
-function addDriver() {
-  showToast('Driver added successfully!');
-  closeModal('addDriver');
-}
-
-function addFuel() {
-  const gal = parseFloat(document.getElementById('fGal').value)||0;
-  const ppg = parseFloat(document.getElementById('fPpg').value)||0;
-  document.getElementById('fTotal').value = '$'+(gal*ppg).toFixed(2);
-  showToast('Fuel stop logged & synced to IFTA!');
-  closeModal('addFuel');
-}
-
-function addInvoice() {
-  showToast('Invoice created & sent to Apex!');
-  closeModal('addInvoice');
-}
-
-function addIftaMiles() {
-  const st = document.getElementById('iftaState').value;
-  const mi = document.getElementById('iftaMiles').value;
-  if(!mi) { showToast('Enter miles first!'); return; }
-  showToast(`${mi} miles added for ${st}!`);
-}
-
-// ===== MODAL =====
-function openModal(id) { document.getElementById('modal-'+id).classList.add('show'); }
-function closeModal(id) { document.getElementById('modal-'+id).classList.remove('show'); }
-document.querySelectorAll('.mo').forEach(m => m.addEventListener('click', e => { if(e.target===m) m.classList.remove('show'); }));
-
-// auto-calc fuel total
-document.addEventListener('input', e => {
-  if(e.target.id==='fGal'||e.target.id==='fPpg') {
-    const g = parseFloat(document.getElementById('fGal').value)||0;
-    const p = parseFloat(document.getElementById('fPpg').value)||0;
-    if(g&&p) document.getElementById('fTotal').value = '$'+(g*p).toFixed(2);
+function renderLoadsTable(){
+  var t=document.getElementById('loads-table');
+  if(!loads.length){
+    t.innerHTML='<tr><td colspan="13" class="empty-msg">No loads yet</td></tr>';
+    var db=document.getElementById('db-loads');
+    if(db)db.innerHTML='<tr><td colspan="7" class="empty-msg">No loads yet - scan a rate confirmation or add manually</td></tr>';
+    return;
   }
-});
+  t.innerHTML=loads.map(function(l){
+    var rpm=l.miles>0?'$'+(l.rate/l.miles).toFixed(2):'$0.00';
+    return'<tr><td><b style="color:var(--a2)">'+l.id+'</b></td><td>'+l.broker+'</td><td>'+l.origin+'</td><td>'+l.dest+'</td><td>'+l.miles+'</td><td style="color:var(--gn)">$'+l.rate.toLocaleString()+'</td><td style="color:var(--yw)">'+rpm+'</td><td>'+(l.weight||'-')+' lbs</td><td>'+(l.commodity||'-')+'</td><td>'+(l.driver||'Unassigned')+'</td><td>'+(l.driver?'<span class="b bg" style="font-size:7px">&#128205; ON</span>':'<span class="b br2" style="font-size:7px">NO DRIVER</span>')+'</td><td>'+dBadge(l.status)+'</td><td><div class="brow"><button class="btn btn-s" style="font-size:9px;padding:2px 7px" onclick="editL(\''+l.id+'\')">EDIT</button><button class="btn btn-p" style="font-size:9px;padding:2px 7px" onclick="toast(\''+l.id+' dispatched!\')">DISPATCH</button></div></td></tr>';
+  }).join('');
+  var db=document.getElementById('db-loads');
+  if(db) db.innerHTML=loads.slice(0,5).map(function(l){return'<tr><td><b style="color:var(--a2)">'+l.id+'</b></td><td>'+l.origin+'</td><td>'+l.dest+'</td><td>'+(l.driver||'Unassigned')+'</td><td>'+(l.driver?'<span class="b bg" style="font-size:7px">&#128205; GPS</span>':'-')+'</td><td style="color:var(--gn)">$'+l.rate.toLocaleString()+'</td><td>'+dBadge(l.status)+'</td></tr>';}).join('');
+  var dg=document.getElementById('dispatch-gps');
+  if(dg){
+    var active=loads.filter(function(l){return l.status==='transit'||l.status==='booked';});
+    dg.innerHTML=active.length?active.map(function(l){return'<tr><td>'+l.id+'</td><td>'+(l.driver||'Unassigned')+'</td><td style="color:var(--a2);font-size:9px">&#128205; '+GPS_LOCS[Math.floor(Math.random()*GPS_LOCS.length)]+'</td><td>'+dBadge(l.status)+'</td></tr>';}).join(''):'<tr><td colspan="4" class="empty-msg">No active loads</td></tr>';
+  }
+}
 
-// ===== DRIVER APP =====
-function switchDS(id) {
-  document.querySelectorAll('.dscreen').forEach(s=>s.classList.remove('active'));
-  document.querySelectorAll('.dnb').forEach(b=>b.classList.remove('active'));
+function editL(id){
+  var l=loads.find(function(x){return x.id===id;});
+  if(!l)return;
+  document.getElementById('nl-broker').value=l.broker;
+  document.getElementById('nl-num').value=l.id;
+  document.getElementById('nl-origin').value=l.origin;
+  document.getElementById('nl-dest').value=l.dest;
+  document.getElementById('nl-rate').value=l.rate;
+  document.getElementById('nl-miles').value=l.miles;
+  document.getElementById('nl-weight').value=l.weight||'';
+  document.getElementById('nl-commodity').value=l.commodity||'';
+  document.getElementById('nl-punum').value=l.punum||'';
+  document.getElementById('nl-bol').value=l.bol||'';
+  document.getElementById('nl-po').value=l.po||'';
+  document.getElementById('nl-special').value=l.special||'';
+  openM('addLoad');
+}
+
+function renderPayroll(){
+  var t=document.getElementById('payroll-table');
+  if(!drivers.length){t.innerHTML='<tr><td colspan="11" class="empty-msg">Add drivers and loads to see payroll</td></tr>';return;}
+  t.innerHTML=drivers.map(function(d){
+    return'<tr><td><b>'+d.name+'</b></td><td>'+d.loads+'</td><td style="color:var(--gn)">$'+d.pay.toLocaleString()+'</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td style="color:var(--ac)"><b>$'+d.pay.toLocaleString()+'</b></td><td><div class="brow"><button class="btn btn-s" style="font-size:9px;padding:2px 7px" onclick="openM(\'payStmt\')">STATEMENT</button><button class="btn btn-p" style="font-size:9px;padding:2px 7px" onclick="toast(\'Sent to '+d.name+'!\')">SEND</button></div></td></tr>';
+  }).join('');
+}
+
+function renderPerfCards(){
+  var c=document.getElementById('perf-cards');
+  var pt=document.getElementById('perf-table');
+  if(!drivers.length){
+    c.innerHTML='<div class="tp" style="grid-column:1/-1" ><div class="empty-msg" style="padding:20px">Add drivers and complete loads to see performance analytics</div></div>';
+    if(pt)pt.innerHTML='<tr><td colspan="11" class="empty-msg">No data yet</td></tr>';
+    return;
+  }
+  var cls=['top','mid','low'];
+  var colors=['var(--gn)','var(--yw)','var(--rd)'];
+  c.innerHTML=drivers.map(function(d,i){
+    var ci=Math.min(i,2);
+    var grade=i===0?'A':i===1?'B':'C';
+    var score=90-i*10;
+    return'<div class="tp" style="border-top:2px solid '+colors[ci]+';border:1px solid var(--bd)"><div style="font-family:\'Rajdhani\',sans-serif;font-size:14px;font-weight:700;color:var(--wh);margin-bottom:8px;display:flex;justify-content:space-between;align-items:center">'+d.name+' <span class="b '+(i===0?'bg':i===1?'by':'br2')+'">Grade '+grade+'</span></div><div style="font-family:\'Rajdhani\',sans-serif;font-size:28px;font-weight:700;text-align:center;margin:8px 0;color:'+colors[ci]+'">'+score+'<span style="font-size:13px;color:var(--mt)">/100</span></div><div style="display:flex;justify-content:space-between;font-size:10px;padding:3px 0;border-bottom:1px solid rgba(24,32,48,.4)"><span style="color:var(--mt);font-family:\'Share Tech Mono\',monospace;font-size:8px">Loads</span><span style="color:var(--wh);font-weight:600">'+d.loads+'</span></div><div style="display:flex;justify-content:space-between;font-size:10px;padding:3px 0;border-bottom:1px solid rgba(24,32,48,.4)"><span style="color:var(--mt);font-family:\'Share Tech Mono\',monospace;font-size:8px">Miles</span><span style="color:var(--wh);font-weight:600">'+d.miles.toLocaleString()+'</span></div><div style="display:flex;justify-content:space-between;font-size:10px;padding:3px 0"><span style="color:var(--mt);font-family:\'Share Tech Mono\',monospace;font-size:8px">GPS Active</span><span style="color:var(--gn);font-weight:600">YES Always On</span></div></div>';
+  }).join('');
+  if(pt) pt.innerHTML=drivers.map(function(d,i){
+    var grade=i===0?'A':i===1?'B':'C';
+    return'<tr><td><b>'+d.name+'</b></td><td>'+d.loads+'</td><td>'+d.miles.toLocaleString()+'</td><td style="color:var(--gn)">$'+d.pay.toLocaleString()+'</td><td>8.0</td><td>95%</td><td style="color:var(--gn)">0</td><td>0</td><td><span class="b bg" style="font-size:7px">&#128205; LIVE</span></td><td><b>'+(90-i*10)+'</b></td><td><span class="b '+(i===0?'bg':i===1?'by':'br2')+'">Grade '+grade+'</span></td></tr>';
+  }).join('');
+}
+
+function renderGPS(){
+  var t=document.getElementById('gps-table');
+  if(!t)return;
+  if(!drivers.length){t.innerHTML='<tr><td colspan="8" class="empty-msg">Add drivers to see GPS tracking</td></tr>';renderMap();return;}
+  t.innerHTML=drivers.map(function(d){
+    return'<tr><td><b>'+d.name+'</b></td><td style="color:var(--a2);font-family:\'Share Tech Mono\',monospace;font-size:9px">&#128205; '+d.loc+'</td><td><b>'+d.locState+'</b></td><td>'+d.speed+' mph</td><td>'+(d.loads>0?'LD-100'+d.loads:'None')+'</td><td><span class="b bg" style="font-size:7px">&#128205; LIVE CANNOT DISABLE</span></td><td style="font-family:\'Share Tech Mono\',monospace;font-size:9px;color:var(--mt)">'+d.updated+'</td><td><button class="btn btn-b" style="font-size:9px;padding:2px 7px" onclick="showHist(\''+d.id+'\')">HISTORY</button></td></tr>';
+  }).join('');
+  var hs=document.getElementById('hist-drv');
+  if(hs) hs.innerHTML='<option value="">Select driver</option>'+drivers.map(function(d){return'<option value="'+d.id+'">'+d.name+'</option>';}).join('');
+  renderMap();
+}
+
+function renderMap(){
+  var wrap=document.getElementById('mapWrap');
+  if(!wrap)return;
+  wrap.querySelectorAll('.map-dot').forEach(function(e){e.remove();});
+  var ww=wrap.offsetWidth||900;
+  var wh=wrap.offsetHeight||300;
+  drivers.forEach(function(d,i){
+    var st=d.locState.toUpperCase();
+    var pos=GPS_POS[st]||[15+i*12,30];
+    var x=(pos[0]/100)*ww+(i*15-5);
+    var y=(pos[1]/100)*wh+(i*10-5);
+    var color=d.status==='transit'?'var(--gn)':d.status==='pickup'?'var(--yw)':'var(--rd)';
+    var dot=document.createElement('div');
+    dot.className='map-dot';
+    dot.style.cssText='left:'+x+'px;top:'+y+'px;background:'+color+';color:'+color+';';
+    dot.title=d.name+' - '+d.loc;
+    dot.innerHTML='&#128652;';
+    dot.onclick=function(){toast(d.name+' at '+d.loc+' doing '+d.speed+' mph','info');};
+    wrap.appendChild(dot);
+  });
+  var mt=document.getElementById('map-time');
+  if(mt) mt.textContent='Updated '+new Date().toLocaleTimeString();
+}
+
+function showHist(id){
+  var d=drivers.find(function(x){return x.id===id;});
+  var t=document.getElementById('hist-body');
+  if(!d||!t)return;
+  var times=['06:00','07:30','09:00','10:30','12:00','13:30','15:00','16:30'];
+  t.innerHTML=times.map(function(tm,i){
+    return'<tr><td style="font-family:\'Share Tech Mono\',monospace">'+tm+'</td><td style="color:var(--a2)">'+GPS_LOCS[i%GPS_LOCS.length]+'</td><td>'+GPS_LOCS[i%GPS_LOCS.length].split(' ').pop()+'</td><td>'+(Math.floor(Math.random()*20+50))+' mph</td><td style="font-family:\'Share Tech Mono\',monospace;font-size:9px;color:var(--mt)">'+(i===0?'Departed yard':i===times.length-1?'Arrived':i%3===0?'Fuel stop':'En route')+'</td></tr>';
+  }).join('');
+}
+
+function simGPS(){
+  drivers.forEach(function(d){
+    var nl=GPS_LOCS[Math.floor(Math.random()*GPS_LOCS.length)];
+    d.loc=nl;d.locState=nl.split(' ').pop();
+    d.speed=Math.floor(Math.random()*20+52);
+    d.heading=['N','NE','E','SE','S','SW','W','NW'][Math.floor(Math.random()*8)];
+    d.updated='Just now';
+  });
+  renderGPS();
+  var db=document.getElementById('db-drivers');
+  if(db&&drivers.length) db.innerHTML=drivers.map(function(d){return'<tr><td>'+d.name+'</td><td><span class="b bg" style="font-size:7px">&#128205; '+d.loc+'</span></td><td>'+dBadge(d.status)+'</td></tr>';}).join('');
+}
+
+function refreshGPS(){simGPS();toast('Map refreshed!','info');}
+
+function renderMaintDocs(){
+  var t=document.getElementById('maint-docs');
+  if(!t)return;
+  if(!drivers.length){t.innerHTML='<tr><td colspan="6" class="empty-msg">Add drivers to track their documents</td></tr>';return;}
+  t.innerHTML=drivers.map(function(d){
+    return'<tr><td>'+d.name+'</td><td>CDL License</td><td>'+d.cdlExp+'</td><td>'+dayB(d.cdlDays)+'</td><td><span class="b '+(d.cdlDays<=30?'br2':'bg')+'">'+(d.cdlDays<=30?'Critical':'Valid')+'</span></td><td>'+(d.cdlDays<=30?'Sent':'-')+'</td></tr>'+
+    '<tr><td>'+d.name+'</td><td>Medical Card</td><td>'+d.medExp+'</td><td>'+dayB(d.medDays)+'</td><td><span class="b '+(d.medDays<=30?'br2':'bg')+'">'+(d.medDays<=30?'Critical':'Valid')+'</span></td><td>'+(d.medDays<=30?'Sent':'-')+'</td></tr>';
+  }).join('');
+}
+
+function renderFuel(){
+  var t=document.getElementById('fuel-table');
+  if(!t)return;
+  if(!fuelStops.length){t.innerHTML='<tr><td colspan="8" class="empty-msg">No fuel stops yet</td></tr>';return;}
+  t.innerHTML=fuelStops.map(function(f){
+    return'<tr><td>'+f.date+'</td><td><b>'+f.state+'</b></td><td>'+f.station+'</td><td>'+f.gal+'</td><td>$'+f.ppg+'</td><td style="color:var(--a2)">$'+f.total+'</td><td>'+f.driver+'</td><td>'+f.load+'</td></tr>';
+  }).join('');
+}
+
+function populateSelects(){
+  var opts=drivers.map(function(d){return'<option value="'+d.id+'">'+d.name+'</option>';}).join('');
+  var none='<option value="">No drivers yet</option>';
+  ['d-driver','msg-driver','pay-driver','f-drv','perm-drv','doc-drv'].forEach(function(id){
+    var el=document.getElementById(id);
+    if(el) el.innerHTML=none+opts;
+  });
+  var nl=document.getElementById('nl-driver');
+  if(nl) nl.innerHTML='<option value="">Unassigned</option>'+opts;
+  var dl=document.getElementById('d-load');
+  if(dl) dl.innerHTML=loads.length?loads.map(function(l){return'<option value="'+l.id+'">'+l.id+' | '+l.origin+' to '+l.dest+' | $'+l.rate.toLocaleString()+'</option>';}).join(''):'<option>No loads yet</option>';
+  var ls=document.getElementById('log-sel');
+  if(ls) ls.innerHTML=drivers.length?opts:'<option>No drivers yet</option>';
+  var hs=document.getElementById('hist-drv');
+  if(hs) hs.innerHTML='<option value="">Select driver</option>'+opts;
+}
+
+function openPerms(id){
+  document.getElementById('perm-drv').value=id;
+  loadPerms(id);
+  sv('driverapp',document.querySelectorAll('.nb')[15]);
+}
+function loadPerms(id){document.getElementById('perm-panel').style.display=id?'block':'none';}
+function savePerms(){
+  var id=document.getElementById('perm-drv').value;
+  if(!id){toast('Select a driver first!','err');return;}
+  var d=drivers.find(function(x){return x.id===id;});
+  toast('Permissions saved for '+(d?d.name:'driver')+'!');
+}
+
+function handleDrop(e){
+  e.preventDefault();
+  if(e.dataTransfer.files[0])simRC();
+}
+function scanRC(input){if(input.files[0])simRC();}
+function simRC(){
+  toast('Scanning rate confirmation...','info');
+  setTimeout(function(){
+    document.getElementById('rc-broker').textContent='Echo Global Logistics';
+    document.getElementById('rc-bphone').textContent='800-354-7993';
+    document.getElementById('rc-bemail').textContent='dispatch@echo.com';
+    document.getElementById('rc-lnum').textContent='EGL-'+Math.floor(Math.random()*90000+10000);
+    document.getElementById('rc-paddr').textContent='1200 Commerce Pkwy, Chicago IL 60601';
+    document.getElementById('rc-ptime').textContent='05/17/2026 07:00 AM';
+    document.getElementById('rc-pnum').textContent='PU-'+Math.floor(Math.random()*90000+10000);
+    document.getElementById('rc-daddr').textContent='450 Distribution Dr, Philadelphia PA 19103';
+    document.getElementById('rc-dtime').textContent='05/18/2026 05:00 PM';
+    document.getElementById('rc-bol').textContent='BOL-'+Math.floor(Math.random()*90000+10000);
+    document.getElementById('rc-po').textContent='PO-'+Math.floor(Math.random()*90000+10000);
+    document.getElementById('rc-commodity').textContent='General Freight / Dry Goods';
+    document.getElementById('rc-weight').textContent='42,000 lbs';
+    document.getElementById('rc-rate').textContent='$2,350';
+    document.getElementById('rc-special').textContent='Delivery appointment required. Call 1 hour before. No lumper.';
+    document.getElementById('rcResult').style.display='block';
+    toast('Rate confirmation scanned! All info filled in automatically.');
+  },1200);
+}
+function createFromRC(){toast('Load created from rate confirmation!');}
+function resetRC(){document.getElementById('rcResult').style.display='none';document.getElementById('rcFile').value='';}
+
+var STATES=['AL','AZ','AR','CA','CO','CT','DE','FL','GA','ID','IL','IN','IA','KS','KY','LA','ME','MD','MA','MI','MN','MS','MO','MT','NE','NV','NH','NJ','NM','NY','NC','ND','OH','OK','OR','PA','RI','SC','SD','TN','TX','UT','VT','VA','WA','WV','WI','WY'];
+var IFTA_R={PA:0.576,OH:0.460,NJ:0.418,NY:0.440,IL:0.455,IN:0.530,DE:0.230,MD:0.362,VA:0.278,TX:0.200,TN:0.270,GA:0.290,NC:0.361,KY:0.259,WV:0.352,MI:0.263,SC:0.226,FL:0.349,MA:0.300};
+
+function initIF(){isCount=0;document.getElementById('ifta-stops').innerHTML='';document.getElementById('ifta-result').style.display='none';addIS(true);}
+function clearIF(){initIF();}
+function stOpts(){return STATES.map(function(s){return'<option>'+s+'</option>';}).join('');}
+
+function addIS(isL){
+  isCount++;
+  var id='is-'+isCount;
+  var div=document.createElement('div');
+  div.className='istop'+(isL?'':' empty');
+  div.id=id;
+  div.innerHTML='<div style="font-family:\'Rajdhani\',sans-serif;font-size:11px;font-weight:700;color:'+(isL?'var(--ac)':'var(--mt)')+';margin-bottom:8px">'+(isL?'LOADED STOP':'EMPTY MILES')+' #'+isCount+' <button onclick="document.getElementById(\''+id+'\').remove()" style="float:right;background:none;border:none;color:var(--rd);cursor:pointer;font-size:11px">REMOVE</button></div><div class="fg3"><div class="ff"><label>From State</label><select class="sf">'+stOpts()+'</select></div><div class="ff"><label>To State</label><select class="st">'+stOpts()+'</select></div><div class="ff"><label>Miles</label><input type="number" class="sm" placeholder="0" min="0"></div></div><div style="font-family:\'Share Tech Mono\',monospace;font-size:8px;color:var(--mt);margin-top:3px">'+(isL?'Loaded = freight on board':'Empty = deadhead or bobtail')+'</div>';
+  document.getElementById('ifta-stops').appendChild(div);
+}
+
+function calcIFTA(){
+  var sm={};
+  document.querySelectorAll('.istop').forEach(function(stop){
+    var isL=!stop.classList.contains('empty');
+    var from=stop.querySelector('.sf')&&stop.querySelector('.sf').value;
+    var to=stop.querySelector('.st')&&stop.querySelector('.st').value;
+    var miles=parseFloat(stop.querySelector('.sm')&&stop.querySelector('.sm').value)||0;
+    if(miles>0){
+      if(!sm[from])sm[from]={l:0,e:0};
+      if(!sm[to])sm[to]={l:0,e:0};
+      var h=miles/2;
+      if(isL){sm[from].l+=h;sm[to].l+=h;}else{sm[from].e+=h;sm[to].e+=h;}
+    }
+  });
+  var tl=0,te=0;
+  Object.values(sm).forEach(function(s){tl+=s.l;te+=s.e;});
+  document.getElementById('r-l').textContent=Math.round(tl).toLocaleString();
+  document.getElementById('r-e').textContent=Math.round(te).toLocaleString();
+  document.getElementById('r-t').textContent=Math.round(tl+te).toLocaleString();
+  document.getElementById('il').textContent=Math.round(tl).toLocaleString();
+  document.getElementById('ie').textContent=Math.round(te).toLocaleString();
+  document.getElementById('it').textContent=Math.round(tl+te).toLocaleString();
+  var rows=Object.entries(sm).filter(function(e){return e[1].l+e[1].e>0;}).map(function(e){
+    var st=e[0],m=e[1];
+    var tot=m.l+m.e;
+    var rate=IFTA_R[st]||0.350;
+    var tax=((tot/8)*rate).toFixed(2);
+    return'<tr><td><b>'+st+'</b></td><td style="color:var(--gn)">'+Math.round(m.l)+'</td><td style="color:var(--yw)">'+Math.round(m.e)+'</td><td>'+Math.round(tot)+'</td><td>$'+rate.toFixed(3)+'</td><td style="color:var(--a2)">$'+tax+'</td></tr>';
+  }).join('');
+  document.getElementById('r-states').innerHTML=rows||'<tr><td colspan="6" class="empty-msg">Enter miles above to calculate</td></tr>';
+  document.getElementById('ifta-result').style.display='block';
+  document.getElementById('ifta-result').scrollIntoView({behavior:'smooth'});
+}
+
+function calcF(){
+  var g=parseFloat(document.getElementById('f-gal').value)||0;
+  var p=parseFloat(document.getElementById('f-ppg').value)||0;
+  if(g&&p) document.getElementById('f-tot').value='$'+(g*p).toFixed(2);
+}
+
+function sv(id,btn){
+  document.querySelectorAll('.view').forEach(function(v){v.classList.remove('active');});
+  document.querySelectorAll('.nb').forEach(function(b){b.classList.remove('active');});
+  var v=document.getElementById('view-'+id);if(v)v.classList.add('active');
+  if(btn)btn.classList.add('active');
+  if(id==='gps'){renderGPS();}
+}
+
+function openM(id){document.getElementById('modal-'+id).classList.add('show');}
+function cm(id){document.getElementById('modal-'+id).classList.remove('show');}
+document.querySelectorAll('.mo').forEach(function(m){m.addEventListener('click',function(e){if(e.target===m)m.classList.remove('show');});});
+
+function switchDS(id){
+  document.querySelectorAll('.dscreen').forEach(function(s){s.classList.remove('active');});
+  document.querySelectorAll('.dnb').forEach(function(b){b.classList.remove('active');});
   document.getElementById('ds-'+id).classList.add('active');
   document.getElementById('dnb-'+id).classList.add('active');
 }
 
-// ===== TOAST =====
-function showToast(msg) {
-  const t = document.getElementById('toast');
-  t.textContent = msg;
+function toast(msg,type){
+  var t=document.getElementById('toast-el');
+  t.textContent=msg;
+  t.className='toast '+(type||'');
   t.classList.add('show');
-  setTimeout(()=>t.classList.remove('show'), 2800);
+  setTimeout(function(){t.classList.remove('show');},3200);
 }
+
+init();
 </script>
 </body>
 </html>
