@@ -1596,7 +1596,11 @@ async function readRCWithAI(imgData, fileType) {
     var mt = fileType || 'image/jpeg';
     var resp = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
-      headers: {'Content-Type': 'application/json'},
+      headers: {
+        'Content-Type': 'application/json',
+        'anthropic-version': '2023-06-01',
+        'anthropic-dangerous-direct-browser-access': 'true'
+      },
       body: JSON.stringify({
         model: 'claude-sonnet-4-20250514',
         max_tokens: 1200,
@@ -1604,19 +1608,22 @@ async function readRCWithAI(imgData, fileType) {
           role: 'user',
           content: [
             {type: 'image', source: {type: 'base64', media_type: mt, data: base64}},
-            {type: 'text', text: 'This is a trucking rate confirmation document. Please read it carefully and extract ALL information. Return ONLY a valid JSON object with exactly these keys (use empty string if not found): {"broker_name":"","broker_phone":"","broker_email":"","load_number":"","pickup_address":"","pickup_datetime":"","pickup_number":"","delivery_address":"","delivery_datetime":"","bol_number":"","po_number":"","commodity":"","weight":"","rate":"","special_instructions":""}'}
+            {type: 'text', text: 'This is a trucking rate confirmation document. Read it carefully and extract ALL information. Return ONLY a valid JSON object, no other text before or after, with exactly these keys (use empty string if not found, for rate include only the number): {"broker_name":"","broker_phone":"","broker_email":"","load_number":"","pickup_address":"","pickup_datetime":"","pickup_number":"","delivery_address":"","delivery_datetime":"","bol_number":"","po_number":"","commodity":"","weight":"","rate":"","special_instructions":""}'}
           ]
         }]
       })
     });
     if (!resp.ok) {
-      throw new Error('API error: ' + resp.status);
+      var errText = await resp.text();
+      console.log('API error:', resp.status, errText);
+      throw new Error('API error ' + resp.status);
     }
     var data = await resp.json();
     var text = '';
     if (data.content && data.content.length > 0) {
       text = data.content[0].text || '';
     }
+    text = text.trim();
     var jsonStart = text.indexOf('{');
     var jsonEnd = text.lastIndexOf('}');
     if (jsonStart >= 0 && jsonEnd > jsonStart) {
@@ -1624,15 +1631,15 @@ async function readRCWithAI(imgData, fileType) {
       var info = JSON.parse(jsonStr);
       fillRC(info);
       document.getElementById('rc-badge').textContent = 'AI Scanned from Your RC';
-      showToast('Rate confirmation read! Check the fields and create load.', 'ok');
+      showToast('RC scanned! Review the info below then click CREATE LOAD.', 'ok');
     } else {
       rcShowManual();
-      showToast('Please fill in your RC details manually below', 'warn');
+      showToast('Could not read RC automatically - fill in manually below', 'warn');
     }
   } catch (err) {
     console.log('RC scan error:', err);
     rcShowManual();
-    showToast('Please fill in your RC details manually below', 'warn');
+    showToast('Please fill in your RC info manually below', 'warn');
   }
   document.getElementById('rc-scanning').style.display = 'none';
 }
