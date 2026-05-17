@@ -338,7 +338,7 @@ select option{background:#1a2535}
       <button class="btn bp" onclick="openModal('m-load')">+ NEW LOAD</button>
     </div>
   </div>
-  <div class="panel"><table><thead><tr><th>Load</th><th>Broker</th><th>Origin</th><th>Destination</th><th>Miles</th><th>Rate</th><th>RPM</th><th>Weight</th><th>Commodity</th><th>Driver</th><th>GPS</th><th>Status</th><th>Actions</th></tr></thead><tbody id="loads-table"><tr><td colspan="13" class="empty">No loads yet</td></tr></tbody></table></div>
+  <div class="panel"><table><thead><tr><th>Load</th><th>Broker</th><th>Origin</th><th>Destination</th><th>Miles</th><th>Rate</th><th>RPM</th><th>Weight</th><th>Commodity</th><th>Driver</th><th>GPS</th><th>Change Status</th><th>Actions</th></tr></thead><tbody id="loads-table"><tr><td colspan="13" class="empty">No loads yet</td></tr></tbody></table></div>
 </div>
 
 <!-- DISPATCH -->
@@ -1062,30 +1062,71 @@ function saveLoad() {
   var broker = document.getElementById('nl-broker').value.trim();
   var origin = document.getElementById('nl-origin').value.trim();
   if (!broker || !origin) { showToast('Fill in broker and origin!', 'err'); return; }
-  var num = document.getElementById('nl-num').value.trim() || ('LD-' + (1001 + loads.length));
   var dEl = document.getElementById('nl-driver');
   var driverName = dEl && dEl.selectedIndex > 0 ? dEl.options[dEl.selectedIndex].text : '';
-  loads.push({
-    id: num, broker: broker, origin: origin,
-    dest: document.getElementById('nl-dest').value,
-    paddr: document.getElementById('nl-paddr').value,
-    daddr: document.getElementById('nl-daddr').value,
-    miles: parseInt(document.getElementById('nl-miles').value) || 0,
-    rate: parseFloat(document.getElementById('nl-rate').value) || 0,
-    weight: parseInt(document.getElementById('nl-weight').value) || 0,
-    commodity: document.getElementById('nl-commodity').value,
-    punum: document.getElementById('nl-punum').value,
-    bol: document.getElementById('nl-bol').value,
-    po: document.getElementById('nl-po').value,
-    driver: driverName,
-    ptime: document.getElementById('nl-ptime').value,
-    dtime: document.getElementById('nl-dtime').value,
-    special: document.getElementById('nl-special').value,
-    status: 'booked'
-  });
+  var editIdx = document.getElementById('nl-broker').getAttribute('data-edit');
+  if (editIdx !== null && editIdx !== '') {
+    var idx = parseInt(editIdx);
+    var existId = loads[idx].id;
+    var oldStatus = loads[idx].status;
+    loads[idx] = {
+      id: existId, broker: broker, origin: origin,
+      dest: document.getElementById('nl-dest').value,
+      paddr: document.getElementById('nl-paddr').value,
+      daddr: document.getElementById('nl-daddr').value,
+      miles: parseInt(document.getElementById('nl-miles').value) || 0,
+      rate: parseFloat(document.getElementById('nl-rate').value) || 0,
+      weight: parseInt(document.getElementById('nl-weight').value) || 0,
+      commodity: document.getElementById('nl-commodity').value,
+      punum: document.getElementById('nl-punum').value,
+      bol: document.getElementById('nl-bol').value,
+      po: document.getElementById('nl-po').value,
+      driver: driverName,
+      ptime: document.getElementById('nl-ptime').value,
+      dtime: document.getElementById('nl-dtime').value,
+      special: document.getElementById('nl-special').value,
+      status: oldStatus || 'booked'
+    };
+    document.getElementById('nl-broker').removeAttribute('data-edit');
+    document.querySelector('#m-load .mtitle').textContent = 'Add New Load';
+    showToast('Load ' + existId + ' updated!', 'ok');
+  } else {
+    var num = document.getElementById('nl-num').value.trim() || ('LD-' + (1001 + loads.length));
+    loads.push({
+      id: num, broker: broker, origin: origin,
+      dest: document.getElementById('nl-dest').value,
+      paddr: document.getElementById('nl-paddr').value,
+      daddr: document.getElementById('nl-daddr').value,
+      miles: parseInt(document.getElementById('nl-miles').value) || 0,
+      rate: parseFloat(document.getElementById('nl-rate').value) || 0,
+      weight: parseInt(document.getElementById('nl-weight').value) || 0,
+      commodity: document.getElementById('nl-commodity').value,
+      punum: document.getElementById('nl-punum').value,
+      bol: document.getElementById('nl-bol').value,
+      po: document.getElementById('nl-po').value,
+      driver: driverName,
+      ptime: document.getElementById('nl-ptime').value,
+      dtime: document.getElementById('nl-dtime').value,
+      special: document.getElementById('nl-special').value,
+      status: 'booked'
+    });
+    showToast('Load ' + num + ' saved!', 'ok');
+  }
   renderAll();
-  showToast('Load ' + num + ' saved!', 'ok');
   closeModal('m-load');
+  var clearFields = ['nl-broker','nl-num','nl-origin','nl-dest','nl-paddr','nl-daddr','nl-miles','nl-rate','nl-weight','nl-commodity','nl-punum','nl-bol','nl-po','nl-special'];
+  for (var i = 0; i < clearFields.length; i++) {
+    var el = document.getElementById(clearFields[i]);
+    if (el) el.value = '';
+  }
+}
+
+function changeLoadStatus(idx, status) {
+  if (loads[idx]) {
+    loads[idx].status = status;
+    renderLoadsTable();
+    showToast('Load status updated to ' + status + '!', 'ok');
+  }
 }
 
 function deleteLoad(idx) {
@@ -1094,6 +1135,81 @@ function deleteLoad(idx) {
     renderAll();
     showToast('Load removed', 'warn');
   }
+}
+
+function changeStatus(idx, status) {
+  if (loads[idx]) {
+    loads[idx].status = status;
+    renderLoadsTable();
+    showToast('Load ' + loads[idx].id + ' status updated to ' + status + '!', 'ok');
+  }
+}
+
+function editLoad(idx) {
+  var l = loads[idx];
+  if (!l) return;
+  document.getElementById('nl-broker').value = l.broker || '';
+  document.getElementById('nl-num').value = l.id || '';
+  document.getElementById('nl-origin').value = l.origin || '';
+  document.getElementById('nl-dest').value = l.dest || '';
+  document.getElementById('nl-paddr').value = l.paddr || '';
+  document.getElementById('nl-daddr').value = l.daddr || '';
+  document.getElementById('nl-miles').value = l.miles || '';
+  document.getElementById('nl-rate').value = l.rate || '';
+  document.getElementById('nl-weight').value = l.weight || '';
+  document.getElementById('nl-commodity').value = l.commodity || '';
+  document.getElementById('nl-punum').value = l.punum || '';
+  document.getElementById('nl-bol').value = l.bol || '';
+  document.getElementById('nl-po').value = l.po || '';
+  document.getElementById('nl-ptime').value = l.ptime || '';
+  document.getElementById('nl-dtime').value = l.dtime || '';
+  document.getElementById('nl-special').value = l.special || '';
+  var dEl = document.getElementById('nl-driver');
+  if (dEl && l.driver) {
+    for (var j = 0; j < dEl.options.length; j++) {
+      if (dEl.options[j].text === l.driver) { dEl.selectedIndex = j; break; }
+    }
+  }
+  document.getElementById('nl-broker').setAttribute('data-edit', idx);
+  document.querySelector('#m-load .mtitle').textContent = 'Edit Load - ' + l.id;
+  openModal('m-load');
+}
+
+function editLoad(idx) {
+  var l = loads[idx];
+  if (!l) return;
+  // Fill modal with existing load data
+  document.getElementById('nl-broker').value = l.broker || '';
+  document.getElementById('nl-num').value = l.id || '';
+  document.getElementById('nl-origin').value = l.origin || '';
+  document.getElementById('nl-dest').value = l.dest || '';
+  document.getElementById('nl-paddr').value = l.paddr || '';
+  document.getElementById('nl-daddr').value = l.daddr || '';
+  document.getElementById('nl-miles').value = l.miles || '';
+  document.getElementById('nl-rate').value = l.rate || '';
+  document.getElementById('nl-weight').value = l.weight || '';
+  document.getElementById('nl-commodity').value = l.commodity || '';
+  document.getElementById('nl-punum').value = l.punum || '';
+  document.getElementById('nl-bol').value = l.bol || '';
+  document.getElementById('nl-po').value = l.po || '';
+  document.getElementById('nl-ptime').value = l.ptime || '';
+  document.getElementById('nl-dtime').value = l.dtime || '';
+  document.getElementById('nl-special').value = l.special || '';
+  // Set driver if assigned
+  var dEl = document.getElementById('nl-driver');
+  if (dEl && l.driver) {
+    for (var i = 0; i < dEl.options.length; i++) {
+      if (dEl.options[i].text === l.driver) {
+        dEl.selectedIndex = i;
+        break;
+      }
+    }
+  }
+  // Store index being edited
+  document.getElementById('nl-broker').setAttribute('data-edit-idx', idx);
+  // Change modal title
+  document.querySelector('#m-load .mtitle').textContent = 'Edit Load - ' + l.id;
+  openModal('m-load');
 }
 
 // ===== FUEL =====
@@ -1198,8 +1314,8 @@ function renderLoadsTable() {
     html += '<td>' + (l.commodity || '-') + '</td>';
     html += '<td>' + (l.driver || 'Unassigned') + '</td>';
     html += '<td>' + gpsHtml + '</td>';
-    html += '<td>' + statusBadge(l.status) + '</td>';
-    html += '<td><button class="btn br2" style="font-size:11px;padding:5px 10px" onclick="deleteLoad(' + i + ')">DEL</button></td>';
+    html += '<td><select onchange="changeLoadStatus(' + i + ',this.value)" style="padding:4px 6px;font-size:11px;background:#1a2535;border:1px solid #2a3a50;color:#fff;border-radius:3px"><option value="booked"' + (l.status==='booked'?' selected':'') + '>Booked</option><option value="pickup"' + (l.status==='pickup'?' selected':'') + '>At Pickup</option><option value="transit"' + (l.status==='transit'?' selected':'') + '>In Transit</option><option value="delivered"' + (l.status==='delivered'?' selected':'') + '>Delivered</option></select></td>';
+    html += '<td><div class="brow"><button class="btn bs" style="font-size:11px;padding:5px 10px" onclick="editLoad(' + i + ')">EDIT</button><button class="btn br2" style="font-size:11px;padding:5px 10px" onclick="deleteLoad(' + i + ')">DEL</button></div></td>';
     html += '</tr>';
   }
   t.innerHTML = html;
@@ -1477,35 +1593,46 @@ function processRC(file) {
 async function readRCWithAI(imgData, fileType) {
   try {
     var base64 = imgData.split(',')[1];
+    var mt = fileType || 'image/jpeg';
     var resp = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
         model: 'claude-sonnet-4-20250514',
-        max_tokens: 1000,
+        max_tokens: 1200,
         messages: [{
           role: 'user',
           content: [
-            { type: 'image', source: { type: 'base64', media_type: fileType || 'image/jpeg', data: base64 } },
-            { type: 'text', text: 'This is a trucking rate confirmation. Extract all info and return ONLY a JSON object with these keys, no other text: {"broker_name":"","broker_phone":"","broker_email":"","load_number":"","pickup_address":"","pickup_datetime":"","pickup_number":"","delivery_address":"","delivery_datetime":"","bol_number":"","po_number":"","commodity":"","weight":"","rate":"","special_instructions":""}' }
+            {type: 'image', source: {type: 'base64', media_type: mt, data: base64}},
+            {type: 'text', text: 'This is a trucking rate confirmation document. Please read it carefully and extract ALL information. Return ONLY a valid JSON object with exactly these keys (use empty string if not found): {"broker_name":"","broker_phone":"","broker_email":"","load_number":"","pickup_address":"","pickup_datetime":"","pickup_number":"","delivery_address":"","delivery_datetime":"","bol_number":"","po_number":"","commodity":"","weight":"","rate":"","special_instructions":""}'}
           ]
         }]
       })
     });
+    if (!resp.ok) {
+      throw new Error('API error: ' + resp.status);
+    }
     var data = await resp.json();
-    var text = data.content && data.content[0] && data.content[0].text || '';
-    var match = text.match(/\{[\s\S]*\}/);
-    if (match) {
-      var info = JSON.parse(match[0]);
+    var text = '';
+    if (data.content && data.content.length > 0) {
+      text = data.content[0].text || '';
+    }
+    var jsonStart = text.indexOf('{');
+    var jsonEnd = text.lastIndexOf('}');
+    if (jsonStart >= 0 && jsonEnd > jsonStart) {
+      var jsonStr = text.substring(jsonStart, jsonEnd + 1);
+      var info = JSON.parse(jsonStr);
       fillRC(info);
       document.getElementById('rc-badge').textContent = 'AI Scanned from Your RC';
+      showToast('Rate confirmation read! Check the fields and create load.', 'ok');
     } else {
       rcShowManual();
-      showToast('Could not read RC - please fill in manually', 'warn');
+      showToast('Please fill in your RC details manually below', 'warn');
     }
   } catch (err) {
+    console.log('RC scan error:', err);
     rcShowManual();
-    showToast('Please fill in your RC info manually below', 'warn');
+    showToast('Please fill in your RC details manually below', 'warn');
   }
   document.getElementById('rc-scanning').style.display = 'none';
 }
@@ -1546,33 +1673,43 @@ function rcShowManual() {
 function rcCreateLoad() {
   var broker = document.getElementById('rc-broker').value.trim();
   var rate = parseFloat(document.getElementById('rc-rate').value) || 0;
-  if (!broker) { showToast('Enter broker name!', 'err'); return; }
-  if (!rate) { showToast('Enter load rate!', 'err'); return; }
-  var origin = document.getElementById('rc-paddr').value;
-  var dest = document.getElementById('rc-daddr').value;
-  var oc = origin ? origin.split(',').slice(-2).join(',').trim() : 'TBD';
-  var dc = dest ? dest.split(',').slice(-2).join(',').trim() : 'TBD';
+  if (!broker) { showToast('Enter the broker name first!', 'err'); return; }
+  if (!rate) { showToast('Enter the load rate amount!', 'err'); return; }
+  var origin = document.getElementById('rc-paddr').value.trim();
+  var dest = document.getElementById('rc-daddr').value.trim();
+  var lnum = document.getElementById('rc-lnum').value.trim();
   var dEl = document.getElementById('rc-driver');
-  var driverName = dEl && dEl.selectedIndex > 0 ? dEl.options[dEl.selectedIndex].text : '';
-  var id = 'LD-' + (1001 + loads.length);
+  var driverName = '';
+  if (dEl && dEl.selectedIndex > 0) {
+    driverName = dEl.options[dEl.selectedIndex].text;
+  }
+  var id = lnum || ('LD-' + (1001 + loads.length));
+  var originCity = origin ? origin : 'TBD';
+  var destCity = dest ? dest : 'TBD';
   loads.push({
-    id: id, broker: broker, origin: oc, dest: dc,
-    paddr: origin, daddr: dest, miles: 0, rate: rate,
+    id: id,
+    broker: broker,
+    origin: originCity,
+    dest: destCity,
+    paddr: origin,
+    daddr: dest,
+    miles: 0,
+    rate: rate,
     weight: parseInt(document.getElementById('rc-weight').value) || 0,
-    commodity: document.getElementById('rc-commodity').value,
-    punum: document.getElementById('rc-pnum').value,
-    bol: document.getElementById('rc-bol').value,
-    po: document.getElementById('rc-po').value,
+    commodity: document.getElementById('rc-commodity').value || '',
+    punum: document.getElementById('rc-pnum').value || '',
+    bol: document.getElementById('rc-bol').value || '',
+    po: document.getElementById('rc-po').value || '',
     driver: driverName,
-    ptime: document.getElementById('rc-ptime').value,
-    dtime: document.getElementById('rc-dtime').value,
-    special: document.getElementById('rc-special').value,
-    bphone: document.getElementById('rc-bphone').value,
-    bemail: document.getElementById('rc-bemail').value,
+    ptime: document.getElementById('rc-ptime').value || '',
+    dtime: document.getElementById('rc-dtime').value || '',
+    special: document.getElementById('rc-special').value || '',
+    bphone: document.getElementById('rc-bphone').value || '',
+    bemail: document.getElementById('rc-bemail').value || '',
     status: 'booked'
   });
   renderAll();
-  showToast('Load ' + id + ' created from your rate confirmation!', 'ok');
+  showToast('Load ' + id + ' created from rate confirmation!', 'ok');
   rcReset();
   goTo('loads', document.querySelectorAll('.nb')[3]);
 }
