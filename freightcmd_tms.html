@@ -560,11 +560,14 @@ table.tbl{width:100%;border-collapse:collapse}
     <div class="page" id="page-assets">
       <div style="display:flex;justify-content:space-between;margin-bottom:14px">
         <div style="display:flex;gap:8px">
-          <button class="btn btn-primary btn-sm">Trucks</button>
-          <button class="btn btn-outline btn-sm">Trailers</button>
+          <button class="btn btn-primary btn-sm" id="btn-trucks" onclick="showAssetType('truck',this)"><i class="ti ti-truck"></i> Trucks</button>
+          <button class="btn btn-outline btn-sm" id="btn-trailers" onclick="showAssetType('trailer',this)"><i class="ti ti-box"></i> Trailers</button>
         </div>
-        <button class="btn btn-outline btn-sm"><i class="ti ti-plus"></i> Add Asset</button>
+        <button class="btn btn-primary btn-sm" onclick="openAddAssetModal()"><i class="ti ti-plus"></i> Add Asset</button>
       </div>
+      <div class="asset-grid" id="assets-grid"></div>
+    </div>
+    <div style="display:none">
       <div class="asset-grid">
         <div class="asset-card">
           <div class="asset-card-header">
@@ -1566,11 +1569,147 @@ function downloadSettlementPDF() {
   });
 }
 
+// ============ ASSETS ============
+let currentAssetType = 'truck';
+
+function showAssetType(type, btn) {
+  currentAssetType = type;
+  document.querySelectorAll('[onclick*=showAssetType]').forEach(b=>b.className='btn btn-outline btn-sm');
+  if(btn) btn.className='btn btn-primary btn-sm';
+  renderAssets();
+}
+
+function renderAssets() {
+  const assets = (JSON.parse(localStorage.getItem('fcmd_assets')||'null')) || [
+    {id:1,type:'truck',name:'2023 Freightliner Cascadia',unit:'001',vin:'3AKJHHDR4PSXXXXX',plate:'PA-XXXXX',mileage:'87420',eld:'Zeromax',fuelCard:'TCS',status:'Active',maintenance:[{item:'Oil Change',status:'yellow',note:'Due in 1,580 mi'},{item:'DOT Inspection',status:'green',note:'Valid · Exp 11/2026'},{item:'Registration',status:'green',note:'Valid · Exp 03/2027'},{item:'PM Service',status:'red',note:'OVERDUE'},{item:'Tires',status:'green',note:'Good'}]},
+    {id:2,type:'trailer',name:"2021 Great Dane 53' Dry Van",unit:'T01',vin:'1GRAA0629KW000000',plate:'PA-TXXXXX',mileage:'',eld:'',fuelCard:'',status:'Active',maintenance:[{item:'Annual Inspection',status:'yellow',note:'Due in 45 days'},{item:'Registration',status:'green',note:'Valid · Exp 06/2027'},{item:'Lights / Brakes',status:'green',note:'Passed last check'}]},
+  ];
+  const filtered = assets.filter(a=>a.type===currentAssetType);
+  const dotMap={green:'dot-g',yellow:'dot-y',red:'dot-r'};
+  const colorMap={green:'var(--green)',yellow:'var(--yellow)',red:'var(--red)'};
+  const grid = document.getElementById('assets-grid');
+  if(!grid) return;
+  grid.innerHTML = filtered.length ? filtered.map(a=>`
+    <div class="asset-card">
+      <div class="asset-card-header">
+        <div><div class="asset-card-title">${a.name}</div><div class="asset-card-sub">Unit #${a.unit} · ${a.vin}</div></div>
+        <span class="badge badge-green">${a.status}</span>
+      </div>
+      <div class="asset-card-body">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;font-size:12px">
+          ${a.eld?`<div><span style="color:var(--gray-400)">ELD:</span> ${a.eld}</div>`:''}
+          ${a.fuelCard?`<div><span style="color:var(--gray-400)">Fuel Card:</span> ${a.fuelCard}</div>`:''}
+          ${a.mileage?`<div><span style="color:var(--gray-400)">Mileage:</span> ${parseInt(a.mileage).toLocaleString()} mi</div>`:''}
+          <div><span style="color:var(--gray-400)">Plate:</span> ${a.plate}</div>
+        </div>
+        <div style="font-size:11px;font-weight:700;color:var(--gray-400);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px">Maintenance</div>
+        ${(a.maintenance||[]).map(m=>`
+          <div class="maint-item">
+            <span class="maint-label">${m.item}</span>
+            <div class="maint-status"><div class="dot ${dotMap[m.status]||'dot-g'}"></div><span style="color:${colorMap[m.status]||'var(--green)'}">${m.note}</span></div>
+          </div>`).join('')}
+        <div style="margin-top:12px;display:flex;gap:8px">
+          <button class="btn btn-outline btn-sm" style="flex:1" onclick="logServiceFor(${a.id})"><i class="ti ti-plus"></i> Log Service</button>
+          <button class="btn btn-danger btn-sm" onclick="deleteAsset(${a.id})"><i class="ti ti-trash"></i></button>
+        </div>
+      </div>
+    </div>`).join('') : `<div style="text-align:center;color:var(--gray-400);padding:40px;grid-column:1/3"><i class="ti ti-${currentAssetType==='truck'?'truck':'box'}" style="font-size:36px;display:block;margin-bottom:10px"></i>No ${currentAssetType}s yet.<br>Click "+ Add Asset" to add one.</div>`;
+}
+
+function openAddAssetModal() {
+  document.getElementById('add-asset-modal').classList.add('show');
+  document.getElementById('aa-type').value = currentAssetType;
+}
+
+function saveAsset() {
+  const name = document.getElementById('aa-name').value.trim();
+  if(!name){showToast('Enter asset name','error');return;}
+  const assets = JSON.parse(localStorage.getItem('fcmd_assets')||'null') || [];
+  const newAsset = {
+    id: Date.now(),
+    type: document.getElementById('aa-type').value,
+    name,
+    unit: document.getElementById('aa-unit').value,
+    vin: document.getElementById('aa-vin').value,
+    plate: document.getElementById('aa-plate').value,
+    mileage: document.getElementById('aa-mileage').value,
+    eld: document.getElementById('aa-eld').value,
+    fuelCard: document.getElementById('aa-fuelcard').value,
+    status: 'Active',
+    maintenance: [
+      {item:'Registration',status:'green',note:'Valid'},
+      {item:'DOT Inspection',status:'green',note:'Valid'},
+      {item:'Oil Change',status:'green',note:'Up to date'},
+    ]
+  };
+  assets.push(newAsset);
+  localStorage.setItem('fcmd_assets', JSON.stringify(assets));
+  closeModal('add-asset-modal');
+  showToast(name+' added!');
+  renderAssets();
+  // clear form
+  ['aa-name','aa-unit','aa-vin','aa-plate','aa-mileage','aa-eld','aa-fuelcard'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+}
+
+function deleteAsset(id) {
+  if(!confirm('Delete this asset?')) return;
+  const assets = JSON.parse(localStorage.getItem('fcmd_assets')||'[]').filter(a=>a.id!==id);
+  localStorage.setItem('fcmd_assets', JSON.stringify(assets));
+  showToast('Asset deleted','info');
+  renderAssets();
+}
+
+function logServiceFor(id) {
+  const note = prompt('Enter service note (e.g. Oil change at 87,420 mi):');
+  if(!note) return;
+  const assets = JSON.parse(localStorage.getItem('fcmd_assets')||'[]');
+  const idx = assets.findIndex(a=>a.id===id);
+  if(idx===-1) return;
+  assets[idx].maintenance.unshift({item:'Service Logged',status:'green',note:note+' — '+new Date().toLocaleDateString()});
+  localStorage.setItem('fcmd_assets', JSON.stringify(assets));
+  showToast('Service logged!');
+  renderAssets();
+}
+
+// Override showPage to also handle assets
+const _origShowPage = showPage;
+function showPage(id, el) {
+  _origShowPage(id, el);
+  if(id==='assets') { currentAssetType='truck'; renderAssets(); }
+}
+
 // ============ INIT ============
 renderLoads();
 renderCompanies();
 populateInvoiceSelect();
 calcSettlements();
+renderAssets();
 </script>
+
+<!-- ADD ASSET MODAL -->
+<div class="modal-overlay" id="add-asset-modal">
+  <div class="modal" style="max-width:560px">
+    <div class="modal-header">
+      <div class="modal-title"><i class="ti ti-tool" style="color:var(--blue)"></i> Add Asset</div>
+      <button class="close-btn" onclick="closeModal('add-asset-modal')">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-grid form-grid-2" style="gap:12px">
+        <div class="form-group"><label>Asset Type *</label><select id="aa-type"><option value="truck">Truck</option><option value="trailer">Trailer</option></select></div>
+        <div class="form-group"><label>Unit #</label><input type="text" id="aa-unit" placeholder="001"></div>
+        <div class="form-group" style="grid-column:1/3"><label>Name / Description *</label><input type="text" id="aa-name" placeholder="e.g. 2023 Freightliner Cascadia"></div>
+        <div class="form-group" style="grid-column:1/3"><label>VIN</label><input type="text" id="aa-vin" placeholder="Full VIN number"></div>
+        <div class="form-group"><label>License Plate</label><input type="text" id="aa-plate" placeholder="PA-XXXXX"></div>
+        <div class="form-group"><label>Current Mileage</label><input type="number" id="aa-mileage" placeholder="87420"></div>
+        <div class="form-group"><label>ELD Device</label><select id="aa-eld"><option value="">None</option><option>Zeromax</option><option>KeepTruckin</option><option>Samsara</option><option>Other</option></select></div>
+        <div class="form-group"><label>Fuel Card</label><select id="aa-fuelcard"><option value="">None</option><option>TCS</option><option>EFS</option><option>Comdata</option><option>WEX</option></select></div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-outline" onclick="closeModal('add-asset-modal')">Cancel</button>
+      <button class="btn btn-success" onclick="saveAsset()"><i class="ti ti-check"></i> Save Asset</button>
+    </div>
+  </div>
+</div>
 </body>
 </html>
