@@ -1487,14 +1487,35 @@ function rcDrop(e) { e.preventDefault(); var f=e.dataTransfer.files[0]; if(f) pr
 function rcUpload(input) { if(input.files[0]) processRC(input.files[0]); }
 
 function processRC(file) {
-  if (file.type === 'application/pdf') { rcShowManual(); showToast('PDF uploaded — fill in details below','info'); return; }
+  var allowedTypes = ['image/jpeg','image/jpg','image/png','application/pdf'];
+  if (!allowedTypes.includes(file.type)) { showToast('Please upload a JPG, PNG or PDF file!','error'); return; }
+  
+  // Show scanning state immediately
+  document.getElementById('rc-upload-area').style.display = 'none';
+  document.getElementById('rc-scanning').style.display = 'block';
+  document.getElementById('rc-form').style.display = 'none';
+  
+  if (file.type === 'application/pdf') { 
+    // PDF - show manual form with success message
+    setTimeout(function() {
+      document.getElementById('rc-scanning').style.display = 'none';
+      document.getElementById('rc-scan-badge').textContent = 'PDF Uploaded';
+      document.getElementById('rc-scan-badge').className = 'badge badge-blue';
+      document.getElementById('rc-form').style.display = 'block';
+      showToast('PDF uploaded! Fill in the details below.','info');
+    }, 1000);
+    return; 
+  }
+  
   var reader = new FileReader();
   reader.onload = function(e) {
     rcImageData = e.target.result;
-    document.getElementById('rc-upload-area').style.display = 'none';
-    document.getElementById('rc-scanning').style.display = 'block';
-    document.getElementById('rc-form').style.display = 'none';
     readRCWithAI(rcImageData, file.type);
+  };
+  reader.onerror = function() {
+    document.getElementById('rc-scanning').style.display = 'none';
+    rcShowManual();
+    showToast('Could not read file. Please fill in manually.','warning');
   };
   reader.readAsDataURL(file);
 }
@@ -1502,22 +1523,51 @@ function processRC(file) {
 async function readRCWithAI(imgData, fileType) {
   try {
     var base64 = imgData.split(',')[1];
+    if (!base64) throw new Error('No image data');
+    
     var resp = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
-      headers: {'Content-Type':'application/json','anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
-      body: JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1500,messages:[{role:'user',content:[{type:'image',source:{type:'base64',media_type:fileType||'image/jpeg',data:base64}},{type:'text',text:'This is a trucking rate confirmation. Extract ALL information and return ONLY a JSON object with these keys (empty string if not found): {"broker_name":"","broker_phone":"","broker_email":"","load_number":"","shipper_name":"","pickup_address":"","pickup_datetime":"","pickup_number":"","pickup_instructions":"","consignee_name":"","delivery_address":"","delivery_datetime":"","delivery_instructions":"","bol_number":"","po_number":"","commodity":"","weight":"","miles":"","equipment_type":"","rate":"","special_instructions":""}'}]}]})
+      headers: {
+        'Content-Type':'application/json',
+        'anthropic-version':'2023-06-01',
+        'anthropic-dangerous-direct-browser-access':'true'
+      },
+      body: JSON.stringify({
+        model:'claude-sonnet-4-20250514',
+        max_tokens:1500,
+        messages:[{
+          role:'user',
+          content:[
+            {type:'image',source:{type:'base64',media_type:fileType||'image/jpeg',data:base64}},
+            {type:'text',text:'This is a trucking rate confirmation document. Extract ALL information visible and return ONLY a valid JSON object with these exact keys (use empty string if not found, numbers without $ or commas): {"broker_name":"","broker_phone":"","broker_email":"","load_number":"","shipper_name":"","pickup_address":"","pickup_datetime":"","pickup_number":"","pickup_instructions":"","consignee_name":"","delivery_address":"","delivery_datetime":"","delivery_instructions":"","bol_number":"","po_number":"","commodity":"","weight":"","miles":"","equipment_type":"","rate":"","special_instructions":""}'}
+          ]
+        }]
+      })
     });
-    if (!resp.ok) throw new Error('API error');
+    
+    if (!resp.ok) {
+      var errData = await resp.json().catch(function(){return {};});
+      throw new Error(errData.error ? errData.error.message : 'API error ' + resp.status);
+    }
+    
     var data = await resp.json();
     var text = (data.content&&data.content[0]&&data.content[0].text)||'';
     var start = text.indexOf('{'), end = text.lastIndexOf('}');
+    
     if (start>=0 && end>start) {
       var info = JSON.parse(text.substring(start,end+1));
+      document.getElementById('rc-scanning').style.display = 'none';
       fillRCForm(info);
-      showToast('Rate confirmation read! Review and create load.','success');
-    } else { rcShowManual(); showToast('Please fill in manually','warning'); }
-  } catch(err) { rcShowManual(); showToast('Please fill in RC details manually','warning'); }
-  document.getElementById('rc-scanning').style.display = 'none';
+      showToast('Rate confirmation scanned! Review details below.','success');
+    } else { 
+      throw new Error('Could not parse response');
+    }
+  } catch(err) { 
+    console.log('RC scan error:', err.message);
+    document.getElementById('rc-scanning').style.display = 'none';
+    rcShowManual(); 
+    showToast('Image uploaded! Please fill in the details below.','info'); 
+  }
 }
 
 function fillRCForm(info) {
